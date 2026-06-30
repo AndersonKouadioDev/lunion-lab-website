@@ -2,15 +2,9 @@
 
 import { useConfig } from "@/hooks/use-config";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Image,
-} from "@heroui/react";
+import { Button, Dropdown } from "@heroui/react";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function LocaleSwitcher() {
   const [_, setConfig] = useConfig();
@@ -47,42 +41,48 @@ export default function LocaleSwitcher() {
     },
   ];
 
-  const activeLocale = locales.find((l) => l.code === localActive);
+  const activeLocale = locales.find((l) => l.code === localActive) ?? locales[2];
   return (
     <Dropdown>
-      <DropdownTrigger>
-        <Button variant="light" radius="full" size="sm" className="px-2">
+      <Dropdown.Trigger>
+        <Button variant="ghost" className="rounded-full px-2 text-sm">
           <div className="flex items-center gap-2">
             <Image
-              src={activeLocale?.flag}
+              src={activeLocale.flag}
               width={24}
               height={24}
-              alt={activeLocale?.label}
+              alt={activeLocale.label}
             />
-            {activeLocale?.code.toUpperCase()}
+            {activeLocale.code.toUpperCase()}
           </div>
         </Button>
-      </DropdownTrigger>
-      <DropdownMenu
-        aria-label="Select language"
-        onAction={(key) => onSelectChange(key as string)}
-        selectedKeys={[localActive]}
-        selectionMode="single"
-      >
-        {locales.map((locale) => (
-          <DropdownItem key={locale.code}>
-            <div className="flex items-center gap-2">
-              <Image
-                src={locale.flag}
-                width={24}
-                height={24}
-                alt={locale.label}
-              />
-              <span className="font-medium">{locale.label}</span>
-            </div>
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
+      </Dropdown.Trigger>
+      <Dropdown.Popover>
+        <Dropdown.Menu
+          aria-label="Select language"
+          onAction={(key) => onSelectChange(key as string)}
+          selectedKeys={[localActive]}
+          selectionMode="single"
+        >
+          {locales.map((locale) => (
+            <Dropdown.Item
+              key={locale.code}
+              id={locale.code}
+              textValue={locale.label}
+            >
+              <div className="flex items-center gap-2">
+                <Image
+                  src={locale.flag}
+                  width={24}
+                  height={24}
+                  alt={locale.label}
+                />
+                <span className="font-medium">{locale.label}</span>
+              </div>
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown.Popover>
     </Dropdown>
   );
 }

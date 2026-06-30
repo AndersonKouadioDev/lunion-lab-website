@@ -2,8 +2,7 @@ import Content from "@/components/primitives/Content";
 import Section from "@/components/primitives/Section";
 import Subtitle from "@/components/primitives/Subtitle";
 import Title from "@/components/primitives/Title";
-import { Button } from "@heroui/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Button, Card } from "@heroui/react";
 import { getTranslations } from "next-intl/server";
 
 export default async function BlogPage() {
@@ -14,28 +13,28 @@ export default async function BlogPage() {
       <Title>{t("title")}</Title>
       <Section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card>
-          <CardHeader className="flex-col justify-start align-start">
+          <Card.Header className="flex-col justify-start align-start">
             <Title size="sm">Card Title</Title>
             <Subtitle size="sm">Card Description</Subtitle>
-          </CardHeader>
-          <CardBody>
+          </Card.Header>
+          <Card.Content>
             <p>Card Text</p>
-          </CardBody>
-          <CardFooter>
+          </Card.Content>
+          <Card.Footer>
             <Button>Card Button</Button>
-          </CardFooter>
+          </Card.Footer>
         </Card>
         <Card>
-          <CardHeader className="flex flex-col justify-start">
+          <Card.Header className="flex flex-col justify-start">
             <Title size="sm">Card Title</Title>
             <Subtitle size="sm">Card Description</Subtitle>
-          </CardHeader>
-          <CardBody>
+          </Card.Header>
+          <Card.Content>
             <p>Card Text</p>
-          </CardBody>
-          <CardFooter>
+          </Card.Content>
+          <Card.Footer>
             <Button>Card Button</Button>
-          </CardFooter>
+          </Card.Footer>
         </Card>
       </Section>
       <svg

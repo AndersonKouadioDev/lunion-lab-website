@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "@heroui/link";
+import { Link } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
 export const Footer = () => {
@@ -7,11 +7,11 @@ export const Footer = () => {
   return (
     <footer className="w-full flex items-center justify-center py-3">
       <Link
-     
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center gap-1 text-current"
         href="https://lunion-lab.com"
-        title="Lunion-Lab homepage"
+        aria-label="Lunion-Lab homepage"
       >
         <span className="text-default-600">{t("powered_by")}</span>
         <p className="text-violet-500">Lunion-Lab</p>

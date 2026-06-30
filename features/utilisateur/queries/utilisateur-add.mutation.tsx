@@ -1,11 +1,10 @@
 "use client";
 
-import { addToast } from "@heroui/toast";
+import { toast } from "@heroui/react";
 import {
     useMutation,
 } from '@tanstack/react-query';
 import { processAndValidateFormData } from "ak-zod-form-kit";
-import { CheckCircle2, X } from "lucide-react";
 import {
     ajouterUtilisateurAction
 } from '../actions/utilisateur.action';
@@ -43,23 +42,16 @@ export const useAjouterUtilisateurMutation = () => {
             return result.data!;
         },
         onSuccess: async () => {
-            addToast({
-                title: "Utilisateur ajouté avec succès",
+            invalidateUtilisateurQuery();
+            toast.success("Utilisateur ajouté avec succès", {
                 description: "Utilisateur ajouté avec succès",
-                promise: invalidateUtilisateurQuery(),
-                icon: <CheckCircle2 />,
-                color: "success",
             });
         },
 
         onError: async (error) => {
             console.log("error query", error)
-            addToast({
-                title: "Erreur lors de l'ajout de l'utilisateur:",
+            toast.danger("Erreur lors de l'ajout de l'utilisateur:", {
                 description: error.message,
-                promise: Promise.reject(error),
-                icon: <X />,
-                color: "danger",
             });
         },
     });

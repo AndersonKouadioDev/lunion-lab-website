@@ -7,8 +7,7 @@ import { PaginatedResponse } from "@/types/api.type";
 import { obtenirTousUtilisateursAction } from "../actions/utilisateur.action";
 import { IUtilisateursParams } from "../types/utilisateur.type";
 import { utilisateurKeyQuery } from "./index.query";
-import { addToast } from "@heroui/toast";
-import { X } from "lucide-react";
+import { toast } from "@heroui/react";
 
 const queryClient = getQueryClient();
 
@@ -53,14 +52,11 @@ export const useUtilisateursInfinityQuery = (
   // Gestion des erreurs dans le hook
   React.useEffect(() => {
     if (query.isError && query.error) {
-      addToast({
-        title: "Erreur lors de la récupération des utilisateurs:",
+      toast.danger("Erreur lors de la récupération des utilisateurs:", {
         description:
           query.error instanceof Error
             ? query.error.message
             : "Erreur inconnue",
-        icon: <X />,
-        color: "danger",
       });
     }
   }, [query]);

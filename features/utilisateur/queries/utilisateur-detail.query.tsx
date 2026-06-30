@@ -1,9 +1,8 @@
 import React from "react";
 
 import getQueryClient from "@/lib/get-query-client";
-import { addToast } from "@heroui/toast";
+import { toast } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
-import { X } from "lucide-react";
 import { obtenirUnUtilisateurAction } from "../actions/utilisateur.action";
 import { utilisateurKeyQuery } from "./index.query";
 
@@ -35,14 +34,11 @@ export const useUtilisateurQuery = (id: string) => {
   // Gestion des erreurs dans le hook
   React.useEffect(() => {
     if (query.isError && query.error) {
-      addToast({
-        title: "Erreur lors de la récupération de l'utilisateur:",
+      toast.danger("Erreur lors de la récupération de l'utilisateur:", {
         description:
           query.error instanceof Error
             ? query.error.message
             : "Erreur inconnue",
-        icon: <X />,
-        color: "danger",
       });
     }
   }, [query.isError, query.error]);

@@ -1,10 +1,9 @@
 "use client";
 
-import { addToast } from "@heroui/toast";
+import { toast } from "@heroui/react";
 import {
     useMutation,
 } from '@tanstack/react-query';
-import { CheckCircle2, X } from "lucide-react";
 import {
     supprimerUtilisateurAction
 } from '../actions/utilisateur.action';
@@ -24,21 +23,14 @@ export const useSupprimerUtilisateurMutation = () => {
             return result.data!;
         },
         onSuccess: async () => {
-            addToast({
-                title: "Utilisateur supprimé avec succès",
+            invalidateUtilisateurQuery();
+            toast.success("Utilisateur supprimé avec succès", {
                 description: "Utilisateur supprimé avec succès",
-                promise: invalidateUtilisateurQuery(),
-                icon: <CheckCircle2 />,
-                color: "success",
             });
         },
         onError: async (error) => {
-            addToast({
-                title: "Erreur suppression utilisateur:",
+            toast.danger("Erreur suppression utilisateur:", {
                 description: error.message,
-                promise: Promise.reject(error),
-                icon: <X />,
-                color: "danger",
             });
         },
     });

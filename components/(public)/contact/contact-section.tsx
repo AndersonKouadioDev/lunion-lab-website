@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@heroui/input";
+import { TextArea } from "@heroui/react";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -57,7 +57,7 @@ const ContactSection = () => {
             </div>
 
             <div className="md:row-span-4 space-y-2">
-              <Textarea
+              <TextArea
                 placeholder="Message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}

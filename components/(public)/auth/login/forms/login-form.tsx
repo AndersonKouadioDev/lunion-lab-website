@@ -7,10 +7,10 @@ import { Link } from "@/i18n/navigation";
 import {
   Button,
   Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
   Input,
+  InputGroup,
+  Label,
+  TextField,
 } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
@@ -47,41 +47,44 @@ const LoginForm = () => {
 
   return (
     <Card className="max-w-md w-full border border-primary-100 mx-auto mt-10 shadow-lg">
-      <CardHeader>
+      <Card.Header>
         <Title size="sm" className="text-primary-600">
           {t("login_title")}
         </Title>
-      </CardHeader>
-      <CardBody>
+      </Card.Header>
+      <Card.Content>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <Input
-            {...register("email")}
-            id="email"
-            type="email"
-            label={t("email_label")}
-            placeholder="admin@test.com"
-            disabled={isPending}
-            isInvalid={!!errors.email}
-          />
+          <TextField isInvalid={!!errors.email} isDisabled={isPending}>
+            <Label>{t("email_label")}</Label>
+            <Input
+              {...register("email")}
+              id="email"
+              type="email"
+              placeholder="admin@test.com"
+            />
+          </TextField>
 
-          <Input
-            {...register("password")}
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="password"
-            disabled={isPending}
-            isInvalid={!!errors.password}
-            endContent={
-              <Button
-                size="sm"
-                onPress={togglePassword}
-                variant="light"
-                isIconOnly
-              >
-                {showPassword ? <EyeOff /> : <Eye />}
-              </Button>
-            }
-          />
+          <TextField isInvalid={!!errors.password} isDisabled={isPending}>
+            <InputGroup>
+              <InputGroup.Input
+                {...register("password")}
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="password"
+              />
+              <InputGroup.Suffix>
+                <Button
+                  isIconOnly
+                  variant="ghost"
+                  onPress={togglePassword}
+                  aria-label={showPassword ? "Masquer" : "Afficher"}
+                  className="text-sm"
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </Button>
+              </InputGroup.Suffix>
+            </InputGroup>
+          </TextField>
 
           <div className="flex justify-between items-center">
             <Link
@@ -94,17 +97,16 @@ const LoginForm = () => {
 
           <Button
             type="submit"
-            disabled={isPending}
-            fullWidth
-            isLoading={isPending}
+            isPending={isPending}
+            className="w-full"
           >
             {isPending ? t("signing_in") : t("sign_in")}
           </Button>
         </form>
-      </CardBody>
-      <CardFooter>
+      </Card.Content>
+      <Card.Footer>
         <p className="text-sm text-muted-foreground">{t("login_footer")}</p>
-      </CardFooter>
+      </Card.Footer>
     </Card>
   );
 };

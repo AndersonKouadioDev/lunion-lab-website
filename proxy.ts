@@ -8,7 +8,7 @@ export const publicRoutes = ["/", "/auth","/pricing", "/blog", "/docs", "/servic
 // Middleware d'internationalisation
 const intlMiddleware = createIntlMiddleware(routing);
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   // Récupération du chemin de la requête avec le locale
   const { pathname } = req.nextUrl;
 
