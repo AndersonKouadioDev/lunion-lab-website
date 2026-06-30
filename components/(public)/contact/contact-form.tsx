@@ -137,7 +137,12 @@ const ContactForm = () => {
 
                 <div className="md:col-span-3 flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 items-start sm:items-center mt-4">
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    <Checkbox /> J'accepte le traitement de mes données
+                    <Checkbox>
+                      <Checkbox.Control>
+                        <Checkbox.Indicator />
+                      </Checkbox.Control>
+                    </Checkbox>{" "}
+                    J'accepte le traitement de mes données
                     personnelles
                   </p>
                   <Button
@@ -228,7 +233,12 @@ const ContactForm = () => {
 
                 <div className="md:col-span-3 flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 items-start sm:items-center mt-4">
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    <Checkbox /> J'accepte le traitement de mes données
+                    <Checkbox>
+                      <Checkbox.Control>
+                        <Checkbox.Indicator />
+                      </Checkbox.Control>
+                    </Checkbox>{" "}
+                    J'accepte le traitement de mes données
                     personnelles
                   </p>
                   <Button

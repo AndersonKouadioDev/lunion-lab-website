@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin './hero.mts';
-@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@import "@heroui/styles";
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -35,11 +34,36 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-100: var(--primary-100);
+  --color-primary-600: var(--primary-600);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-default-200: var(--default-200);
+  --color-default-500: var(--default-500);
+  --color-default-600: var(--default-600);
+  --color-default-900: var(--default-900);
+
    --font-figtree: var(--font-figtree);
 }
 
 :root {
   --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #11181c;
+  --primary: #704a9b;
+  --primary-foreground: #ffffff;
+  --primary-100: #ece4f3;
+  --primary-600: #5a3b7d;
+  --secondary: #9353d3;
+  --secondary-foreground: #ffffff;
+  --default-200: #e4e4e7;
+  --default-500: #71717a;
+  --default-600: #52525b;
+  --default-900: #18181b;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -68,6 +92,18 @@
 }
 
 .dark {
+  --background: #0c0c0c;
+  --foreground: #ecedee;
+  --primary: #704a9b;
+  --primary-foreground: #ffffff;
+  --primary-100: #2a2138;
+  --primary-600: #9b7bc4;
+  --secondary: #9353d3;
+  --secondary-foreground: #ffffff;
+  --default-200: #27272a;
+  --default-500: #a1a1aa;
+  --default-600: #d4d4d8;
+  --default-900: #f4f4f5;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);

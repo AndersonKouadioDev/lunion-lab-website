@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { ToastProvider } from "@heroui/toast";
+import { Toast } from "@heroui/react";
 import { Metadata, Viewport } from "next";
 
 import { ThemeProviders } from "@/providers/theme.provider";
@@ -74,10 +74,7 @@ export default async function RootLayout({
             <ThemeProviders
               themeProps={{ attribute: "class", defaultTheme: "light" }}
             >
-              <ToastProvider
-                placement="top-center"
-                toastProps={{ shouldShowTimeoutProgress: true }}
-              />
+              <Toast.Provider placement="top" />
               <NuqsAdapter>
                 <AuthProvider>
                   <MountedProvider>

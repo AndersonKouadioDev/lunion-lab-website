@@ -1,8 +1,12 @@
 import { PlusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Accordion, AccordionItem } from '@heroui/react';
-import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
  
 
 const items = [
@@ -85,8 +89,8 @@ export default function Faq1() {
           <div className="bg-primary/10 absolute -right-4 -bottom-4 -z-10 h-72 w-72 rounded-full blur-3xl" />
 
           <Accordion
-           
-          
+            type="single"
+            collapsible
             className="border-border/40 bg-card/30 w-full rounded-xl border p-2 backdrop-blur-sm"
             defaultValue="1"
           >

@@ -1,9 +1,8 @@
 "use client";
 
-import { addToast } from "@heroui/toast";
+import { toast } from "@heroui/react";
 import { useMutation } from "@tanstack/react-query";
 import { processAndValidateFormData } from "ak-zod-form-kit";
-import { CheckCircle2, User2, X } from "lucide-react";
 import { login } from "../actions/auth.action";
 import { LoginDTO, loginSchema } from "../schemas/auth.schema";
 import { useInvalidateAuthQuery } from "./index.query";
@@ -39,23 +38,16 @@ export const useLoginMutation = () => {
       return result.data!;
     },
     onSuccess: async () => {
-      addToast({
-        title: "Connexion reussie",
+      invalidateAuthQuery();
+      toast.success("Connexion reussie", {
         description: "Connexion reussie",
-        icon: <CheckCircle2 />,
-        promise: invalidateAuthQuery(),
-        color: "success",
       });
     },
 
     onError: async (error) => {
       console.log("error query", error);
-      addToast({
-        title: "Erreur lors de la connexion:",
+      toast.danger("Erreur lors de la connexion:", {
         description: error.message,
-        icon: <X />,
-        promise: Promise.reject(error),
-        color: "danger",
       });
     },
   });

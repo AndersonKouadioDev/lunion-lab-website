@@ -2,13 +2,10 @@
 
 import {
   Button,
+  FieldError,
+  ListBox,
   Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   Select,
-  SelectItem,
 } from "@heroui/react";
 import { useEffect, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -17,7 +14,10 @@ import {
   UtilisateurRoleSchema,
   UtilisateurRoleDTO,
 } from "@/features/utilisateur/schema/utilisateur.schema";
-import { IUtilisateur, UtilisateurRole } from "@/features/utilisateur/types/utilisateur.type";
+import {
+  IUtilisateur,
+  UtilisateurRole,
+} from "@/features/utilisateur/types/utilisateur.type";
 import { getEnumValues } from "@/utils/getEnumValues";
 import { useModifierProfilMutation } from "@/features/utilisateur/queries/utilisateur-update.mutation";
 import { getUtilisateurRole } from "@/features/utilisateur/utils/getUtilisateurRole";
@@ -85,48 +85,65 @@ export function UtilisateurUpdateModal({
   );
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
-      <ModalContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader className="flex flex-col gap-1">
-            <h1 className="text-lg font-medium text-primary">
-              {`Modifier ${utilisateur?.firstName} ${utilisateur?.lastName}`}
-            </h1>
-            <p className="text-sm text-gray-500">
-              Formulaire pour modifier le rôle d&apos;un utilisateur.
-            </p>
-          </ModalHeader>
+    <Modal>
+      <Modal.Backdrop isOpen={isOpen} onOpenChange={setIsOpen}>
+        <Modal.Container>
+          <Modal.Dialog>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Modal.Header className="flex flex-col gap-1">
+                <Modal.Heading className="text-lg font-medium text-primary">
+                  {`Modifier ${utilisateur?.firstName} ${utilisateur?.lastName}`}
+                </Modal.Heading>
+                <p className="text-sm text-gray-500">
+                  Formulaire pour modifier le rôle d&apos;un utilisateur.
+                </p>
+              </Modal.Header>
 
-          <ModalBody>
-            <Select
-              selectedKeys={[watch("role")?.toString() || ""]}
-              onChange={(e) => handleRoleChange(e.target.value)}
-              errorMessage={errors.role?.message}
-              isInvalid={!!errors.role}
-              disabled={isPending}
-              placeholder="Choisir un rôle"
-            >
-              {roleOptions.map((role) => (
-                <SelectItem key={role}>{getUtilisateurRole(role)}</SelectItem>
-              ))}
-            </Select>
-          </ModalBody>
+              <Modal.Body>
+                <Select
+                  placeholder="Choisir un rôle"
+                  value={watch("role") ?? null}
+                  onChange={(value) => handleRoleChange(value as string)}
+                  isInvalid={!!errors.role}
+                  isDisabled={isPending}
+                >
+                  <Select.Trigger>
+                    <Select.Value />
+                    <Select.Indicator />
+                  </Select.Trigger>
+                  <Select.Popover>
+                    <ListBox>
+                      {roleOptions.map((role) => (
+                        <ListBox.Item
+                          key={role}
+                          id={role}
+                          textValue={getUtilisateurRole(role)}
+                        >
+                          {getUtilisateurRole(role)}
+                        </ListBox.Item>
+                      ))}
+                    </ListBox>
+                  </Select.Popover>
+                  <FieldError>{errors.role?.message}</FieldError>
+                </Select>
+              </Modal.Body>
 
-          <ModalFooter>
-            <Button color="danger" variant="light" onPress={handleClose}>
-              Annuler
-            </Button>
-            <Button
-              color="primary"
-              type="submit"
-              disabled={isPending || !isValid}
-              isLoading={isPending}
-            >
-              Modifier
-            </Button>
-          </ModalFooter>
-        </form>
-      </ModalContent>
+              <Modal.Footer>
+                <Button variant="tertiary" onPress={handleClose}>
+                  Annuler
+                </Button>
+                <Button
+                  type="submit"
+                  isDisabled={isPending || !isValid}
+                  isPending={isPending}
+                >
+                  Modifier
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
     </Modal>
   );
 }

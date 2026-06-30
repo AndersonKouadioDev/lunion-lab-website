@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@heroui/button";
+import { Button } from "@heroui/react";
 import { FacebookIcon, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

@@ -2,14 +2,12 @@
 
 import {
   Button,
+  FieldError,
   Input,
+  ListBox,
   Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   Select,
-  SelectItem,
+  TextField,
 } from "@heroui/react";
 import { useCallback, useMemo } from "react";
 
@@ -73,78 +71,98 @@ export function UtilisateurAddModal({ isOpen, setIsOpen }: Props) {
   );
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
-      <ModalContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader className="flex flex-col gap-1">
-            <h1 className="text-lg font-medium text-primary">
-              Ajouter un utilisateur
-            </h1>
-            <p className="text-sm text-gray-500">
-              Formulaire pour ajouter un nouvel utilisateur.
-            </p>
-          </ModalHeader>
-          <ModalBody>
-            <Input
-              {...register("firstName")}
-              errorMessage={errors.firstName?.message}
-              isInvalid={!!errors.firstName}
-              disabled={isPending}
-              placeholder="Entrer le prénom"
-              type="text"
-            />
-            <Input
-              {...register("lastName")}
-              errorMessage={errors.lastName?.message}
-              isInvalid={!!errors.lastName}
-              disabled={isPending}
-              placeholder="Entrer le nom"
-              type="text"
-            />
-            <Input
-              {...register("email")}
-              errorMessage={errors.email?.message}
-              isInvalid={!!errors.email}
-              disabled={isPending}
-              placeholder="Entrer l'email"
-              type="email"
-            />
-            <Input
-              {...register("phoneNumber")}
-              errorMessage={errors.phoneNumber?.message}
-              isInvalid={!!errors.phoneNumber}
-              disabled={isPending}
-              placeholder="Entrer le téléphone"
-              type="tel"
-            />
-            <Select
-              selectedKeys={[watch("role")?.toString() || ""]}
-              onChange={(e) => handleRoleChange(e.target.value)}
-              errorMessage={errors.role?.message}
-              isInvalid={!!errors.role}
-              disabled={isPending}
-              placeholder="Choisir un rôle"
-            >
-              {roleOptions.map((role) => (
-                <SelectItem key={role}>{getUtilisateurRole(role)}</SelectItem>
-              ))}
-            </Select>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="danger" variant="light" onPress={handleClose}>
-              Annuler
-            </Button>
-            <Button
-              color="primary"
-              type="submit"
-              disabled={isPending || !isValid}
-              isLoading={isPending}
-            >
-              Ajouter
-            </Button>
-          </ModalFooter>
-        </form>
-      </ModalContent>
+    <Modal>
+      <Modal.Backdrop isOpen={isOpen} onOpenChange={setIsOpen}>
+        <Modal.Container>
+          <Modal.Dialog>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Modal.Header className="flex flex-col gap-1">
+                <Modal.Heading className="text-lg font-medium text-primary">
+                  Ajouter un utilisateur
+                </Modal.Heading>
+                <p className="text-sm text-gray-500">
+                  Formulaire pour ajouter un nouvel utilisateur.
+                </p>
+              </Modal.Header>
+              <Modal.Body className="flex flex-col gap-3">
+                <TextField isInvalid={!!errors.firstName} isDisabled={isPending}>
+                  <Input
+                    {...register("firstName")}
+                    placeholder="Entrer le prénom"
+                    type="text"
+                  />
+                  <FieldError>{errors.firstName?.message}</FieldError>
+                </TextField>
+                <TextField isInvalid={!!errors.lastName} isDisabled={isPending}>
+                  <Input
+                    {...register("lastName")}
+                    placeholder="Entrer le nom"
+                    type="text"
+                  />
+                  <FieldError>{errors.lastName?.message}</FieldError>
+                </TextField>
+                <TextField isInvalid={!!errors.email} isDisabled={isPending}>
+                  <Input
+                    {...register("email")}
+                    placeholder="Entrer l'email"
+                    type="email"
+                  />
+                  <FieldError>{errors.email?.message}</FieldError>
+                </TextField>
+                <TextField
+                  isInvalid={!!errors.phoneNumber}
+                  isDisabled={isPending}
+                >
+                  <Input
+                    {...register("phoneNumber")}
+                    placeholder="Entrer le téléphone"
+                    type="tel"
+                  />
+                  <FieldError>{errors.phoneNumber?.message}</FieldError>
+                </TextField>
+                <Select
+                  placeholder="Choisir un rôle"
+                  value={watch("role") ?? null}
+                  onChange={(value) => handleRoleChange(value as string)}
+                  isInvalid={!!errors.role}
+                  isDisabled={isPending}
+                >
+                  <Select.Trigger>
+                    <Select.Value />
+                    <Select.Indicator />
+                  </Select.Trigger>
+                  <Select.Popover>
+                    <ListBox>
+                      {roleOptions.map((role) => (
+                        <ListBox.Item
+                          key={role}
+                          id={role}
+                          textValue={getUtilisateurRole(role)}
+                        >
+                          {getUtilisateurRole(role)}
+                        </ListBox.Item>
+                      ))}
+                    </ListBox>
+                  </Select.Popover>
+                  <FieldError>{errors.role?.message}</FieldError>
+                </Select>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="tertiary" onPress={handleClose}>
+                  Annuler
+                </Button>
+                <Button
+                  type="submit"
+                  isDisabled={isPending || !isValid}
+                  isPending={isPending}
+                >
+                  Ajouter
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
     </Modal>
   );
 }

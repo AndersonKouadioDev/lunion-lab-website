@@ -1,9 +1,8 @@
 "use client";
 
-import { addToast } from "@heroui/toast";
+import { toast } from "@heroui/react";
 import { useMutation } from "@tanstack/react-query";
 import { processAndValidateFormData } from "ak-zod-form-kit";
-import { CheckCircle2, X } from "lucide-react";
 import { modifierProfilAction } from "../actions/utilisateur.action";
 import {
   UtilisateurUpdateDTO,
@@ -50,21 +49,14 @@ export const useModifierProfilMutation = () => {
       return result.data!;
     },
     onSuccess: async () => {
-      addToast({
-        title: "Utilisateur modifié avec succès",
+      invalidateUtilisateurQuery();
+      toast.success("Utilisateur modifié avec succès", {
         description: "Utilisateur modifié avec succès",
-        promise: invalidateUtilisateurQuery(),
-        icon: <CheckCircle2 />,
-        color: "success",
       });
     },
     onError: async (error) => {
-      addToast({
-        title: "Erreur modification utilisateur:",
+      toast.danger("Erreur modification utilisateur:", {
         description: error.message,
-        promise: Promise.reject(error),
-        icon: <X />,
-        color: "danger",
       });
     },
   });
