@@ -31,7 +31,7 @@ const inputCls =
 export default function ContactPage() {
   return (
     <main
-      className="mx-auto max-w-[1240px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
+      className="mx-auto max-w-[1680px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
       style={{ fontFamily: "var(--font-figtree)" }}
     >
       {/* HERO */}

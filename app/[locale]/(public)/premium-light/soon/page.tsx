@@ -18,7 +18,7 @@ export default async function SoonPage({
 
   return (
     <main
-      className="mx-auto max-w-[1240px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
+      className="mx-auto max-w-[1680px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
       style={{ fontFamily: "var(--font-figtree)" }}
     >
       <section className="mt-3 grid min-h-[68vh] place-items-center overflow-hidden rounded-[28px] bg-white p-6 text-center sm:mt-4 sm:p-12">

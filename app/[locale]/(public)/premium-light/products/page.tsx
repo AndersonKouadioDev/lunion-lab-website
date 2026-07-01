@@ -15,7 +15,7 @@ export const metadata = {
 export default function ProductsIndex() {
   return (
     <main
-      className="mx-auto max-w-[1240px] px-4 pb-4 text-[#101010]"
+      className="mx-auto max-w-[1680px] px-4 pb-4 text-[#101010]"
       style={{ fontFamily: "var(--font-figtree)" }}
     >
       {/* HERO */}
