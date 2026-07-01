@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,7 +10,6 @@ import {
   ArrowUpRight,
   ChevronDown,
   Menu,
-  Plus,
   X,
   Instagram,
   Linkedin,
@@ -42,7 +42,7 @@ const SOON = (t: string) => `/premium-light/soon?title=${encodeURIComponent(t)}`
 const productsMega: Mega = {
   featured: {
     title: "Nos produits",
-    desc: "Trois plateformes prêtes à l'emploi pour digitaliser vos métiers, de l'immobilier à l'éducation.",
+    desc: "Quatre plateformes prêtes à l'emploi pour digitaliser vos métiers, de la visioconférence à l'éducation.",
     primary: { label: "Découvrir les produits", href: "/premium-light/products" },
     secondary: { label: "Demander une démo", href: "/premium-light/contact" },
   },
@@ -131,11 +131,15 @@ const SOCIALS = [
 
 function Logo() {
   return (
-    <Link href="/premium-light" className="flex items-center gap-2 text-lg font-extrabold text-[#101010]">
-      <span className="grid size-7 place-items-center rounded-md bg-[var(--primary)] text-white">
-        <Plus className="size-4" />
-      </span>
-      Lunion Lab
+    <Link href="/premium-light" className="flex items-center">
+      <Image
+        src="/assets/images/all-img/logo.png"
+        alt="Lunion Lab"
+        width={392}
+        height={100}
+        priority
+        className="h-8 w-auto"
+      />
     </Link>
   );
 }

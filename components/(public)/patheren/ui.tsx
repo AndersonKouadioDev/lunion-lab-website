@@ -10,6 +10,7 @@ import {
   Award,
   TrendingUp,
 } from "lucide-react";
+import { products } from "@/components/(public)/patheren/catalog";
 
 /**
  * Lunion Lab "Premium Light" : briques UI partagées entre Home et About.
@@ -48,9 +49,13 @@ export function Logo({ className = "" }: { className?: string }) {
       href="/premium-light"
       className={`flex items-center gap-2 text-lg font-extrabold ${className}`}
     >
-      <span className="grid size-6 place-items-center rounded-md bg-[var(--primary)] text-white">
-        <Plus className="size-4" />
-      </span>
+      <Image
+        src="/assets/images/all-img/footer_symbole.png"
+        alt="Lunion Lab"
+        width={28}
+        height={28}
+        className="size-7 object-contain"
+      />
       Lunion Lab
     </Link>
   );
@@ -314,7 +319,7 @@ export function ProjectCta() {
 export function PatherenFooter() {
   return (
     <footer className="mt-4 rounded-[28px] bg-[#101010] p-10 text-white sm:p-14">
-      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>
           <Logo className="text-white [&_span:last-child]:text-white" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
@@ -323,24 +328,66 @@ export function PatherenFooter() {
             africaines.
           </p>
         </div>
-        {[
-          ["Produits", ["Lunion-Booking", "Lunion-Educ", "Lunion-Secure"]],
-          ["Société", ["À propos", "Portfolio", "Contact"]],
-          ["Réseaux", ["Instagram", "LinkedIn", "Facebook", "TikTok"]],
-        ].map(([title, links]) => (
-          <div key={title as string}>
-            <h4 className="text-sm font-bold">{title}</h4>
-            <ul className="mt-4 space-y-3 text-sm text-white/50">
-              {(links as string[]).map((it) => (
-                <li key={it}>
-                  <a href="#" className="transition hover:text-white">
-                    {it}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+
+        {/* Produits (depuis le catalogue) */}
+        <div>
+          <h4 className="text-sm font-bold">Produits</h4>
+          <ul className="mt-4 space-y-3 text-sm text-white/50">
+            {products.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/premium-light/products/${p.slug}`}
+                  className="transition hover:text-white"
+                >
+                  {p.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Entreprise */}
+        <div>
+          <h4 className="text-sm font-bold">Entreprise</h4>
+          <ul className="mt-4 space-y-3 text-sm text-white/50">
+            {[
+              ["Services", "/premium-light/services"],
+              ["Portfolio", "/premium-light/portfolio"],
+              ["À propos", "/premium-light/about"],
+              ["Contact", "/premium-light/contact"],
+            ].map(([label, href]) => (
+              <li key={label}>
+                <Link href={href} className="transition hover:text-white">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Réseaux */}
+        <div>
+          <h4 className="text-sm font-bold">Réseaux</h4>
+          <ul className="mt-4 space-y-3 text-sm text-white/50">
+            {[
+              ["Instagram", "https://www.instagram.com/lunionlab"],
+              ["LinkedIn", "https://www.linkedin.com/company/lunion-lab/?viewAsMember=true"],
+              ["Facebook", "https://www.facebook.com/share/1Cqq9P2ktD/?mibextid=wwXIfr"],
+              ["TikTok", "https://www.tiktok.com/@lunion.lab"],
+            ].map(([label, href]) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-white"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-white/40">
         © 2026 Lunion Lab. Transformation digitale, Abidjan, Côte d&apos;Ivoire. Tous droits réservés.

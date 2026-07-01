@@ -12,6 +12,8 @@ import {
 } from "@/components/(public)/patheren/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { TechStack } from "@/components/(public)/patheren/TechStack";
+import { products, statusLabel } from "@/components/(public)/patheren/catalog";
+import Link from "next/link";
 
 /**
  * Premium Light — Home "Lunion Lab" (thème clair, accent primaire du projet).
@@ -43,36 +45,25 @@ const services = [
   },
 ];
 
-const projects = [
-  {
-    title: "Turbo Delivery",
-    desc: "Service de livraison express qui met en relation coursiers et partenaires, avec suivi en temps réel sur web et mobile.",
-    tone: "cream",
-    src: "/assets/images/all-img/tubo_system.png",
-  },
-  {
-    title: "Chicken Nation",
-    desc: "L'application du fast-food 100% ivoirien : commande, livraison, retrait sur place et programme de fidélité.",
-    tone: "sky",
-    src: "/assets/images/portolios/chiken.png",
-  },
-  {
-    title: "Ambassade du Tchad",
-    desc: "Plateforme consulaire en ligne : prise de rendez-vous, suivi des demandes de visa et informations aux citoyens.",
-    tone: "peach",
-    src: "/assets/images/portolios/ambassades.png",
-  },
-];
-
-const industries = [
-  "Secteur public", "Industrie", "Banque et finance", "Santé", "Éducation", "Immobilier",
-];
-
 const faqs = [
   "Quels services proposez-vous ?",
   "Quels sont vos délais de réalisation ?",
   "Comment se passe l'établissement d'un devis ?",
   "Comment vous contacter ?",
+];
+
+const productImages: Record<string, string> = {
+  "lunion-meet": "/assets/images/produits/lunion_meet.png",
+  "lunion-booking": "/assets/images/produits/moockup.png",
+  "lunion-secu": "/assets/images/produits/mockup_secu.png",
+  "lunion-educ": "/assets/images/produits/mockup_educ.png",
+};
+
+const productTones = [
+  "linear-gradient(135deg,#efe6f6,#d9c7ea)",
+  "linear-gradient(135deg,#efeae0,#dcd4c4)",
+  "linear-gradient(135deg,#dfe9f2,#c3d4e6)",
+  "linear-gradient(135deg,#e6def5,#cbb8ea)",
 ];
 
 export default function PremiumLightPage() {
@@ -84,11 +75,11 @@ export default function PremiumLightPage() {
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
 
-        <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-14">
-          <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
-            Une grande technologie repose
+        <Reveal className="mx-auto max-w-4xl px-6 pt-8 text-center sm:pt-14">
+          <h1 className="text-5xl font-extrabold leading-[0.95] tracking-tighter sm:text-8xl">
+            Vos idées,
             <br />
-            toujours sur des relations parfaites
+            notre code
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
             Nous concevons des solutions web et mobiles sur-mesure qui accélèrent
@@ -224,48 +215,39 @@ export default function PremiumLightPage() {
       {/* ===================== TECH STACK ===================== */}
       <TechStack />
 
-      {/* ============================ PROJETS ============================ */}
+      {/* ============================ NOS PRODUITS ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-              Nos dernières
-              <br />
-              réalisations
+              Nos produits
             </h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {industries.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-black/10 px-3 py-1 text-[11px] font-medium text-[#8a8a8a]"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+            <p className="mt-2 max-w-md text-sm leading-relaxed text-[#9a9a9a]">
+              Des plateformes conçues et maintenues par Lunion Lab pour
+              digitaliser vos métiers.
+            </p>
           </div>
-          <PrimaryButton>Voir nos réalisations</PrimaryButton>
+          <Link
+            href="/premium-light/products"
+            className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)]"
+          >
+            Voir tous les produits
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </Reveal>
 
         <Stagger className="mt-10 space-y-4">
-          {projects.map((p, i) => (
-            <StaggerItem key={p.title} className="grid items-stretch gap-4 md:grid-cols-[1.4fr_1fr]">
+          {products.map((p, i) => (
+            <StaggerItem key={p.slug} className="grid items-stretch gap-4 md:grid-cols-[1.4fr_1fr]">
               <div
                 className={`order-1 min-h-[240px] overflow-hidden rounded-2xl p-3 ${
                   i % 2 === 1 ? "md:order-2" : ""
                 }`}
-                style={{
-                  background:
-                    p.tone === "cream"
-                      ? "linear-gradient(135deg,#efeae0,#dcd4c4)"
-                      : p.tone === "sky"
-                        ? "linear-gradient(135deg,#dfe9f2,#c3d4e6)"
-                        : "linear-gradient(135deg,#efe6f6,#d9c7ea)",
-                }}
+                style={{ background: productTones[i % productTones.length] }}
               >
                 <Photo
-                  src={p.src}
-                  alt={p.title}
+                  src={productImages[p.slug]}
+                  alt={p.name}
                   className="h-full min-h-[216px] w-full rounded-xl"
                 />
               </div>
@@ -276,16 +258,29 @@ export default function PremiumLightPage() {
                 }`}
               >
                 <div>
-                  <h3 className="text-2xl font-extrabold">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">{p.desc}</p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-semibold tracking-widest text-[var(--primary)]">
+                      {p.category}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold">
+                      <span
+                        className={`size-1.5 rounded-full ${
+                          p.status === "prod" ? "bg-emerald-500" : "bg-amber-500"
+                        }`}
+                      />
+                      {statusLabel[p.status ?? "dev"]}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 text-2xl font-extrabold">{p.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">{p.tagline}</p>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href={`/premium-light/products/${p.slug}`}
                   className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#101010]"
                 >
-                  Voir le projet
+                  Découvrir
                   <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
-                </a>
+                </Link>
               </div>
             </StaggerItem>
           ))}
