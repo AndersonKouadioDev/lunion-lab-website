@@ -6,6 +6,7 @@ import {
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
+import { TeamSection } from "@/components/(public)/patheren/TeamSection";
 import {
   Rocket,
   Users,
@@ -152,6 +153,9 @@ export default function PremiumLightAbout() {
           ))}
         </Stagger>
       </section>
+
+      {/* ===================== ÉQUIPE (V2 DreamTeam adapté) ===================== */}
+      <TeamSection />
 
       {/* ============================ STRATEGY (sombre) ============================ */}
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
