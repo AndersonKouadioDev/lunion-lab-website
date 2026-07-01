@@ -7,6 +7,8 @@ import {
 } from "@/components/(public)/patheren/ui";
 import type { Offering } from "@/components/(public)/patheren/catalog";
 import { icons, Star } from "@/components/(public)/patheren/icons";
+import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
+import { ProcessStack } from "@/components/(public)/patheren/ProcessStack";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const moduleTone: Record<string, string> = {
@@ -27,7 +29,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
         <PatherenNav active={o.kind === "service" ? "Services" : "Products"} />
 
         <div className="grid items-center gap-10 px-6 pt-8 sm:px-10 md:grid-cols-2">
-          <div>
+          <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
               <Star className="size-3.5 text-[var(--primary)]" />
               {o.kind === "product" ? "Product" : "Service"} · {o.category}
@@ -47,10 +49,10 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
                 <div className="text-xs text-[#9a9a9a]">{o.growth.label}</div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Visuel N&B + tags flottants */}
-          <div className="relative">
+          <Reveal delay={0.15} className="relative">
             <Photo tone="team" className="h-72 w-full rounded-3xl grayscale sm:h-80" />
             <Star className="absolute -left-3 -top-3 size-8 text-[var(--primary)]" />
             <div className="absolute inset-0 p-4">
@@ -69,35 +71,37 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ==================== BANDEAU "We → verb → outcome" (Atacama) ==================== */}
-      <section className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="grid h-36 place-items-center rounded-[28px] bg-white text-3xl font-extrabold sm:h-44">
-          {o.band.we}
-        </div>
-        <div className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
-          <Photo tone="office" className="h-full w-full grayscale" />
-          <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
-            {o.band.verb}
-          </div>
-        </div>
-        <div className="grid h-36 place-items-center rounded-[28px] bg-[var(--primary)] text-white sm:h-44">
-          <ArrowRight className="size-12" strokeWidth={2.5} />
-        </div>
-        <div className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
-          <Photo tone="meeting" className="h-full w-full grayscale" />
-          <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
-            {o.band.outcome}
-          </div>
-        </div>
+      <section className="mt-4">
+        <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <StaggerItem className="grid h-36 place-items-center rounded-[28px] bg-white text-3xl font-extrabold sm:h-44">
+            {o.band.we}
+          </StaggerItem>
+          <StaggerItem className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
+            <Photo tone="office" className="h-full w-full grayscale" />
+            <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
+              {o.band.verb}
+            </div>
+          </StaggerItem>
+          <StaggerItem className="grid h-36 place-items-center rounded-[28px] bg-[var(--primary)] text-white sm:h-44">
+            <ArrowRight className="size-12" strokeWidth={2.5} />
+          </StaggerItem>
+          <StaggerItem className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
+            <Photo tone="meeting" className="h-full w-full grayscale" />
+            <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
+              {o.band.outcome}
+            </div>
+          </StaggerItem>
+        </Stagger>
       </section>
 
-      {/* ==================== PROCESS FLOW (creatiwise) ==================== */}
+      {/* ==================== PROCESS — pile animée au scroll ==================== */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <div className="max-w-xl">
+        <Reveal className="max-w-xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-[#555]">
             How we work
           </span>
@@ -110,24 +114,10 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
             A clear, proven path from first idea to launch — so you always know
             what happens next.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="relative mt-12 grid gap-6 md:grid-cols-4">
-          {/* Connecteur pointillé */}
-          <div className="pointer-events-none absolute inset-x-8 top-16 hidden border-t-2 border-dashed border-black/15 md:block" />
-          {o.process.map((step, i) => (
-            <div
-              key={step.n}
-              className="relative rounded-2xl border border-black/10 bg-white p-6 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]"
-              style={{ transform: `rotate(${i % 2 ? 1.5 : -1.5}deg)` }}
-            >
-              <span className="absolute -top-2 left-6 size-3 rounded-full border-2 border-white bg-[var(--primary)] shadow" />
-              <div className="text-xs font-semibold text-[#bdbdbd]">{step.n}</div>
-              <h3 className="mt-1 text-lg font-extrabold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#9a9a9a]">{step.desc}</p>
-            </div>
-          ))}
-        </div>
+        <ProcessStack steps={o.process} />
+
         <div className="mt-6 text-right text-lg font-semibold italic text-[var(--primary)]">
           Ready to be delivered!
         </div>
@@ -135,7 +125,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
 
       {/* ==================== FEATURES (grille sombre, creatiwise) ==================== */}
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-white/60">
             What we deliver
           </span>
@@ -143,48 +133,48 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
             Meaningful impact, not just a feature list
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-white/50">{o.featuresIntro}</p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {o.features.map((f) => {
             const Icon = icons[f.icon];
             return (
-              <div
+              <StaggerItem
                 key={f.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:bg-white/[0.06]"
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]"
               >
                 <span className="grid size-11 place-items-center rounded-xl bg-[var(--primary)] text-white">
                   <Icon className="size-5" />
                 </span>
                 <h3 className="mt-4 text-base font-bold">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/50">{f.desc}</p>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
       </section>
 
       {/* ==================== MODULES (cartes-image, Atacama) ==================== */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             Explore the modules
           </h2>
           <p className="max-w-sm text-sm text-[#9a9a9a]">
             Each part of {o.name} works on its own — and even better together.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {o.modules.map((m) => (
-            <div
+            <StaggerItem
               key={m.title}
-              className="relative flex h-72 flex-col justify-end overflow-hidden rounded-2xl p-5"
+              className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1"
               style={{ background: moduleTone[m.tone] ?? moduleTone.cream }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              <button className="absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white text-[#101010] transition hover:bg-[var(--primary)] hover:text-white">
-                <ArrowUpRight className="size-4" />
+              <button className="absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white text-[#101010] transition group-hover:bg-[var(--primary)] group-hover:text-white">
+                <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
               </button>
               <div className="relative">
                 <h3 className="text-lg font-extrabold text-white">{m.title}</h3>
@@ -194,9 +184,9 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
                   <ArrowRight className="size-3.5 text-[var(--primary)]" />
                 </span>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ==================== CTA + FOOTER ==================== */}

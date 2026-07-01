@@ -10,6 +10,7 @@ import {
   FaqSection,
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
+import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 
 /**
  * Premium Light — Home "Patheren" (thème clair, accent primaire du projet).
@@ -80,7 +81,7 @@ export default function PremiumLightPage() {
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
         <PatherenNav active="Home" />
 
-        <div className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-14">
+        <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-14">
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
             Powerful Digital
             <br />
@@ -91,9 +92,9 @@ export default function PremiumLightPage() {
             ready to help your business grow more with attractive and useful
             visuals.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 px-6 sm:grid-cols-4">
+        <Reveal delay={0.15} className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 px-6 sm:grid-cols-4">
           <div className="rounded-2xl bg-[#f4f4f4] p-6">
             <div className="grid grid-cols-2 gap-x-6 gap-y-5">
               {[
@@ -116,7 +117,7 @@ export default function PremiumLightPage() {
             <PrimaryButton className="w-full justify-center">Know More</PrimaryButton>
           </div>
           <div className="min-h-[120px] rounded-2xl bg-gradient-to-br from-[#1f4bd8] to-[#0b2a9c]" />
-        </div>
+        </Reveal>
       </section>
 
       {/* ===================== MARQUEE CLIENTS (Woogency) ===================== */}
