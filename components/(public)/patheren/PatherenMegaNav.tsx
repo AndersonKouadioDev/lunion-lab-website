@@ -253,17 +253,17 @@ export function PatherenMegaNav() {
   return (
     <header className="relative z-40" style={{ fontFamily: "var(--font-figtree)" }}>
       <div className="mx-auto max-w-[1680px] px-4">
-        {/* Barre d'annonce (arrondie, dans le cadre) */}
-        <div className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm text-white">
+        {/* Barre d'annonce (rattachée en haut du bloc) */}
+        <div className="mt-3 flex items-center justify-center gap-2 rounded-t-[28px] bg-[var(--primary)] px-4 py-2.5 text-sm text-white">
           <span className="font-semibold">The Lunion product suite is live</span>
           <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">
             New
           </span>
         </div>
 
-        {/* Barre de nav flottante arrondie */}
+        {/* Barre de nav (blanche, rattachée à la première section) */}
         <div
-          className="relative my-3 rounded-2xl border border-black/5 bg-white/90 px-5 py-3 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+          className="relative bg-white px-5 py-3.5"
           onMouseLeave={() => setOpen(null)}
         >
           <div className="relative flex h-11 items-center justify-between gap-4">
@@ -316,10 +316,10 @@ export function PatherenMegaNav() {
               <ChevronDown className="size-4" />
             </button>
             <Link
-              href={SOON("Login")}
+              href="/premium-light/contact"
               className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]"
             >
-              Connexion
+              Contact
             </Link>
             <button
               type="button"
@@ -415,11 +415,11 @@ export function PatherenMegaNav() {
                 ))}
               </div>
               <Link
-                href={SOON("Login")}
+                href="/premium-light/contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white"
               >
-                Connexion
+                Contact
                 <ArrowRight className="size-4" />
               </Link>
             </div>

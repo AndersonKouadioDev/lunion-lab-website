@@ -21,7 +21,7 @@ export default async function SoonPage({
       className="mx-auto max-w-[1680px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
       style={{ fontFamily: "var(--font-figtree)" }}
     >
-      <section className="mt-3 grid min-h-[68vh] place-items-center overflow-hidden rounded-[28px] bg-white p-6 text-center sm:mt-4 sm:p-12">
+      <section className="grid min-h-[68vh] place-items-center overflow-hidden rounded-b-[36px] bg-white p-6 text-center sm:p-12">
         <div className="relative mx-auto max-w-xl">
           <Star className="absolute -left-4 -top-6 hidden size-10 text-[var(--primary)]/20 sm:block" />
           <div className="mx-auto grid size-16 place-items-center rounded-2xl bg-[#f3eefc] text-[var(--primary)]">

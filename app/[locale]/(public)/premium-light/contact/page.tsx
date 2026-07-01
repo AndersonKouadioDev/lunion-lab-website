@@ -35,7 +35,7 @@ export default function ContactPage() {
       style={{ fontFamily: "var(--font-figtree)" }}
     >
       {/* HERO */}
-      <section className="mt-3 overflow-hidden rounded-[28px] bg-white p-6 text-center sm:mt-4 sm:p-12">
+      <section className="overflow-hidden rounded-b-[36px] bg-white p-6 text-center sm:p-12">
         <Reveal className="mx-auto max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#f3eefc] px-4 py-1.5 text-xs font-semibold text-[var(--primary)]">
             <Star className="size-3.5" />
