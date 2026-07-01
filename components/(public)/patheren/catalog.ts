@@ -7,7 +7,10 @@
 export type IconKey =
   | "calendar" | "calendar-sync" | "wallet" | "bell" | "clock" | "chart"
   | "key" | "video" | "bell-ring" | "logs" | "lock" | "shield"
-  | "book" | "clipboard" | "line-chart" | "award" | "users" | "sparkle";
+  | "book" | "clipboard" | "line-chart" | "award" | "users" | "sparkle"
+  // services
+  | "layout" | "gauge" | "search" | "code" | "plug" | "smartphone"
+  | "globe" | "rocket" | "palette" | "pen" | "accessibility";
 
 export type Offering = {
   slug: string;
@@ -133,6 +136,107 @@ export const offerings: Offering[] = [
       { title: "Analytics & Reports", desc: "Insights for educators and admins.", tone: "mono" },
     ],
   },
+
+  /* ============================ SERVICES ============================ */
+  {
+    slug: "web-development",
+    kind: "service",
+    name: "Web Development",
+    category: "Web Development",
+    tagline: "Fast, scalable web apps that convert.",
+    heroTitle: "Web Experiences Built to Perform",
+    heroDesc:
+      "We design and build modern web apps with Next.js — fast, accessible and ready to scale with your business.",
+    growth: { value: "2x", label: "faster load times" },
+    band: { we: "We", verb: "Engineer", outcome: "The Web" },
+    process: process(
+      "We clarify your goals, audience and the outcomes the site has to drive.",
+      "We shape the information architecture and interfaces around real user journeys.",
+      "We build with Next.js — typed, tested and optimized for Core Web Vitals.",
+      "We deploy, measure real traffic and keep tuning speed and conversion.",
+    ),
+    featuresIntro: "From landing pages to full platforms, engineered to last.",
+    features: [
+      { icon: "layout", title: "Responsive UI", desc: "Pixel-perfect on every screen, from mobile to desktop." },
+      { icon: "gauge", title: "Blazing Performance", desc: "Optimized Core Web Vitals and instant page loads." },
+      { icon: "search", title: "SEO Ready", desc: "Semantic, server-rendered pages built to rank." },
+      { icon: "code", title: "Clean, Typed Code", desc: "Maintainable TypeScript your team can build on." },
+      { icon: "plug", title: "Integrations", desc: "Connect payments, CRMs and any API you need." },
+      { icon: "shield", title: "Secure by Default", desc: "Best practices baked in, from auth to headers." },
+    ],
+    modules: [
+      { title: "Landing Pages", desc: "High-converting pages that load instantly.", tone: "cream" },
+      { title: "Web Applications", desc: "Complex, data-driven products.", tone: "sky" },
+      { title: "E-commerce", desc: "Storefronts and checkout, done right.", tone: "peach" },
+      { title: "Dashboards & Portals", desc: "Admin tools your team enjoys.", tone: "mono" },
+    ],
+  },
+  {
+    slug: "mobile-development",
+    kind: "service",
+    name: "Mobile Development",
+    category: "Mobile Development",
+    tagline: "Native apps for iOS & Android, one codebase.",
+    heroTitle: "Mobile Apps People Love to Open",
+    heroDesc:
+      "We craft cross-platform apps with React Native & Expo — native feel, shipped fast to the App Store and Play Store.",
+    growth: { value: "4.8★", label: "average app store rating" },
+    band: { we: "We", verb: "Ship", outcome: "Mobile" },
+    process: process(
+      "We define the core experience and the platforms that matter to your users.",
+      "We design native-feeling flows for iOS and Android from day one.",
+      "We build with Expo — one codebase, real device testing, OTA-ready.",
+      "We ship to both stores and keep improving with in-app analytics.",
+    ),
+    featuresIntro: "Everything a great mobile product needs, shipped fast.",
+    features: [
+      { icon: "smartphone", title: "Native Feel", desc: "Smooth, 60fps experiences on iOS and Android." },
+      { icon: "bell", title: "Push Notifications", desc: "Re-engage users with timely, targeted pushes." },
+      { icon: "wallet", title: "In-app Payments", desc: "Wave and card payments, right inside the app." },
+      { icon: "globe", title: "Offline & Sync", desc: "Works offline and syncs the moment you're back." },
+      { icon: "rocket", title: "OTA Updates", desc: "Push fixes instantly without a store review." },
+      { icon: "users", title: "Cross-platform", desc: "One codebase, both stores, half the cost." },
+    ],
+    modules: [
+      { title: "iOS & Android Apps", desc: "One build, both platforms.", tone: "mono" },
+      { title: "Expo & Dev Client", desc: "Fast iteration on real devices.", tone: "sky" },
+      { title: "Push & Notifications", desc: "Engagement that brings users back.", tone: "peach" },
+      { title: "App Store Delivery", desc: "Submission and release handled.", tone: "cream" },
+    ],
+  },
+  {
+    slug: "ui-ux-design",
+    kind: "service",
+    name: "UI/UX Design",
+    category: "UI/UX Design",
+    tagline: "Design that turns visitors into users.",
+    heroTitle: "Product Design that Feels Effortless",
+    heroDesc:
+      "From research to polished interfaces, we design products people understand instantly and love to use.",
+    growth: { value: "+35%", label: "conversion after redesign" },
+    band: { we: "We", verb: "Design", outcome: "Delight" },
+    process: process(
+      "We research your users and business to define what success looks like.",
+      "We explore directions, wireframes and flows before touching a single pixel.",
+      "We craft high-fidelity screens and a design system ready for engineering.",
+      "We hand off, QA the build and refine until every detail feels right.",
+    ),
+    featuresIntro: "Research-led design, from first sketch to shipped screen.",
+    features: [
+      { icon: "users", title: "User Research", desc: "We learn what your users actually need first." },
+      { icon: "pen", title: "Wireframes", desc: "Low-fi flows to validate ideas before the pixels." },
+      { icon: "palette", title: "Design Systems", desc: "Consistent, scalable component libraries." },
+      { icon: "layout", title: "Prototyping", desc: "Clickable prototypes to test real journeys." },
+      { icon: "sparkle", title: "Visual Design", desc: "Distinctive interfaces that fit your brand." },
+      { icon: "accessibility", title: "Accessibility", desc: "Inclusive by design, with WCAG in mind." },
+    ],
+    modules: [
+      { title: "Product Design", desc: "End-to-end app and web design.", tone: "peach" },
+      { title: "Design Systems", desc: "Tokens, components and docs.", tone: "cream" },
+      { title: "Prototyping", desc: "Test journeys before you build.", tone: "sky" },
+      { title: "Brand & Identity", desc: "A look that's unmistakably yours.", tone: "mono" },
+    ],
+  },
 ];
 
 export const offeringSlugs = offerings.map((o) => o.slug);
@@ -143,3 +247,5 @@ export function getOffering(slug: string): Offering | undefined {
 
 export const products = offerings.filter((o) => o.kind === "product");
 export const services = offerings.filter((o) => o.kind === "service");
+export const productSlugs = products.map((o) => o.slug);
+export const serviceSlugs = services.map((o) => o.slug);

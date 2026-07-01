@@ -27,6 +27,17 @@ import {
   Award,
   Users,
   Sparkles,
+  LayoutGrid,
+  Gauge,
+  Search,
+  Code2,
+  Plug,
+  Smartphone,
+  Globe,
+  Rocket,
+  Palette,
+  PenTool,
+  Accessibility,
   type LucideIcon,
 } from "lucide-react";
 
@@ -49,6 +60,17 @@ const icons: Record<IconKey, LucideIcon> = {
   award: Award,
   users: Users,
   sparkle: Sparkles,
+  layout: LayoutGrid,
+  gauge: Gauge,
+  search: Search,
+  code: Code2,
+  plug: Plug,
+  smartphone: Smartphone,
+  globe: Globe,
+  rocket: Rocket,
+  palette: Palette,
+  pen: PenTool,
+  accessibility: Accessibility,
 };
 
 const moduleTone: Record<string, string> = {
@@ -78,7 +100,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
     >
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
-        <PatherenNav active="Products" />
+        <PatherenNav active={o.kind === "service" ? "Services" : "Products"} />
 
         <div className="grid items-center gap-10 px-6 pt-8 sm:px-10 md:grid-cols-2">
           <div>

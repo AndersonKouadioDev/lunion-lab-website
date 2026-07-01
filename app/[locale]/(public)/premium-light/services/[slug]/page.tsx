@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
   getOffering,
-  productSlugs,
+  serviceSlugs,
 } from "@/components/(public)/patheren/catalog";
 import { OfferingPage } from "@/components/(public)/patheren/OfferingPage";
 
 export function generateStaticParams() {
-  return productSlugs.map((slug) => ({ slug }));
+  return serviceSlugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -17,17 +17,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const o = getOffering(slug);
-  if (!o) return { title: "Product" };
+  if (!o) return { title: "Service" };
   return { title: `${o.name} — ${o.category}`, description: o.tagline };
 }
 
-export default async function ProductPage({
+export default async function ServicePage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const offering = getOffering(slug);
-  if (!offering || offering.kind !== "product") notFound();
+  if (!offering || offering.kind !== "service") notFound();
   return <OfferingPage offering={offering} />;
 }

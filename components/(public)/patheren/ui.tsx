@@ -19,6 +19,7 @@ import {
 const navLinks: [string, string][] = [
   ["Home", "/premium-light"],
   ["Products", "/premium-light/products"],
+  ["Services", "/premium-light/services"],
   ["About Us", "/premium-light/about"],
   ["Contact", "#"],
 ];
