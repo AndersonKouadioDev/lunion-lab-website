@@ -248,25 +248,26 @@ export function PatherenMegaNav() {
           : false;
 
   return (
-    <header style={{ fontFamily: "var(--font-figtree)" }}>
-      {/* Barre d'annonce */}
-      <div className="bg-[var(--primary)] px-4 py-2.5 text-center text-sm text-white">
-        <span className="font-semibold">The Lunion product suite is live</span>
-        <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">
-          New
-        </span>
-      </div>
+    <header className="sticky top-0 z-50" style={{ fontFamily: "var(--font-figtree)" }}>
+      <div className="mx-auto max-w-[1240px] px-4">
+        {/* Barre d'annonce (arrondie, dans le cadre) */}
+        <div className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm text-white">
+          <span className="font-semibold">The Lunion product suite is live</span>
+          <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">
+            New
+          </span>
+        </div>
 
-      {/* Navbar sticky pleine largeur */}
-      <div
-        className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl"
-        onMouseLeave={() => setOpen(null)}
-      >
-        <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-4 px-6">
-          <Logo />
+        {/* Barre de nav flottante arrondie */}
+        <div
+          className="relative my-3 rounded-2xl border border-black/5 bg-white/90 px-5 py-3 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+          onMouseLeave={() => setOpen(null)}
+        >
+          <div className="relative flex h-11 items-center justify-between gap-4">
+            <Logo />
 
-          {/* Nav desktop (centrée) */}
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex">
+            {/* Nav desktop (centrée) */}
+            <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex">
             {NAV.map((item) =>
               item.mega ? (
                 <button
@@ -328,35 +329,35 @@ export function PatherenMegaNav() {
           </div>
         </div>
 
-        {/* Méga-panneau pleine largeur */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-full hidden border-b border-black/5 bg-white shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)] md:block"
-            >
-              <div className="mx-auto max-w-[1240px] px-6 py-8">
-                <MegaPanel mega={(NAV.find((n) => n.key === open) as { mega: Mega }).mega} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          {/* Méga-panneau (arrondi, dans le cadre) */}
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-x-0 top-full hidden pt-3 md:block"
+              >
+                <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
+                  <MegaPanel mega={(NAV.find((n) => n.key === open) as { mega: Mega }).mega} />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-      {/* Menu mobile */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden border-b border-black/5 bg-white md:hidden"
-          >
-            <div className="space-y-1 px-4 py-4">
+        {/* Menu mobile */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="overflow-hidden md:hidden"
+            >
+              <div className="mb-3 space-y-1 rounded-2xl border border-black/5 bg-white p-3 shadow-lg">
               {NAV.map((item) =>
                 item.mega ? (
                   <div key={item.key}>
@@ -422,6 +423,7 @@ export function PatherenMegaNav() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </header>
   );
 }

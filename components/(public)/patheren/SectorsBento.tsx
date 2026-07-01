@@ -9,11 +9,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
+import { Star } from "@/components/(public)/patheren/icons";
 
 /**
- * Secteurs d'activité en bento — adapté de BentoSectors (V2) au thème clair
- * premium-light. Réutilise les vrais visuels /assets/images/secteurs + le
- * marquee des technologies.
+ * Secteurs d'activité en bento — redessiné dans le langage premium-light :
+ * images nettes + panneau blanc arrondi (chip icône violet + titre + desc),
+ * pas de photo délavée. Réutilise les vrais visuels /assets/images/secteurs.
  */
 
 type Sector = {
@@ -29,8 +30,7 @@ const SECTORS: Sector[] = [
   {
     id: "public",
     title: "Public Sector",
-    description:
-      "Digitalizing administrative services, citizen platforms and management tools for institutions.",
+    description: "Administrative services, citizen platforms and management tools.",
     icon: Landmark,
     image: "/assets/images/secteurs/secteur1.png",
     span: "lg:col-span-2 lg:row-span-2",
@@ -38,7 +38,7 @@ const SECTORS: Sector[] = [
   {
     id: "education",
     title: "Education",
-    description: "Learning platforms, school and university management at scale.",
+    description: "Learning platforms, school & university management at scale.",
     icon: GraduationCap,
     image: "/assets/images/secteurs/secteur2.png",
     span: "lg:col-span-2",
@@ -54,7 +54,7 @@ const SECTORS: Sector[] = [
   {
     id: "health",
     title: "Healthcare",
-    description: "Patient records, telemedicine and reliable hospital management.",
+    description: "Patient records, telemedicine and hospital management.",
     icon: HeartPulse,
     image: "/assets/images/secteurs/secteur4.png",
     span: "lg:col-span-1",
@@ -78,10 +78,11 @@ export function SectorsBento() {
   return (
     <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
       <Reveal className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--primary)]">
+        <div className="inline-flex items-center gap-2 rounded-full bg-[#f3eefc] px-4 py-1.5 text-xs font-semibold text-[var(--primary)]">
+          <Star className="size-3.5" />
           Sectors we serve
-        </p>
-        <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+        </div>
+        <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
           Expertise for every industry
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">
@@ -89,14 +90,15 @@ export function SectorsBento() {
         </p>
       </Reveal>
 
-      <Stagger className="mt-12 grid auto-rows-[minmax(200px,1fr)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Stagger className="mt-12 grid auto-rows-[minmax(210px,1fr)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {SECTORS.map((s) => {
           const Icon = s.icon;
           return (
             <StaggerItem
               key={s.id}
-              className={`group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-3xl border border-black/5 bg-white transition-transform duration-300 hover:-translate-y-1 ${s.span}`}
+              className={`group relative overflow-hidden rounded-3xl border border-black/5 bg-[#f4f4f5] transition-transform duration-300 hover:-translate-y-1 ${s.span}`}
             >
+              {/* Image nette */}
               <Image
                 src={s.image}
                 alt={s.title}
@@ -104,44 +106,48 @@ export function SectorsBento() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/10" />
-              <div className="relative z-10 p-6 sm:p-7">
-                <span className="grid size-11 place-items-center rounded-2xl bg-[#f3eefc] text-[var(--primary)]">
-                  <Icon className="size-5" strokeWidth={1.7} />
-                </span>
-                <h3 className="mt-4 text-lg font-extrabold tracking-tight sm:text-xl">
-                  {s.title}
-                </h3>
-                <p className="mt-1.5 max-w-md text-sm leading-relaxed text-[#6f6f6f]">
-                  {s.description}
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+
+              {/* Panneau info blanc propre */}
+              <div className="absolute inset-x-3 bottom-3">
+                <div className="rounded-2xl bg-white/95 p-5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.4)] backdrop-blur-sm">
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#f3eefc] text-[var(--primary)]">
+                      <Icon className="size-5" strokeWidth={1.8} />
+                    </span>
+                    <h3 className="text-lg font-extrabold tracking-tight">{s.title}</h3>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-[#6f6f6f]">
+                    {s.description}
+                  </p>
+                </div>
               </div>
             </StaggerItem>
           );
         })}
       </Stagger>
 
-      {/* Marquee des technologies (vrais logos) */}
-      <Reveal delay={0.1} className="mt-16">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#a5a5a5]">
+      {/* Marquee des technologies */}
+      <Reveal delay={0.1} className="mt-14 border-t border-black/5 pt-10">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#b5b5b5]">
           Our tech stack
         </p>
         <div
-          className="relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+          className="relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
           aria-hidden="true"
         >
-          <div className="flex w-max items-center gap-4 animate-marquee">
+          <div className="flex w-max items-center gap-3 animate-marquee">
             {[...TECHNOLOGIES, ...TECHNOLOGIES].map((tech, index) => (
               <div
                 key={`${tech.name}-${index}`}
-                className="relative flex h-16 w-36 shrink-0 items-center justify-center rounded-2xl border border-black/5 bg-white p-3 shadow-sm"
+                className="relative flex h-14 w-32 shrink-0 items-center justify-center rounded-xl border border-black/5 bg-[#fafafa] p-3 grayscale transition hover:grayscale-0"
                 title={tech.name}
               >
                 <Image
                   src={tech.src}
                   alt={tech.name}
                   fill
-                  sizes="144px"
+                  sizes="128px"
                   className="object-contain p-3"
                 />
               </div>
