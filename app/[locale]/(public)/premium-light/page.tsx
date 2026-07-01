@@ -3,11 +3,9 @@ import { ArrowRight, ArrowLeft, Plus, Menu } from "lucide-react";
 
 /**
  * Refonte "Premium Light" — reproduction fidèle de la maquette agence "Patheren".
- * Page autonome, thème clair + accent orange. Aucune dépendance image externe :
+ * Page autonome, thème clair + accent primaire (violet du projet). Aucune dépendance image externe :
  * les mockups produits sont recomposés en CSS pour rester offline-friendly.
  */
-
-const ORANGE = "#ff5a1e";
 
 const services = [
   {
@@ -53,7 +51,7 @@ const projects = [
 
 const navLinks = ["About Us", "Service", "Our Teams"];
 
-function OrangeButton({
+function PrimaryButton({
   children,
   className = "",
 }: {
@@ -62,7 +60,7 @@ function OrangeButton({
 }) {
   return (
     <button
-      className={`group inline-flex items-center gap-2 rounded-full bg-[#ff5a1e] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(255,90,30,0.6)] transition hover:bg-[#f04b12] ${className}`}
+      className={`group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)] ${className}`}
     >
       {children}
       <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -99,20 +97,20 @@ export default function PremiumLightPage() {
         {/* Navbar */}
         <nav className="flex items-center justify-between px-6 py-6 sm:px-10">
           <Link href="#" className="flex items-center gap-2 text-lg font-extrabold">
-            <span className="grid size-6 place-items-center rounded-md bg-[#ff5a1e] text-white">
+            <span className="grid size-6 place-items-center rounded-md bg-[var(--primary)] text-white">
               <Plus className="size-4" />
             </span>
             patheren
           </Link>
           <div className="hidden items-center gap-9 text-sm font-medium text-[#333] md:flex">
             {navLinks.map((l) => (
-              <a key={l} href="#" className="transition hover:text-[#ff5a1e]">
+              <a key={l} href="#" className="transition hover:text-[var(--primary)]">
                 {l}
               </a>
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <button className="rounded-full bg-[#ff5a1e] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#f04b12]">
+            <button className="rounded-full bg-[var(--primary)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]">
               Contact Us
             </button>
             <button className="grid size-10 place-items-center rounded-full border border-black/10 md:hidden">
@@ -159,14 +157,14 @@ export default function PremiumLightPage() {
             </div>
           </div>
 
-          {/* Mockup orange */}
+          {/* Mockup produit (primaire) */}
           <div className="h-full min-h-[120px]">
-            <Pouch label="Café Fugaz" from="#ff7a3d" to="#e23c0c" />
+            <Pouch label="Café Fugaz" from="#9353d3" to="#5a3b7d" />
           </div>
 
           {/* CTA */}
           <div className="flex items-center justify-center rounded-2xl bg-[#f4f4f4] p-6">
-            <OrangeButton className="w-full justify-center">Know More</OrangeButton>
+            <PrimaryButton className="w-full justify-center">Know More</PrimaryButton>
           </div>
 
           {/* Carte bleue */}
@@ -188,7 +186,7 @@ export default function PremiumLightPage() {
           </div>
         </div>
         <div className="aspect-[4/3] overflow-hidden rounded-2xl">
-          <Pouch label="Fresh Vibe" from="#ff8a4c" to="#e8410f" />
+          <Pouch label="Fresh Vibe" from="#9353d3" to="#5a3b7d" />
         </div>
       </section>
 
@@ -204,7 +202,7 @@ export default function PremiumLightPage() {
               and team culture. When you choose to join Patheren Agency you&apos;re
               joining a team that genuinely loves what they do.
             </p>
-            <OrangeButton>Know More</OrangeButton>
+            <PrimaryButton>Know More</PrimaryButton>
           </div>
         </div>
       </section>
@@ -228,7 +226,7 @@ export default function PremiumLightPage() {
           {/* Visuel */}
           <div className="overflow-hidden rounded-2xl bg-[#f2f2f2]">
             <div className="grid h-full min-h-[340px] grid-cols-2 gap-2 p-2">
-              <div className="rounded-xl bg-gradient-to-br from-[#ff7a3d] to-[#d5350a]" />
+              <div className="rounded-xl bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
               <div className="rounded-xl bg-gradient-to-br from-[#2447c9] to-[#0c2185]" />
               <div className="col-span-2 rounded-xl bg-[radial-gradient(circle_at_40%_30%,#ffffff,#e6e6e6)]" />
             </div>
@@ -246,7 +244,7 @@ export default function PremiumLightPage() {
                 <span
                   style={heading}
                   className={`text-lg font-extrabold ${
-                    s.active ? "text-[#ff5a1e]" : "text-[#c9c9c9]"
+                    s.active ? "text-[var(--primary)]" : "text-[#c9c9c9]"
                   }`}
                 >
                   {s.n}
@@ -255,7 +253,7 @@ export default function PremiumLightPage() {
                   <h3
                     style={heading}
                     className={`text-lg font-bold ${
-                      s.active ? "text-[#ff5a1e]" : "text-[#101010]"
+                      s.active ? "text-[var(--primary)]" : "text-[#101010]"
                     }`}
                   >
                     {s.title}
@@ -278,7 +276,7 @@ export default function PremiumLightPage() {
             <br />
             have been done
           </h2>
-          <OrangeButton>Explore More</OrangeButton>
+          <PrimaryButton>Explore More</PrimaryButton>
         </div>
 
         <div className="mt-10 space-y-4">
@@ -298,7 +296,7 @@ export default function PremiumLightPage() {
                       ? "linear-gradient(135deg,#efeae0,#dcd4c4)"
                       : p.tone === "sky"
                         ? "linear-gradient(135deg,#dfe9f2,#c3d4e6)"
-                        : "linear-gradient(135deg,#f8dfd2,#f0c3ab)",
+                        : "linear-gradient(135deg,#efe6f6,#d9c7ea)",
                 }}
               >
                 {p.title === ".US" ? (
@@ -336,7 +334,7 @@ export default function PremiumLightPage() {
                   className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#101010]"
                 >
                   See Project Detail
-                  <ArrowRight className="size-4 text-[#ff5a1e] transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
             </div>
@@ -356,7 +354,7 @@ export default function PremiumLightPage() {
         </p>
         <div className="mt-10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="size-11 rounded-full bg-gradient-to-br from-[#ff7a3d] to-[#d5350a]" />
+            <div className="size-11 rounded-full bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
             <div>
               <div className="text-sm font-bold">Alexa Christiany</div>
               <div className="text-xs text-white/50">CEO Boss</div>
@@ -366,7 +364,7 @@ export default function PremiumLightPage() {
             <button className="grid size-11 place-items-center rounded-full border border-white/20 text-white/70 transition hover:bg-white/10">
               <ArrowLeft className="size-4" />
             </button>
-            <button className="grid size-11 place-items-center rounded-full bg-[#ff5a1e] text-white transition hover:bg-[#f04b12]">
+            <button className="grid size-11 place-items-center rounded-full bg-[var(--primary)] text-white transition hover:bg-[var(--primary-600)]">
               <ArrowRight className="size-4" />
             </button>
           </div>
@@ -374,14 +372,14 @@ export default function PremiumLightPage() {
       </section>
 
       {/* ============================ CTA ============================ */}
-      <section className="mt-4 overflow-hidden rounded-[28px] bg-[#ff5a1e] p-10 text-white sm:p-14">
+      <section className="mt-4 overflow-hidden rounded-[28px] bg-[var(--primary)] p-10 text-white sm:p-14">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <h2 style={heading} className="text-3xl font-extrabold sm:text-5xl">
             Have an Awesome
             <br />
             Project?
           </h2>
-          <button className="group inline-flex items-center gap-2 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#ff5a1e]">
+          <button className="group inline-flex items-center gap-2 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--primary)]">
             Explore More
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </button>
@@ -393,7 +391,7 @@ export default function PremiumLightPage() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Link href="#" className="flex items-center gap-2 text-lg font-extrabold">
-              <span className="grid size-6 place-items-center rounded-md bg-[#ff5a1e] text-white">
+              <span className="grid size-6 place-items-center rounded-md bg-[var(--primary)] text-white">
                 <Plus className="size-4" />
               </span>
               patheren
