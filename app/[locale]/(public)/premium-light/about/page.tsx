@@ -6,6 +6,7 @@ import {
   FaqSection,
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
+import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import {
   Rocket,
   Users,
@@ -69,7 +70,7 @@ export default function PremiumLightAbout() {
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
         <PatherenNav active="About Us" />
-        <div className="px-6 pt-6 text-center sm:px-10">
+        <Reveal className="px-6 pt-6 text-center sm:px-10">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
             About us
           </div>
@@ -87,13 +88,15 @@ export default function PremiumLightAbout() {
             <Photo tone="team" className="h-48 rounded-2xl sm:h-56" />
             <Photo tone="meeting" className="h-40 rounded-2xl sm:h-48" />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ============================ MISSION ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <h2 className="text-3xl font-extrabold sm:text-4xl">Our Mission</h2>
-        <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
+        <Reveal>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Our Mission</h2>
+        </Reveal>
+        <Reveal delay={0.1} className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
           <Photo tone="meeting" icon="image" className="h-64 rounded-2xl" />
           <div>
             <p className="text-sm leading-relaxed text-[#9a9a9a]">
@@ -112,67 +115,75 @@ export default function PremiumLightAbout() {
               preferences to create interfaces that resonate.
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid gap-8 border-t border-black/10 pt-10 sm:grid-cols-3">
+        <Stagger className="mt-12 grid gap-8 border-t border-black/10 pt-10 sm:grid-cols-3">
           {missionSteps.map((s) => (
-            <div key={s.n}>
+            <StaggerItem key={s.n}>
               <div className="text-4xl font-extrabold text-[var(--primary)]">{s.n}</div>
               <h4 className="mt-3 text-base font-bold">{s.title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-[#9a9a9a]">{s.desc}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ============================ VISION ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <h2 className="text-3xl font-extrabold sm:text-4xl">Our Vision</h2>
-        <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
+        <Reveal>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Our Vision</h2>
+        </Reveal>
+        <Reveal delay={0.1} className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
           <p className="max-w-md text-sm leading-relaxed text-[#9a9a9a]">
             We aspire to set new industry standards, redefine the boundaries of
             user interface and experience design. Our overarching vision is
             encapsulated in the following principles.
           </p>
           <Photo tone="team" icon="image" className="h-56 rounded-2xl" />
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {visionItems.map((v) => (
-            <div key={v.title}>
+            <StaggerItem key={v.title}>
               <span className="grid size-11 place-items-center rounded-xl bg-[#f2f2f2] text-[var(--primary)]">
                 <v.icon className="size-5" />
               </span>
               <h4 className="mt-3 text-sm font-bold">{v.title}</h4>
               <p className="mt-2 text-xs leading-relaxed text-[#9a9a9a]">{v.desc}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ============================ STRATEGY (sombre) ============================ */}
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
-        <h2 className="text-center text-3xl font-extrabold leading-tight sm:text-4xl">
-          Our Strategy of
-          <br />
-          Pro Working Process
-        </h2>
-        <div className="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-3">
+        <Reveal>
+          <h2 className="text-center text-3xl font-extrabold leading-tight sm:text-4xl">
+            Our Strategy of
+            <br />
+            Pro Working Process
+          </h2>
+        </Reveal>
+        <Stagger className="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-3">
           {strategy.map((s) => (
-            <div key={s.title}>
+            <StaggerItem key={s.title}>
               <span className="grid size-11 place-items-center rounded-xl bg-white/10 text-[var(--primary)]">
                 <s.icon className="size-5" />
               </span>
               <h4 className="mt-4 text-base font-bold">{s.title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-white/60">{s.desc}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ===================== RÉSULTATS + FAQ + CTA + FOOTER ===================== */}
-      <ResultsSection />
-      <FaqSection items={faqs} dark />
+      <Reveal>
+        <ResultsSection />
+      </Reveal>
+      <Reveal>
+        <FaqSection items={faqs} dark />
+      </Reveal>
       <ProjectCta />
       <PatherenFooter />
     </main>

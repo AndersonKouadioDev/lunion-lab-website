@@ -121,29 +121,33 @@ export default function PremiumLightPage() {
       </section>
 
       {/* ===================== MARQUEE CLIENTS (Woogency) ===================== */}
-      <LogoMarquee />
+      <Reveal>
+        <LogoMarquee />
+      </Reveal>
 
       {/* ============================ GALERIE ============================ */}
-      <section className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="aspect-[4/3] overflow-hidden rounded-2xl">
-          <Pouch label="Radical Toast" from="#e9e2d4" to="#cfc6b4" />
-        </div>
-        <div className="aspect-[4/3] rounded-2xl bg-white p-5">
-          <div className="h-full rounded-xl bg-[radial-gradient(circle_at_50%_40%,#ececec,#f7f7f7)]" />
-        </div>
-        <div className="aspect-[4/3] rounded-2xl bg-white p-5">
-          <div className="grid h-full place-items-center rounded-xl bg-[#f2f2f2] text-xs font-semibold tracking-widest text-[#bdbdbd]">
-            Act+Acre
-          </div>
-        </div>
-        <div className="aspect-[4/3] overflow-hidden rounded-2xl">
-          <Pouch label="Fresh Vibe" from="#9353d3" to="#5a3b7d" />
-        </div>
+      <section className="mt-4">
+        <Stagger className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
+            <Pouch label="Radical Toast" from="#e9e2d4" to="#cfc6b4" />
+          </StaggerItem>
+          <StaggerItem className="aspect-[4/3] rounded-2xl bg-white p-5">
+            <div className="h-full rounded-xl bg-[radial-gradient(circle_at_50%_40%,#ececec,#f7f7f7)]" />
+          </StaggerItem>
+          <StaggerItem className="aspect-[4/3] rounded-2xl bg-white p-5">
+            <div className="grid h-full place-items-center rounded-xl bg-[#f2f2f2] text-xs font-semibold tracking-widest text-[#bdbdbd]">
+              Act+Acre
+            </div>
+          </StaggerItem>
+          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
+            <Pouch label="Fresh Vibe" from="#9353d3" to="#5a3b7d" />
+          </StaggerItem>
+        </Stagger>
       </section>
 
       {/* ============================ BANNIÈRE SOMBRE ============================ */}
       <section className="mt-4 overflow-hidden rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
-        <div className="grid items-center gap-8 md:grid-cols-2">
+        <Reveal className="grid items-center gap-8 md:grid-cols-2">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             Provide the best service, with ideas that are out of the box
           </h2>
@@ -155,12 +159,12 @@ export default function PremiumLightPage() {
             </p>
             <PrimaryButton>Know More</PrimaryButton>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ============================ SERVICES ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <div className="grid gap-6 md:grid-cols-2 md:items-end">
+        <Reveal className="grid gap-6 md:grid-cols-2 md:items-end">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             We offer several
             <br />
@@ -171,9 +175,9 @@ export default function PremiumLightPage() {
             team culture. When you choose to join Patheren Agency you&apos;re
             joining a team that genuinely loves what they do.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
+        <Reveal delay={0.1} className="mt-10 grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
           <div className="overflow-hidden rounded-2xl bg-[#f2f2f2]">
             <div className="grid h-full min-h-[340px] grid-cols-2 gap-2 p-2">
               <div className="rounded-xl bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
@@ -212,12 +216,12 @@ export default function PremiumLightPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ============================ PROJETS ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
               Our Project
@@ -236,11 +240,11 @@ export default function PremiumLightPage() {
             </div>
           </div>
           <PrimaryButton>Explore More</PrimaryButton>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 space-y-4">
+        <Stagger className="mt-10 space-y-4">
           {projects.map((p, i) => (
-            <div key={p.title} className="grid items-stretch gap-4 md:grid-cols-[1.4fr_1fr]">
+            <StaggerItem key={p.title} className="grid items-stretch gap-4 md:grid-cols-[1.4fr_1fr]">
               <div
                 className={`order-1 min-h-[240px] overflow-hidden rounded-2xl p-3 ${
                   i % 2 === 1 ? "md:order-2" : ""
@@ -287,30 +291,35 @@ export default function PremiumLightPage() {
                   <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ===================== RÉSULTATS DATA-DRIVEN (Woogency) ===================== */}
-      <ResultsSection />
+      <Reveal>
+        <ResultsSection />
+      </Reveal>
 
       {/* ============================ TÉMOIGNAGES ============================ */}
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-14">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <Reveal className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
             Amazing Feedbacks from
             <br />
             Happy Clients
           </h2>
           <Stars />
-        </div>
+        </Reveal>
 
-        <p className="mt-8 max-w-3xl text-2xl font-bold leading-snug sm:text-[32px]">
+        <Reveal
+          delay={0.1}
+          className="mt-8 max-w-3xl text-2xl font-bold leading-snug sm:text-[32px]"
+        >
           &quot;I really enjoyed working with you guys, you guys are very
           communicative and quick to do the job. I really can&apos;t wait to work
           with you again!&quot;
-        </p>
+        </Reveal>
         <div className="mt-10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="size-11 rounded-full bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
@@ -331,7 +340,9 @@ export default function PremiumLightPage() {
       </section>
 
       {/* ============================ FAQ (Woogency) ============================ */}
-      <FaqSection items={faqs} />
+      <Reveal>
+        <FaqSection items={faqs} />
+      </Reveal>
 
       {/* ============================ CTA + FOOTER ============================ */}
       <ProjectCta />
