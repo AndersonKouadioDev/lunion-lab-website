@@ -7,6 +7,7 @@ import {
 } from "@/components/(public)/patheren/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { TeamSection } from "@/components/(public)/patheren/TeamSection";
+import { TechStack } from "@/components/(public)/patheren/TechStack";
 import {
   Rocket,
   Users,
@@ -156,6 +157,9 @@ export default function PremiumLightAbout() {
 
       {/* ===================== ÉQUIPE (V2 DreamTeam adapté) ===================== */}
       <TeamSection />
+
+      {/* ===================== TECH STACK ===================== */}
+      <TechStack />
 
       {/* ============================ STRATEGY (sombre) ============================ */}
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">

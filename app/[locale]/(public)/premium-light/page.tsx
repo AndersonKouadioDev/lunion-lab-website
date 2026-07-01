@@ -10,7 +10,7 @@ import {
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
-import { SectorsBento } from "@/components/(public)/patheren/SectorsBento";
+import { TechStack } from "@/components/(public)/patheren/TechStack";
 
 /**
  * Premium Light — Home "Patheren" (thème clair, accent primaire du projet).
@@ -218,8 +218,8 @@ export default function PremiumLightPage() {
         </Reveal>
       </section>
 
-      {/* ===================== SECTEURS D'ACTIVITÉ (bento, V2 adapté) ===================== */}
-      <SectorsBento />
+      {/* ===================== TECH STACK ===================== */}
+      <TechStack />
 
       {/* ============================ PROJETS ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">

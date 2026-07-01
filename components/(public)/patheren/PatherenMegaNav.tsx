@@ -251,7 +251,7 @@ export function PatherenMegaNav() {
           : false;
 
   return (
-    <header className="sticky top-0 z-50" style={{ fontFamily: "var(--font-figtree)" }}>
+    <header className="relative z-40" style={{ fontFamily: "var(--font-figtree)" }}>
       <div className="mx-auto max-w-[1680px] px-4">
         {/* Barre d'annonce (arrondie, dans le cadre) */}
         <div className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm text-white">
