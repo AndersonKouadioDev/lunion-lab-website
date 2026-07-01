@@ -26,6 +26,8 @@ export type Offering = {
   featuresIntro: string;
   features: { icon: IconKey; title: string; desc: string }[];
   modules: { title: string; desc: string; tone: string }[];
+  status?: "prod" | "dev";
+  url?: string;
 };
 
 /* Étapes de process communes (4 étapes) */
@@ -44,9 +46,46 @@ const process = (
 
 export const offerings: Offering[] = [
   {
+    slug: "lunion-meet",
+    kind: "product",
+    name: "Lunion-Meet",
+    status: "prod",
+    url: "https://meet.lunion-lab.com",
+    category: "Visioconférence",
+    tagline: "Vos réunions en ligne, simples et fiables",
+    heroTitle: "La visioconférence pensée pour vos équipes et vos clients",
+    heroDesc:
+      "Organisez et rejoignez des réunions vidéo en un clic, directement depuis votre navigateur. Partage d'écran, salles dédiées et qualité au rendez-vous, sans rien installer.",
+    growth: { value: "1 clic", label: "pour lancer ou rejoindre une réunion" },
+    band: { we: "Nous", verb: "connectons", outcome: "vos équipes où qu'elles soient" },
+    process: process(
+      ["Créez votre espace", "Invitez", "Rejoignez", "Collaborez"],
+      "Créez une réunion ou une salle dédiée en quelques secondes.",
+      "Partagez le lien par email ou message, sans compte requis pour vos invités.",
+      "Rejoignez depuis le navigateur, sur ordinateur comme sur mobile.",
+      "Partagez votre écran, discutez et travaillez ensemble en temps réel.",
+    ),
+    featuresIntro: "Tout ce qu'il faut pour des réunions en ligne réussies.",
+    features: [
+      { icon: "video", title: "Vidéo et audio HD", desc: "Une image nette et un son clair, même à plusieurs participants." },
+      { icon: "users", title: "Salles de réunion", desc: "Des espaces dédiés à vos équipes, vos projets et vos clients." },
+      { icon: "layout", title: "Partage d'écran", desc: "Présentez documents et applications en direct pendant l'appel." },
+      { icon: "lock", title: "Réunions sécurisées", desc: "Accès protégé et échanges chiffrés de bout en bout." },
+      { icon: "globe", title: "Depuis le navigateur", desc: "Aucune installation, ça fonctionne partout, tout de suite." },
+      { icon: "bell", title: "Invitations et rappels", desc: "Planifiez vos réunions et notifiez vos participants." },
+    ],
+    modules: [
+      { title: "Réunions instantanées", desc: "Lancez un appel en un clic et partagez le lien.", tone: "cream" },
+      { title: "Salles dédiées", desc: "Des espaces persistants pour vos équipes.", tone: "sky" },
+      { title: "Collaboration", desc: "Écran partagé, messages et fichiers en réunion.", tone: "peach" },
+      { title: "Administration", desc: "Gérez participants, accès et historique.", tone: "mono" },
+    ],
+  },
+  {
     slug: "lunion-booking",
     kind: "product",
     name: "Lunion-Booking",
+    status: "dev",
     category: "Gestion immobilière",
     tagline: "Révolutionnez votre gestion immobilière",
     heroTitle: "Vos biens, vos réservations, vos clients : tout au même endroit",
@@ -80,7 +119,8 @@ export const offerings: Offering[] = [
   {
     slug: "lunion-secu",
     kind: "product",
-    name: "Lunion-Secure",
+    name: "Lunion-Secu",
+    status: "dev",
     category: "Ressources humaines",
     tagline: "Révolutionnez la gestion de vos ressources humaines",
     heroTitle: "Des équipes sereines, des données sécurisées",
@@ -115,6 +155,7 @@ export const offerings: Offering[] = [
     slug: "lunion-educ",
     kind: "product",
     name: "Lunion-Educ",
+    status: "dev",
     category: "Gestion éducative",
     tagline: "Révolutionnez la gestion de votre établissement",
     heroTitle: "Élèves, cours et ressources : votre établissement enfin unifié",
@@ -256,6 +297,11 @@ export const offeringSlugs = offerings.map((o) => o.slug);
 export function getOffering(slug: string): Offering | undefined {
   return offerings.find((o) => o.slug === slug);
 }
+
+export const statusLabel: Record<"prod" | "dev", string> = {
+  prod: "En production",
+  dev: "En développement",
+};
 
 export const products = offerings.filter((o) => o.kind === "product");
 export const services = offerings.filter((o) => o.kind === "service");

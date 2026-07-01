@@ -4,7 +4,7 @@ import {
   ProjectCta,
   Photo,
 } from "@/components/(public)/patheren/ui";
-import type { Offering } from "@/components/(public)/patheren/catalog";
+import { statusLabel, type Offering } from "@/components/(public)/patheren/catalog";
 import { icons, Star } from "@/components/(public)/patheren/icons";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { ProcessStack } from "@/components/(public)/patheren/ProcessStack";
@@ -28,10 +28,22 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
 
         <div className="grid items-center gap-10 px-6 pt-8 sm:px-10 md:grid-cols-2">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
-              <Star className="size-3.5 text-[var(--primary)]" />
-              {o.kind === "product" ? "Produit" : "Service"} · {o.category}
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
+                <Star className="size-3.5 text-[var(--primary)]" />
+                {o.kind === "product" ? "Produit" : "Service"} · {o.category}
+              </span>
+              {o.status && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f3eefc] px-3 py-1.5 text-xs font-semibold text-[var(--primary)]">
+                  <span
+                    className={`size-1.5 rounded-full ${
+                      o.status === "prod" ? "bg-emerald-500" : "bg-amber-500"
+                    }`}
+                  />
+                  {statusLabel[o.status]}
+                </span>
+              )}
+            </div>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
               {o.heroTitle}
             </h1>
@@ -39,7 +51,19 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
               {o.heroDesc}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-6">
-              <PrimaryButton>Parlons-en</PrimaryButton>
+              {o.url ? (
+                <a
+                  href={o.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)]"
+                >
+                  Accéder à l&apos;outil
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              ) : (
+                <PrimaryButton>Parlons-en</PrimaryButton>
+              )}
               <div>
                 <div className="text-3xl font-extrabold text-[var(--primary)]">
                   {o.growth.value}
