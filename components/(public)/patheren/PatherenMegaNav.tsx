@@ -4,83 +4,111 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Menu, Plus, X, type LucideIcon } from "lucide-react";
-import { icons, Star } from "@/components/(public)/patheren/icons";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChevronDown,
+  Menu,
+  Plus,
+  X,
+  Instagram,
+  Linkedin,
+  Youtube,
+} from "lucide-react";
 import { products, services } from "@/components/(public)/patheren/catalog";
 
 /**
- * Navbar méga-menu redesignée pour premium-light (thème clair, accent
- * primaire violet, étoile creatiwise, barre blanche arrondie flottante).
- * Reprend la mécanique du méga-menu V2 mais câblée sur le catalogue réel.
+ * Navbar méga-menu premium-light, redesignée d'après les références FundedNext :
+ * barre d'annonce + navbar blanche pleine largeur + méga-panneaux pleine largeur
+ * (carte sombre featured à gauche, grille de cartes au centre, colonnes à droite).
+ * Accent violet du projet, câblée sur le catalogue réel.
  */
 
-type MegaCard = { icon: LucideIcon; title: string; desc: string; href: string };
+type Card = { title: string; desc: string; href: string };
 type Mega = {
-  featured: { title: string; desc: string; href: string; cta: string };
-  cards: MegaCard[];
-  columns: { heading: string; links: { label: string; href: string }[] }[];
+  featured: {
+    title: string;
+    desc: string;
+    primary: { label: string; href: string };
+    secondary: { label: string; href: string };
+  };
+  cards: Card[];
+  start: { over: string; label: string; href: string; ext?: boolean }[];
+  general: { label: string; href: string }[];
 };
 
 const productsMega: Mega = {
   featured: {
-    title: "Our Products",
-    desc: "One platform to book, protect and teach — with more on the way.",
-    href: "/premium-light/products",
-    cta: "Explore all",
+    title: "Products",
+    desc: "One platform to book, protect and teach.",
+    primary: { label: "Explore products", href: "/premium-light/products" },
+    secondary: { label: "Free trial", href: "#" },
   },
   cards: products.map((p) => ({
-    icon: icons[p.features[0].icon],
     title: p.name,
-    desc: p.category,
+    desc: p.tagline,
     href: `/premium-light/products/${p.slug}`,
   })),
-  columns: [
-    {
-      heading: "Start",
-      links: [
-        { label: "All products", href: "/premium-light/products" },
-        { label: "Pricing", href: "#" },
-        { label: "Demos", href: "#" },
-      ],
-    },
-    {
-      heading: "More",
-      links: [
-        { label: "FAQ", href: "#" },
-        { label: "Support", href: "#" },
-      ],
-    },
+  start: [
+    { over: "Get funded", label: "How Lunion works", href: "#" },
+    { over: "Trade your funds", label: "See pricing", href: "#", ext: true },
+  ],
+  general: [
+    { label: "Features", href: "#" },
+    { label: "Integrations", href: "#" },
+    { label: "Security", href: "#" },
+    { label: "What's allowed", href: "#" },
+    { label: "FAQs", href: "#" },
   ],
 };
 
 const servicesMega: Mega = {
   featured: {
-    title: "Our Services",
-    desc: "From idea to launch, the full craft to bring your product to life.",
-    href: "/premium-light/services",
-    cta: "See all services",
+    title: "Services",
+    desc: "From idea to launch, the full craft.",
+    primary: { label: "Explore services", href: "/premium-light/services" },
+    secondary: { label: "Get a quote", href: "#" },
   },
   cards: services.map((s) => ({
-    icon: icons[s.features[0].icon],
     title: s.name,
-    desc: s.category,
+    desc: s.tagline,
     href: `/premium-light/services/${s.slug}`,
   })),
-  columns: [
-    {
-      heading: "Start",
-      links: [
-        { label: "Our process", href: "#" },
-        { label: "Get a quote", href: "#" },
-      ],
-    },
-    {
-      heading: "More",
-      links: [
-        { label: "Technologies", href: "#" },
-        { label: "Guarantees", href: "#" },
-      ],
-    },
+  start: [
+    { over: "Start a project", label: "Our process", href: "#" },
+    { over: "Work with us", label: "Book a call", href: "#", ext: true },
+  ],
+  general: [
+    { label: "Process", href: "#" },
+    { label: "Technologies", href: "#" },
+    { label: "Case studies", href: "#" },
+    { label: "Pricing", href: "#" },
+    { label: "FAQs", href: "#" },
+  ],
+};
+
+const resourcesMega: Mega = {
+  featured: {
+    title: "Community",
+    desc: "Join the Lunion community and stay connected.",
+    primary: { label: "Discord", href: "#" },
+    secondary: { label: "Telegram", href: "#" },
+  },
+  cards: [
+    { title: "Blog", desc: "Articles & product news", href: "#" },
+    { title: "Careers", desc: "Join the team", href: "#" },
+    { title: "Partners", desc: "Let's build together", href: "#" },
+    { title: "Events", desc: "Meet us near you", href: "#" },
+  ],
+  start: [
+    { over: "Company", label: "About us", href: "/premium-light/about" },
+    { over: "Get in touch", label: "Contact", href: "#" },
+  ],
+  general: [
+    { label: "Documentation", href: "#" },
+    { label: "Support", href: "#" },
+    { label: "Status", href: "#" },
+    { label: "Changelog", href: "#" },
   ],
 };
 
@@ -89,16 +117,22 @@ type NavItem =
   | { key: string; label: string; mega: Mega; href?: undefined };
 
 const NAV: NavItem[] = [
-  { key: "home", label: "Home", href: "/premium-light" },
   { key: "products", label: "Products", mega: productsMega },
   { key: "services", label: "Services", mega: servicesMega },
   { key: "about", label: "About Us", href: "/premium-light/about" },
+  { key: "resources", label: "More", mega: resourcesMega },
+];
+
+const SOCIALS = [
+  { label: "Instagram", icon: Instagram },
+  { label: "LinkedIn", icon: Linkedin },
+  { label: "YouTube", icon: Youtube },
 ];
 
 function Logo() {
   return (
-    <Link href="/premium-light" className="flex items-center gap-2 text-lg font-extrabold">
-      <span className="grid size-6 place-items-center rounded-md bg-[var(--primary)] text-white">
+    <Link href="/premium-light" className="flex items-center gap-2 text-lg font-extrabold text-[#101010]">
+      <span className="grid size-7 place-items-center rounded-md bg-[var(--primary)] text-white">
         <Plus className="size-4" />
       </span>
       patheren
@@ -108,71 +142,87 @@ function Logo() {
 
 function MegaPanel({ mega }: { mega: Mega }) {
   return (
-    <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-      {/* Carte mise en avant */}
-      <div className="lg:col-span-3">
-        <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary-600)] p-5 text-white">
-          <Star className="absolute -right-3 -top-3 size-12 text-white/15" />
-          <h3 className="text-lg font-extrabold">{mega.featured.title}</h3>
-          <p className="mt-2 text-sm text-white/70">{mega.featured.desc}</p>
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr_280px]">
+      {/* Carte featured sombre */}
+      <div className="relative flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-[#2a2340] to-[#171225] p-6 text-white">
+        <div className="pointer-events-none absolute -right-8 -top-8 size-40 rounded-full bg-[var(--primary)]/30 blur-3xl" />
+        <h3 className="relative text-2xl font-extrabold">{mega.featured.title}</h3>
+        <p className="relative mt-2 text-sm text-white/60">{mega.featured.desc}</p>
+        {/* Décor "chandeliers" */}
+        <div className="relative mt-6 flex items-end gap-1.5 opacity-50">
+          {[38, 64, 30, 84, 52, 70, 44].map((h, i) => (
+            <div key={i} className="w-3 rounded-sm bg-white/40" style={{ height: h }} />
+          ))}
+        </div>
+        <div className="relative mt-auto space-y-2 pt-8">
           <Link
-            href={mega.featured.href}
-            className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--primary)] transition hover:bg-white/90"
+            href={mega.featured.primary.href}
+            className="flex items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]"
           >
-            {mega.featured.cta}
+            {mega.featured.primary.label}
             <ArrowRight className="size-4" />
+          </Link>
+          <Link
+            href={mega.featured.secondary.href}
+            className="flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            {mega.featured.secondary.label}
           </Link>
         </div>
       </div>
 
       {/* Grille de cartes (catalogue) */}
-      <div className="lg:col-span-6">
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {mega.cards.map((c) => {
-            const Icon = c.icon;
-            return (
-              <Link
-                key={c.title}
-                href={c.href}
-                className="group flex items-start gap-3 rounded-xl border border-transparent p-3 transition hover:border-black/5 hover:bg-[#f6f2fc]"
-              >
-                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-[#f3eefc] text-[var(--primary)]">
-                  <Icon className="size-5" />
-                </span>
-                <span>
-                  <span className="flex items-center gap-1 text-sm font-semibold text-[#101010]">
-                    {c.title}
-                    <ArrowRight className="size-3.5 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                  </span>
-                  <span className="mt-0.5 block text-xs text-[#9a9a9a]">{c.desc}</span>
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-1 content-start gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {mega.cards.map((c) => (
+          <Link
+            key={c.title}
+            href={c.href}
+            className="group flex flex-col rounded-2xl bg-[#f5f5f7] p-5 transition hover:bg-[#efeafb]"
+          >
+            <h4 className="text-lg font-extrabold text-[#101010]">{c.title}</h4>
+            <p className="mt-1 text-sm leading-relaxed text-[#8a8a8a]">{c.desc}</p>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#101010]">
+              Découvrez
+              <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+        ))}
       </div>
 
-      {/* Colonnes de liens */}
-      <div className="grid grid-cols-2 gap-6 lg:col-span-3">
-        {mega.columns.map((col) => (
-          <div key={col.heading}>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#a5a5a5]">
-              {col.heading}
-            </p>
-            <ul className="mt-3 space-y-2.5">
-              {col.links.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-[#6f6f6f] transition hover:text-[var(--primary)]"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* Colonnes de droite : Commencer + Général */}
+      <div className="space-y-7">
+        <div>
+          <h4 className="text-sm font-bold text-[#101010]">Commencer</h4>
+          <div className="mt-4 space-y-4">
+            {mega.start.map((s) => (
+              <div key={s.label}>
+                <div className="text-xs text-[#9a9a9a]">{s.over}</div>
+                <Link
+                  href={s.href}
+                  className="inline-flex items-center gap-1 text-[15px] font-bold text-[#101010] transition hover:text-[var(--primary)]"
+                >
+                  {s.label}
+                  {s.ext && <ArrowUpRight className="size-4" />}
+                </Link>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <div>
+          <h4 className="text-sm font-bold text-[#101010]">Général</h4>
+          <ul className="mt-4 space-y-2.5">
+            {mega.general.map((l) => (
+              <li key={l.label}>
+                <Link
+                  href={l.href}
+                  className="text-[15px] font-semibold text-[#555] transition hover:text-[var(--primary)]"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
@@ -184,99 +234,116 @@ export function PatherenMegaNav() {
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
+  const [lang, setLang] = useState("FR");
 
   const isActive = (item: NavItem) =>
     item.href
       ? item.href === "/premium-light"
         ? sub === "/premium-light"
         : sub.startsWith(item.href)
-      : sub.startsWith(`/premium-light/${item.key}`);
+      : item.key === "products"
+        ? sub.startsWith("/premium-light/products")
+        : item.key === "services"
+          ? sub.startsWith("/premium-light/services")
+          : false;
 
   return (
-    <header
-      className="sticky top-0 z-50"
-      style={{ fontFamily: "var(--font-figtree)" }}
-      onMouseLeave={() => setOpen(null)}
-    >
-      <div className="mx-auto max-w-[1240px] px-4">
-        <div className="relative my-3 rounded-2xl border border-black/5 bg-white/85 px-5 py-3 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl">
-          <div className="flex items-center justify-between gap-4">
-            <Logo />
+    <header style={{ fontFamily: "var(--font-figtree)" }}>
+      {/* Barre d'annonce */}
+      <div className="bg-[var(--primary)] px-4 py-2.5 text-center text-sm text-white">
+        <span className="font-semibold">The Lunion product suite is live</span>
+        <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">
+          New
+        </span>
+      </div>
 
-            {/* Nav desktop */}
-            <nav className="hidden items-center gap-1 md:flex">
-              {NAV.map((item) =>
-                item.mega ? (
-                  <button
-                    key={item.key}
-                    type="button"
-                    onMouseEnter={() => setOpen(item.key)}
-                    className={`inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition ${
-                      open === item.key || isActive(item)
-                        ? "bg-[#f3eefc] text-[var(--primary)]"
-                        : "text-[#333] hover:text-[var(--primary)]"
+      {/* Navbar sticky pleine largeur */}
+      <div
+        className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl"
+        onMouseLeave={() => setOpen(null)}
+      >
+        <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-4 px-6">
+          <Logo />
+
+          {/* Nav desktop (centrée) */}
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex">
+            {NAV.map((item) =>
+              item.mega ? (
+                <button
+                  key={item.key}
+                  type="button"
+                  onMouseEnter={() => setOpen(item.key)}
+                  className={`inline-flex items-center gap-1 text-[15px] font-medium transition ${
+                    open === item.key || isActive(item)
+                      ? "text-[var(--primary)]"
+                      : "text-[#333] hover:text-[#101010]"
+                  }`}
+                >
+                  {item.label}
+                  <ChevronDown
+                    className={`size-4 transition-transform duration-300 ${
+                      open === item.key ? "rotate-180" : ""
                     }`}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={`size-4 transition-transform duration-300 ${
-                        open === item.key ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    onMouseEnter={() => setOpen(null)}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                      isActive(item)
-                        ? "text-[var(--primary)]"
-                        : "text-[#333] hover:text-[var(--primary)]"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </nav>
-
-            {/* Actions */}
-            <div className="flex items-center gap-3">
-              <Link
-                href="#"
-                className="hidden rounded-full bg-[var(--primary)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)] sm:inline-block"
-              >
-                Contact Us
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileOpen((v) => !v)}
-                aria-label="Menu"
-                className="grid size-10 place-items-center rounded-full border border-black/10 text-[#101010] md:hidden"
-              >
-                {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Méga-panneau desktop */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-x-0 top-full hidden pt-3 md:block"
-              >
-                <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
-                  <MegaPanel mega={(NAV.find((n) => n.key === open) as { mega: Mega }).mega} />
-                </div>
-              </motion.div>
+                  />
+                </button>
+              ) : (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  onMouseEnter={() => setOpen(null)}
+                  className={`text-[15px] font-medium transition ${
+                    isActive(item) ? "text-[var(--primary)]" : "text-[#333] hover:text-[#101010]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             )}
-          </AnimatePresence>
+          </nav>
+
+          {/* Actions droite */}
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setLang(lang === "FR" ? "EN" : "FR")}
+              className="hidden items-center gap-1 text-sm font-medium text-[#333] transition hover:text-[#101010] sm:inline-flex"
+            >
+              {lang}
+              <ChevronDown className="size-4" />
+            </button>
+            <Link
+              href="#"
+              className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]"
+            >
+              Connexion
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Menu"
+              className="grid size-10 place-items-center rounded-lg border border-black/10 text-[#101010] md:hidden"
+            >
+              {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Méga-panneau pleine largeur */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 top-full hidden border-b border-black/5 bg-white shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)] md:block"
+            >
+              <div className="mx-auto max-w-[1240px] px-6 py-8">
+                <MegaPanel mega={(NAV.find((n) => n.key === open) as { mega: Mega }).mega} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Menu mobile */}
@@ -287,17 +354,15 @@ export function PatherenMegaNav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="mx-auto max-w-[1240px] overflow-hidden px-4 md:hidden"
+            className="overflow-hidden border-b border-black/5 bg-white md:hidden"
           >
-            <div className="mt-2 space-y-1 rounded-2xl border border-black/5 bg-white p-3 shadow-lg">
+            <div className="space-y-1 px-4 py-4">
               {NAV.map((item) =>
                 item.mega ? (
                   <div key={item.key}>
                     <button
                       type="button"
-                      onClick={() =>
-                        setMobileSub(mobileSub === item.key ? null : item.key)
-                      }
+                      onClick={() => setMobileSub(mobileSub === item.key ? null : item.key)}
                       className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-[#101010] hover:bg-[#f6f2fc]"
                     >
                       {item.label}
@@ -320,9 +385,8 @@ export function PatherenMegaNav() {
                               key={c.title}
                               href={c.href}
                               onClick={() => setMobileOpen(false)}
-                              className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm text-[#333] hover:bg-[#f6f2fc] hover:text-[var(--primary)]"
+                              className="block rounded-xl px-4 py-2.5 text-sm text-[#333] hover:bg-[#f6f2fc] hover:text-[var(--primary)]"
                             >
-                              <c.icon className="size-4 text-[var(--primary)]" />
                               {c.title}
                             </Link>
                           ))}
@@ -341,12 +405,17 @@ export function PatherenMegaNav() {
                   </Link>
                 )
               )}
+              <div className="flex items-center gap-4 px-4 pt-3">
+                {SOCIALS.map((s) => (
+                  <s.icon key={s.label} className="size-5 text-[#555]" />
+                ))}
+              </div>
               <Link
                 href="#"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white"
+                className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white"
               >
-                Contact Us
+                Connexion
                 <ArrowRight className="size-4" />
               </Link>
             </div>
