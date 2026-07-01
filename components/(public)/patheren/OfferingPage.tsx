@@ -1,5 +1,4 @@
 import {
-  PatherenNav,
   PatherenFooter,
   PrimaryButton,
   ProjectCta,
@@ -26,7 +25,6 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
     >
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
-        <PatherenNav active={o.kind === "service" ? "Services" : "Products"} />
 
         <div className="grid items-center gap-10 px-6 pt-8 sm:px-10 md:grid-cols-2">
           <Reveal>

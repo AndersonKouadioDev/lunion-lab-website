@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { PatherenMegaNav } from "@/components/(public)/patheren/PatherenMegaNav";
 
 export const metadata: Metadata = {
   title: "Patheren — Powerful Digital Branding Agency",
@@ -11,6 +12,11 @@ export default function PremiumLightLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Route autonome (navbar + footer propres à la maquette), fond clair premium.
-  return <div className="min-h-screen bg-[#e9e9e9]">{children}</div>;
+  // Navbar méga-menu sticky (redesignée premium-light) partagée par toutes les pages.
+  return (
+    <div className="min-h-screen bg-[#e9e9e9]">
+      <PatherenMegaNav />
+      {children}
+    </div>
+  );
 }

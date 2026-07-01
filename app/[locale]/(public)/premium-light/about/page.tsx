@@ -1,5 +1,4 @@
 import {
-  PatherenNav,
   PatherenFooter,
   Photo,
   ResultsSection,
@@ -69,7 +68,6 @@ export default function PremiumLightAbout() {
     >
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
-        <PatherenNav active="About Us" />
         <Reveal className="px-6 pt-6 text-center sm:px-10">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
             About us

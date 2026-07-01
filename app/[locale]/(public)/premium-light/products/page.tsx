@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import {
-  PatherenNav,
   PatherenFooter,
   ProjectCta,
   Photo,
@@ -21,7 +20,6 @@ export default function ProductsIndex() {
     >
       {/* HERO */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
-        <PatherenNav active="Products" />
         <div className="mx-auto max-w-2xl px-6 pt-8 text-center sm:pt-14">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
             Our Products

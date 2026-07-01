@@ -1,6 +1,5 @@
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import {
-  PatherenNav,
   PatherenFooter,
   PrimaryButton,
   Pouch,
@@ -79,7 +78,6 @@ export default function PremiumLightPage() {
     >
       {/* ============================ HERO ============================ */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
-        <PatherenNav active="Home" />
 
         <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-14">
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">

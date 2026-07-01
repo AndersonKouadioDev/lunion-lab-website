@@ -1,5 +1,4 @@
 import {
-  PatherenNav,
   PatherenFooter,
   PrimaryButton,
   ProjectCta,
@@ -49,7 +48,6 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
     >
       {/* ==================== HERO — centré + bannière large ==================== */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
-        <PatherenNav active="Services" />
 
         <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-12">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
