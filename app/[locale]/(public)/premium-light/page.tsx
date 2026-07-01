@@ -238,7 +238,7 @@ export default function PremiumLightPage() {
 
         <Stagger className="mt-10 space-y-4">
           {products.map((p, i) => (
-            <StaggerItem key={p.slug} className="grid items-stretch gap-4 md:grid-cols-[1.4fr_1fr]">
+            <StaggerItem key={p.slug} className="grid items-stretch gap-4 md:grid-cols-[2fr_1fr]">
               <div
                 className={`order-1 min-h-[240px] overflow-hidden rounded-2xl p-3 ${
                   i % 2 === 1 ? "md:order-2" : ""
