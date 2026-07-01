@@ -3,21 +3,19 @@ import {
   PatherenFooter,
   PrimaryButton,
   ProjectCta,
+  Photo,
 } from "@/components/(public)/patheren/ui";
-import { icons } from "@/components/(public)/patheren/icons";
+import { icons, Star } from "@/components/(public)/patheren/icons";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import type { Offering } from "@/components/(public)/patheren/catalog";
 import { ArrowRight, Check } from "lucide-react";
 
 /**
- * ServicePage — identité visuelle distincte des produits :
- * skin chaud (crème + lilas au lieu de blanc + noir), hero éditorial
- * aligné à gauche avec panneau stat (pas d'image N&B à tags = signature
- * produit), deliverables sur lilas, timeline, zig-zag, engagement.
+ * ServicePage — conception distincte des pages produits :
+ * hero centré + bannière large, deliverables en checklist sombre,
+ * approche en timeline verticale, modules en zig-zag alterné,
+ * modèles d'engagement. Animé au scroll (Reveal / Stagger).
  */
-
-const CREAM = "#f5ede1";
-const LILAC = "#efe9fb";
 
 const moduleTone: Record<string, string> = {
   cream: "linear-gradient(135deg,#efeae0,#cfc6b4)",
@@ -49,68 +47,65 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
       className="mx-auto max-w-[1240px] px-4 pb-4 text-[#101010]"
       style={{ fontFamily: "var(--font-figtree)" }}
     >
-      {/* ==================== HERO — éditorial, crème ==================== */}
-      <section
-        className="overflow-hidden rounded-b-[36px] pb-12"
-        style={{ background: CREAM }}
-      >
+      {/* ==================== HERO — centré + bannière large ==================== */}
+      <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
         <PatherenNav active="Services" />
 
-        <div className="grid gap-10 px-6 pt-10 sm:px-10 md:grid-cols-[1.25fr_0.75fr] md:items-end">
-          <Reveal>
-            <div className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--primary)]">
-              Our service — {o.category}
-            </div>
-            <h1 className="mt-4 text-5xl font-extrabold leading-[0.98] tracking-tight sm:text-7xl">
-              {o.heroTitle}
-            </h1>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-[#7c7768] sm:text-base">
-              {o.heroDesc}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <PrimaryButton>Let&apos;s talk</PrimaryButton>
-              <button className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-semibold transition hover:border-[var(--primary)] hover:text-[var(--primary)]">
-                View work
-              </button>
-            </div>
-          </Reveal>
+        <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-12">
+          <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
+            <Star className="size-3.5 text-[var(--primary)]" />
+            Service · {o.category}
+          </span>
+          <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+            {o.heroTitle}
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
+            {o.heroDesc}
+          </p>
+          <div className="mt-7 flex items-center justify-center gap-3">
+            <PrimaryButton>Let&apos;s talk</PrimaryButton>
+            <button className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-semibold transition hover:border-[var(--primary)] hover:text-[var(--primary)]">
+              View work
+            </button>
+          </div>
+        </Reveal>
 
-          {/* Panneau stat (graphique, pas de photo) */}
-          <Reveal delay={0.15}>
-            <div className="rounded-3xl bg-[var(--primary)] p-7 text-white">
-              <div className="text-6xl font-extrabold leading-none">
+        {/* Bannière large N&B + stat + pills */}
+        <Reveal delay={0.15} className="mt-10 px-6 sm:px-10">
+          <div className="relative h-64 overflow-hidden rounded-3xl sm:h-80">
+            <Photo tone="office" className="h-full w-full grayscale" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-5 py-3 backdrop-blur">
+              <div className="text-2xl font-extrabold text-[var(--primary)]">
                 {o.growth.value}
               </div>
-              <div className="mt-2 text-sm text-white/70">{o.growth.label}</div>
-              <ul className="mt-6 space-y-3 border-t border-white/15 pt-5">
-                {o.features.slice(0, 3).map((f) => (
-                  <li key={f.title} className="flex items-center gap-2 text-sm">
-                    <span className="grid size-5 shrink-0 place-items-center rounded-full bg-white text-[var(--primary)]">
-                      <Check className="size-3" strokeWidth={3} />
-                    </span>
-                    {f.title}
-                  </li>
-                ))}
-              </ul>
+              <div className="text-[11px] text-[#8a8a8a]">{o.growth.label}</div>
             </div>
-          </Reveal>
-        </div>
+            <div className="absolute right-5 top-5 flex flex-wrap justify-end gap-2">
+              {o.features.slice(0, 3).map((f) => (
+                <span
+                  key={f.title}
+                  className="rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold shadow-sm backdrop-blur"
+                >
+                  {f.title}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </section>
 
-      {/* ==================== DELIVERABLES — checklist sur lilas ==================== */}
-      <section
-        className="mt-4 rounded-[28px] p-8 sm:p-12"
-        style={{ background: LILAC }}
-      >
+      {/* ==================== DELIVERABLES — checklist sombre ==================== */}
+      <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-start">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-[var(--primary)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-white/60">
               What&apos;s included
             </span>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
               Everything you need, done right
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#6f6a7d]">
+            <p className="mt-3 text-sm leading-relaxed text-white/50">
               {o.featuresIntro}
             </p>
           </Reveal>
@@ -118,14 +113,14 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
             {o.features.map((f) => (
               <StaggerItem
                 key={f.title}
-                className="flex items-start gap-3 border-t border-black/10 py-4"
+                className="flex items-start gap-3 border-t border-white/10 py-4"
               >
                 <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-white">
                   <Check className="size-3.5" strokeWidth={3} />
                 </span>
                 <div>
                   <h3 className="text-sm font-bold">{f.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-[#6f6a7d]">{f.desc}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-white/50">{f.desc}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -133,14 +128,11 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         </div>
       </section>
 
-      {/* ==================== APPROCHE — timeline verticale, crème ==================== */}
-      <section
-        className="mt-4 rounded-[28px] p-8 sm:p-12"
-        style={{ background: CREAM }}
-      >
+      {/* ==================== APPROCHE — timeline verticale ==================== */}
+      <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-[var(--primary)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-[#555]">
               How we work
             </span>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -148,13 +140,13 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
               <br />
               from idea to launch
             </h2>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#7c7768]">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#9a9a9a]">
               Four focused steps so you always know exactly what happens next.
             </p>
           </Reveal>
 
           <div className="relative">
-            <div className="absolute bottom-3 left-[17px] top-3 w-px bg-black/15" />
+            <div className="absolute bottom-3 left-[17px] top-3 w-px bg-black/10" />
             <Stagger className="space-y-8">
               {o.process.map((step) => (
                 <StaggerItem key={step.n} className="relative pl-14">
@@ -162,7 +154,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
                     {step.n}
                   </span>
                   <h3 className="text-lg font-extrabold">{step.title}</h3>
-                  <p className="mt-1 max-w-md text-sm leading-relaxed text-[#7c7768]">
+                  <p className="mt-1 max-w-md text-sm leading-relaxed text-[#9a9a9a]">
                     {step.desc}
                   </p>
                 </StaggerItem>
@@ -172,7 +164,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         </div>
       </section>
 
-      {/* ==================== WHAT WE COVER — zig-zag, blanc ==================== */}
+      {/* ==================== MODULES — zig-zag alterné ==================== */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal>
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -199,7 +191,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
                   </span>
                 </div>
                 <div className={i % 2 ? "md:order-1" : ""}>
-                  <span className="grid size-11 place-items-center rounded-xl bg-[#f3eefc] text-[var(--primary)]">
+                  <span className="grid size-11 place-items-center rounded-xl bg-[#f2f2f2] text-[var(--primary)]">
                     <Icon className="size-5" />
                   </span>
                   <h3 className="mt-4 text-2xl font-extrabold">{m.title}</h3>
@@ -220,16 +212,13 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         </Stagger>
       </section>
 
-      {/* ==================== ENGAGEMENT — crème ==================== */}
-      <section
-        className="mt-4 rounded-[28px] p-8 sm:p-12"
-        style={{ background: CREAM }}
-      >
+      {/* ==================== ENGAGEMENT — 2 modèles ==================== */}
+      <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="text-center">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             How we work together
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-[#7c7768]">
+          <p className="mx-auto mt-3 max-w-md text-sm text-[#9a9a9a]">
             Two simple ways to engage — pick the one that fits your stage.
           </p>
         </Reveal>
@@ -257,7 +246,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
                   <li key={p} className="flex items-center gap-2 text-sm">
                     <span
                       className={`grid size-5 place-items-center rounded-full ${
-                        e.highlight ? "bg-white text-[var(--primary)]" : "bg-[#f3eefc] text-[var(--primary)]"
+                        e.highlight ? "bg-white text-[var(--primary)]" : "bg-[#ece4f3] text-[var(--primary)]"
                       }`}
                     >
                       <Check className="size-3" strokeWidth={3} />
