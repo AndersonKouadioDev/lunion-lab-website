@@ -17,7 +17,7 @@ import DirectionProvider from "@/providers/direction-provider";
 import MountedProvider from "@/providers/mounted.provider";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { getLangDir } from "rtl-detect";
 
@@ -42,6 +42,11 @@ export const viewport: Viewport = {
   ],
 };
 
+// Pré-génère les routes de chaque langue (rendu statique / SSG pour le SEO).
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -53,6 +58,9 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     return notFound();
   }
+
+  // Active le rendu statique de next-intl pour ce locale.
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const direction = getLangDir(locale);

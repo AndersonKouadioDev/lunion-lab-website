@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { PatherenMegaNav } from "@/components/(public)/patheren/PatherenMegaNav";
 
 export const metadata: Metadata = {
@@ -7,12 +8,16 @@ export const metadata: Metadata = {
     "Provide the best service, with ideas that are out of the box. We are ready to help your business grow with attractive and useful visuals.",
 };
 
-export default function PremiumLightLayout({
+export default async function PremiumLightLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  // Navbar méga-menu sticky (redesignée premium-light) partagée par toutes les pages.
+  const { locale } = await params;
+  setRequestLocale(locale); // rendu statique (SSG) des pages premium-light
+  // Navbar méga-menu (redesignée premium-light) partagée par toutes les pages.
   return (
     <div className="min-h-screen bg-[#e9e9e9]">
       <PatherenMegaNav />

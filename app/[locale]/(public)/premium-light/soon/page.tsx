@@ -1,21 +1,16 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { ArrowRight, Hammer } from "lucide-react";
 import { PatherenFooter } from "@/components/(public)/patheren/ui";
 import { Star } from "@/components/(public)/patheren/icons";
+import { SoonTitle } from "@/components/(public)/patheren/SoonTitle";
 
 export const metadata = {
   title: "Coming soon — Patheren",
   description: "This page is under construction.",
 };
 
-export default async function SoonPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ title?: string }>;
-}) {
-  const { title } = await searchParams;
-  const label = title?.trim() || "This page";
-
+export default function SoonPage() {
   return (
     <main
       className="mx-auto max-w-[1680px] px-3 pb-3 text-[#101010] sm:px-4 sm:pb-4"
@@ -32,7 +27,9 @@ export default async function SoonPage({
             Work in progress
           </div>
           <h1 className="mt-4 text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
-            {label} is on its way
+            <Suspense fallback="This page is on its way">
+              <SoonTitle />
+            </Suspense>
           </h1>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
             We&apos;re crafting this page right now. It&apos;ll be ready soon — in
