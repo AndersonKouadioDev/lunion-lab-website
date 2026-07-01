@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Plus,
@@ -11,16 +12,16 @@ import {
 } from "lucide-react";
 
 /**
- * Patheren "Premium Light" — briques UI partagées entre Home et About.
+ * Lunion Lab "Premium Light" : briques UI partagées entre Home et About.
  * Thème clair, accent = couleur primaire du projet (var(--primary)).
  * Photos = placeholders CSS (offline-friendly), à remplacer par de vraies images.
  */
 
 const navLinks: [string, string][] = [
-  ["Home", "/premium-light"],
-  ["Products", "/premium-light/products"],
+  ["Accueil", "/premium-light"],
+  ["Produits", "/premium-light/products"],
   ["Services", "/premium-light/services"],
-  ["About Us", "/premium-light/about"],
+  ["À propos", "/premium-light/about"],
   ["Contact", "#"],
 ];
 
@@ -50,7 +51,7 @@ export function Logo({ className = "" }: { className?: string }) {
       <span className="grid size-6 place-items-center rounded-md bg-[var(--primary)] text-white">
         <Plus className="size-4" />
       </span>
-      patheren
+      Lunion Lab
     </Link>
   );
 }
@@ -74,7 +75,7 @@ export function PatherenNav({ active }: { active?: string }) {
       </div>
       <div className="flex items-center gap-3">
         <button className="rounded-full bg-[var(--primary)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]">
-          Contact Us
+          Contact
         </button>
         <button className="grid size-10 place-items-center rounded-full border border-black/10 md:hidden">
           <Menu className="size-5" />
@@ -96,11 +97,23 @@ export function Photo({
   className = "",
   tone = "team",
   icon = "users",
+  src,
+  alt = "",
 }: {
   className?: string;
   tone?: string;
   icon?: "users" | "image";
+  src?: string;
+  alt?: string;
 }) {
+  // Vraie image si src fourni, sinon placeholder dégradé.
+  if (src) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <Image src={src} alt={alt} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+      </div>
+    );
+  }
   const Icon = icon === "image" ? ImageIcon : Users;
   return (
     <div
@@ -151,7 +164,7 @@ export function Pouch({
 
 /* --- Marquee de logos clients --- */
 export function LogoMarquee() {
-  const clients = ["MINYTO", "zerod", "VISEROW", "abilon", "Limobuz", "Pixio"];
+  const clients = ["Turbo Delivery", "Chicken Nation", "Ambassade du Tchad", "Fernand Dedeh", "Catholikia", "Luxury Home Abidjan"];
   return (
     <section className="mt-4 rounded-[28px] bg-white px-8 py-6 sm:px-12">
       <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 text-lg font-bold text-[#c2c2c2]">
@@ -165,20 +178,20 @@ export function LogoMarquee() {
   );
 }
 
-/* --- Section résultats "Data driven" (inspirée Woogency) --- */
+/* --- Section résultats (données mesurables) --- */
 export function ResultsSection() {
   return (
     <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-          You gonna get <span className="text-[var(--primary)]">Data driven</span>
+          Des résultats qui <span className="text-[var(--primary)]">transforment</span>
           <br />
-          growth based output
+          les entreprises
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#9a9a9a]">
-          Whether you&apos;re launching a website, developing a web application, or
-          creating a mobile app, we bring your vision to life with cutting-edge
-          technology and a commitment to excellence.
+          Nous ne livrons pas seulement du code : nous livrons de la valeur
+          mesurable. Chaque projet est pensé pour générer un impact concret sur
+          votre activité.
         </p>
       </div>
 
@@ -186,9 +199,9 @@ export function ResultsSection() {
 
       <div className="mx-auto mt-4 grid max-w-4xl gap-4 md:grid-cols-[1.1fr_1fr_1.1fr_auto] md:items-stretch">
         <div className="rounded-2xl bg-[#f6f6f6] p-5">
-          <h4 className="text-sm font-bold">Awards we&apos;ve recieved</h4>
+          <h4 className="text-sm font-bold">Un impact mesurable</h4>
           <ul className="mt-4 space-y-3 text-xs text-[#9a9a9a]">
-            {["Best Conversion Asset", "Top Currency Generator"].map((t) => (
+            {["Coûts opérationnels réduits de 10 M", "Croissance soutenue de l'activité"].map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <span className="grid size-6 place-items-center rounded-full bg-[#ece4f3] text-[var(--primary)]">
                   <Award className="size-3.5" />
@@ -201,10 +214,10 @@ export function ResultsSection() {
 
         <div className="rounded-2xl bg-[#f6f6f6] p-5">
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-extrabold">47%</span>
+            <span className="text-2xl font-extrabold">+98%</span>
             <TrendingUp className="size-4 text-[var(--primary)]" />
           </div>
-          <div className="mt-1 text-xs text-[#9a9a9a]">Conversion Growth</div>
+          <div className="mt-1 text-xs text-[#9a9a9a]">Augmentation des conversions</div>
           <div className="mt-4 flex h-14 items-end gap-1.5">
             {[40, 65, 45, 80, 55, 95, 70].map((h, i) => (
               <div
@@ -218,13 +231,13 @@ export function ResultsSection() {
 
         <div className="relative overflow-hidden rounded-2xl bg-[var(--primary)] p-5 text-white">
           <p className="text-sm font-bold leading-snug">
-            We&apos;ve got a team with skilled teammembers
+            Une équipe experte à vos côtés à chaque étape
           </p>
-          <Photo tone="office" className="mt-4 h-20 rounded-xl" />
+          <Photo tone="office" className="mt-4 h-20 rounded-xl" src="/assets/images/all-img/team.jpg" alt="Équipe Lunion Lab" />
         </div>
 
         <div className="flex items-center md:items-end">
-          <PrimaryButton>Contact Us</PrimaryButton>
+          <PrimaryButton>Contact</PrimaryButton>
         </div>
       </div>
     </section>
@@ -247,11 +260,9 @@ export function FaqSection({
     <section className={`mt-4 rounded-[28px] p-8 sm:p-12 ${cardBg}`}>
       <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
         <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-          Frequently
-          <br />
-          Asked
-          <br />
           Questions
+          <br />
+          fréquentes
         </h2>
         <div>
           <div className={`divide-y border-y ${line}`}>
@@ -266,32 +277,32 @@ export function FaqSection({
                   </span>
                 </summary>
                 <p className={`mt-3 max-w-xl text-sm leading-relaxed ${sub}`}>
-                  Our team is dedicated to delivering tailored solutions. We
-                  combine research, strategy and design to answer this exactly for
-                  your project and business goals.
+                  Notre équipe conçoit des solutions sur-mesure. Nous combinons
+                  recherche, stratégie et design pour répondre précisément aux
+                  besoins de votre projet et de votre activité.
                 </p>
               </details>
             ))}
           </div>
-          <PrimaryButton className="mt-6">Learn More</PrimaryButton>
+          <PrimaryButton className="mt-6">Nous contacter</PrimaryButton>
         </div>
       </div>
     </section>
   );
 }
 
-/* --- CTA "Have an Awesome Project?" --- */
+/* --- CTA projet --- */
 export function ProjectCta() {
   return (
     <section className="mt-4 overflow-hidden rounded-[28px] bg-[var(--primary)] p-10 text-white sm:p-14">
       <div className="flex flex-wrap items-center justify-between gap-6">
         <h2 className="text-3xl font-extrabold sm:text-5xl">
-          Have an Awesome
+          Prêt à donner vie
           <br />
-          Project?
+          à votre projet ?
         </h2>
         <button className="group inline-flex items-center gap-2 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--primary)]">
-          Explore More
+          Prendre un rendez-vous
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </button>
       </div>
@@ -307,14 +318,15 @@ export function PatherenFooter() {
         <div>
           <Logo className="text-white [&_span:last-child]:text-white" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
-            Provide the best service and without vision restrictions, we are ready
-            to help your business grow more with attractive and useful visuals.
+            Studio de transformation digitale basé à Abidjan. Nous concevons des
+            produits web et mobiles sur-mesure pour propulser les entreprises
+            africaines.
           </p>
         </div>
         {[
-          ["Home", ["About Us", "Service", "Our Teams", "Contact"]],
-          ["Support", ["FAQ", "Privacy Policy", "Term of Service"]],
-          ["Social Media", ["Dribbble", "Behance", "Instagram", "Linkedin"]],
+          ["Produits", ["Lunion-Booking", "Lunion-Educ", "Lunion-Secure"]],
+          ["Société", ["À propos", "Portfolio", "Contact"]],
+          ["Réseaux", ["Instagram", "LinkedIn", "Facebook", "TikTok"]],
         ].map(([title, links]) => (
           <div key={title as string}>
             <h4 className="text-sm font-bold">{title}</h4>
@@ -331,7 +343,7 @@ export function PatherenFooter() {
         ))}
       </div>
       <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-white/40">
-        All rights reserved by Patheren
+        © 2026 Lunion Lab. Transformation digitale, Abidjan, Côte d&apos;Ivoire. Tous droits réservés.
       </div>
     </footer>
   );

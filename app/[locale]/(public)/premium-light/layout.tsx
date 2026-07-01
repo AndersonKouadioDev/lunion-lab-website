@@ -3,9 +3,9 @@ import { setRequestLocale } from "next-intl/server";
 import { PatherenMegaNav } from "@/components/(public)/patheren/PatherenMegaNav";
 
 export const metadata: Metadata = {
-  title: "Patheren — Powerful Digital Branding Agency",
+  title: "Lunion Lab, studio de création numérique",
   description:
-    "Provide the best service, with ideas that are out of the box. We are ready to help your business grow with attractive and useful visuals.",
+    "Lunion Lab conçoit des solutions web et mobiles sur-mesure pour accélérer la transformation digitale des entreprises et des institutions en Afrique.",
 };
 
 export default async function PremiumLightLayout({

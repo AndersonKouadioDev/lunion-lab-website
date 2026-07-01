@@ -13,14 +13,18 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Contact — Patheren",
-  description: "Let's build something together. Get in touch with the team.",
+  title: "Contact - Lunion Lab",
+  description: "On démarre ensemble. Contactez notre équipe.",
 };
 
 const infos = [
-  { icon: Mail, label: "Email", value: "hello@patheren.com" },
-  { icon: Phone, label: "Phone", value: "+1 890 0872 3847" },
-  { icon: MapPin, label: "Studio", value: "34 Logan Str, 12th Lane, LA, USA" },
+  { icon: Mail, label: "Email", value: "support@lunion-lab.com" },
+  { icon: Phone, label: "Téléphone", value: "+225 05 65 50 86 86" },
+  {
+    icon: MapPin,
+    label: "Adresse",
+    value: "Angré, Nouveau CHU, Bâtiment Kokoh Mall, Abidjan, Côte d'Ivoire",
+  },
 ];
 
 const socials = [Instagram, Linkedin, Youtube];
@@ -42,12 +46,13 @@ export default function ContactPage() {
             Contact
           </div>
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.03] tracking-tight sm:text-6xl">
-            Let&apos;s build something
+            On démarre
             <br />
-            together
+            ensemble
           </h1>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Tell us about your project. We usually reply within one business day.
+            Un projet, une idée, une question ? Parlons-en. Notre équipe vous
+            répond sous 24 heures.
           </p>
         </Reveal>
       </section>
@@ -56,30 +61,30 @@ export default function ContactPage() {
       <section className="mt-4 grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
         {/* Formulaire */}
         <Reveal className="rounded-[28px] bg-white p-6 sm:p-10">
-          <h2 className="text-2xl font-extrabold tracking-tight">Send us a message</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight">Envoyez-nous un message</h2>
           <p className="mt-2 text-sm text-[#9a9a9a]">
-            Fill in the form and we&apos;ll get back to you shortly.
+            Remplissez le formulaire et nous vous répondons rapidement.
           </p>
           <form className="mt-8 space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="mb-1.5 block text-xs font-semibold text-[#555]">
-                  Full name
+                  Nom
                 </label>
-                <input className={inputCls} placeholder="Jane Doe" />
+                <input className={inputCls} placeholder="Votre nom complet" />
               </div>
               <div>
                 <label className="mb-1.5 block text-xs font-semibold text-[#555]">
                   Email
                 </label>
-                <input className={inputCls} type="email" placeholder="jane@company.com" />
+                <input className={inputCls} type="email" placeholder="vous@exemple.com" />
               </div>
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold text-[#555]">
-                Subject
+                Sujet
               </label>
-              <input className={inputCls} placeholder="A new product, a redesign…" />
+              <input className={inputCls} placeholder="L'objet de votre message" />
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold text-[#555]">
@@ -88,14 +93,14 @@ export default function ContactPage() {
               <textarea
                 rows={5}
                 className={`${inputCls} resize-none`}
-                placeholder="Tell us about your project, goals and timeline."
+                placeholder="Parlez-nous de votre projet..."
               />
             </div>
             <button
               type="button"
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)]"
             >
-              Send message
+              Envoyer le message
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </button>
           </form>
@@ -104,7 +109,7 @@ export default function ContactPage() {
         {/* Infos */}
         <Reveal delay={0.1} className="flex flex-col gap-4">
           <div className="rounded-[28px] bg-[var(--primary)] p-6 text-white sm:p-8">
-            <h3 className="text-lg font-extrabold">Get in touch</h3>
+            <h3 className="text-lg font-extrabold">Nos coordonnées</h3>
             <div className="mt-6 space-y-5">
               {infos.map((i) => (
                 <div key={i.label} className="flex items-start gap-3">
@@ -136,8 +141,11 @@ export default function ContactPage() {
               <Clock className="size-5" />
             </span>
             <div>
-              <div className="text-sm font-bold">Fast response</div>
-              <div className="text-xs text-[#9a9a9a]">We reply within 24 hours.</div>
+              <div className="text-sm font-bold">Une réponse sous 24 heures</div>
+              <div className="text-xs text-[#9a9a9a]">
+                Besoin d&apos;un échange immédiat ? Écrivez-nous sur WhatsApp au
+                +225 05 65 50 86 86.
+              </div>
             </div>
           </div>
         </Reveal>

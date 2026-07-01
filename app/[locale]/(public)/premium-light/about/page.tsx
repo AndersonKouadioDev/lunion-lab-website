@@ -19,47 +19,47 @@ import {
 } from "lucide-react";
 
 /**
- * Premium Light — About "Patheren", inspirée de la page About Woogency
+ * Premium Light — About "Lunion Lab", inspirée de la page About Woogency
  * (hero "trusted partner", Mission 01/02/03, Vision, Strategy sombre, FAQ).
  */
 
 const missionSteps = [
   {
     n: "01",
-    title: "Innovation as a Core Value",
-    desc: "We embrace innovation as a driving force behind every project. Our team is committed to staying abreast of the latest design trends and technologies.",
+    title: "Comprendre",
+    desc: "Nous partons de votre réalité : nous rencontrons les parties prenantes pour saisir vos besoins, vos contraintes et vos attentes.",
   },
   {
     n: "02",
-    title: "Data-Driven Decision Making",
-    desc: "Our mission involves leveraging insights and analytics to optimize user journeys, enhance conversions, and continuously improve our designs.",
+    title: "Concevoir",
+    desc: "Nous transformons cette compréhension en une solution sur-mesure, claire et pensée pour durer.",
   },
   {
     n: "03",
-    title: "Continuous Learning & Improvement",
-    desc: "We foster a culture of continuous learning and improvement, ensuring our team is in tune with industry needs and evolving trends.",
+    title: "Accompagner",
+    desc: "Nous restons à vos côtés après le lancement, pour former vos équipes et faire grandir votre produit.",
   },
 ];
 
 const visionItems = [
-  { icon: Rocket, title: "Pioneering Innovation", desc: "We introduce ground-breaking design concepts and technologies that inspire and lead the industry forward." },
-  { icon: Users, title: "Championing User-Centricity", desc: "At the core of our vision is an unwavering commitment to user-centric design that places users at the forefront." },
-  { icon: Building2, title: "Shaping Industry Standards", desc: "We set benchmarks for quality and ethical design, shaping the way branding is conceived and practised." },
-  { icon: Globe, title: "Holistic and Inclusive Design", desc: "Our designs express empathy and connect with the strategic goals of our clients across every touchpoint." },
+  { icon: Rocket, title: "Innovation", desc: "Explorer sans cesse de nouvelles approches pour un impact durable." },
+  { icon: Users, title: "Excellence", desc: "Dépasser les attentes sur chaque projet, dans le moindre détail." },
+  { icon: Building2, title: "Impact social", desc: "Mettre la technologie au service des communautés et des institutions." },
+  { icon: Globe, title: "Collaboration", desc: "Avancer main dans la main avec nos clients, en partenaires de confiance." },
 ];
 
 const strategy = [
-  { icon: Repeat, title: "Agile & Iterative Process", desc: "We work in fast iterative loops, validating each step with you so the outcome always matches the vision." },
-  { icon: Layers, title: "Scalable Solutions", desc: "Every system we craft is built to scale, from a single landing page to a full design system." },
-  { icon: ShieldCheck, title: "Quality Assurance & Testing", desc: "Rigorous testing and QA at each milestone guarantee a polished, dependable final result." },
+  { icon: Repeat, title: "Réaliser vos ambitions", desc: "Transformer vos aspirations en réussites concrètes et mesurables." },
+  { icon: Layers, title: "Innover dans votre secteur", desc: "Propulser votre entreprise au sommet de son marché." },
+  { icon: ShieldCheck, title: "Façonner l'avenir", desc: "Développer des technologies pensées pour un impact durable." },
 ];
 
 const faqs = [
-  "What is the typical timeline for a branding project, from concept to delivery?",
-  "What is branding, and why is it important for my business?",
-  "What is your approach to design research?",
-  "What sets your agency apart from others?",
-  "What are the criteria to get branding services?",
+  "Qui est Lunion Lab ?",
+  "Quels types d'entreprises accompagnez-vous ?",
+  "Proposez-vous des formations pour les équipes ?",
+  "À qui appartient le code une fois le projet livré ?",
+  "Assurez-vous un suivi après le lancement ?",
 ];
 
 export default function PremiumLightAbout() {
@@ -72,21 +72,22 @@ export default function PremiumLightAbout() {
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
         <Reveal className="px-6 pt-6 text-center sm:px-10">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
-            About us
+            À propos
           </div>
           <h1 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
-            Your trusted partner in
+            Un laboratoire numérique
             <br />
-            digital service
+            au service de l&apos;Afrique
           </h1>
           <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Highly skilled team focused on team playing to connect with your
-            audience and deliver work that genuinely matters.
+            Lunion Lab est une start-up ivoirienne créée en 2024, portée par une
+            équipe jeune, passionnée et ambitieuse, motivée par l&apos;innovation
+            et l&apos;impact social.
           </p>
           <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 gap-4">
-            <Photo tone="office" className="h-40 rounded-2xl sm:h-48" />
-            <Photo tone="team" className="h-48 rounded-2xl sm:h-56" />
-            <Photo tone="meeting" className="h-40 rounded-2xl sm:h-48" />
+            <Photo tone="office" src="/assets/images/a-propos/bloc1.jpg" alt="Bureaux Lunion Lab" className="h-40 rounded-2xl sm:h-48" />
+            <Photo tone="team" src="/assets/images/all-img/team.jpg" alt="Équipe Lunion Lab" className="h-48 rounded-2xl sm:h-56" />
+            <Photo tone="meeting" src="/assets/images/a-propos/valeurs.jpg" alt="Nos valeurs" className="h-40 rounded-2xl sm:h-48" />
           </div>
         </Reveal>
       </section>
@@ -94,25 +95,23 @@ export default function PremiumLightAbout() {
       {/* ============================ MISSION ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal>
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Our Mission</h2>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Notre Mission</h2>
         </Reveal>
         <Reveal delay={0.1} className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
-          <Photo tone="meeting" icon="image" className="h-64 rounded-2xl" />
+          <Photo tone="meeting" icon="image" src="/assets/images/a-propos/bloc1.jpg" alt="Notre mission chez Lunion Lab" className="h-64 rounded-2xl" />
           <div>
             <p className="text-sm leading-relaxed text-[#9a9a9a]">
-              We craft digital experiences that leave a lasting impression.
-              Elevate your online presence with our innovative design solutions,
-              where every pixel is thoughtfully placed to resonate with your
-              audience.
+              Notre mission est de combler le fossé numérique en Afrique en
+              développant des solutions locales, durables et sur-mesure, qui
+              répondent aux besoins réels des communautés et des institutions.
             </p>
             <h3 className="mt-5 text-lg font-bold">
-              Empowering Businesses Through Design Excellence through
-              Human-Centered Approach
+              Notre raison d&apos;être
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">
-              Our mission revolves around placing users at the center of our
-              design process. We strive to understand their behaviors, needs, and
-              preferences to create interfaces that resonate.
+              En tant que laboratoire de création numérique, nous concevons des
+              plateformes personnalisées pour digitaliser des secteurs clés, du
+              public à la santé, de l&apos;éducation à la finance.
             </p>
           </div>
         </Reveal>
@@ -131,15 +130,15 @@ export default function PremiumLightAbout() {
       {/* ============================ VISION ============================ */}
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal>
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Our Vision</h2>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Notre Vision</h2>
         </Reveal>
         <Reveal delay={0.1} className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
           <p className="max-w-md text-sm leading-relaxed text-[#9a9a9a]">
-            We aspire to set new industry standards, redefine the boundaries of
-            user interface and experience design. Our overarching vision is
-            encapsulated in the following principles.
+            Nous croyons en une Afrique qui construit ses propres outils
+            numériques. Notre vision : devenir la référence du conseil
+            technologique et du produit digital sur le continent.
           </p>
-          <Photo tone="team" icon="image" className="h-56 rounded-2xl" />
+          <Photo tone="team" icon="image" src="/assets/images/a-propos/valeurs.jpg" alt="Nos valeurs" className="h-56 rounded-2xl" />
         </Reveal>
 
         <Stagger className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -165,9 +164,9 @@ export default function PremiumLightAbout() {
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
         <Reveal>
           <h2 className="text-center text-3xl font-extrabold leading-tight sm:text-4xl">
-            Our Strategy of
+            Notre manière
             <br />
-            Pro Working Process
+            de travailler
           </h2>
         </Reveal>
         <Stagger className="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-3">

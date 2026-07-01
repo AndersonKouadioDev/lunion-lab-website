@@ -25,18 +25,26 @@ const moduleTone: Record<string, string> = {
 
 const engagements = [
   {
-    name: "Project-based",
-    desc: "A fixed scope, a clear timeline and a defined budget. Perfect to launch something new.",
-    points: ["Scoped deliverables", "Fixed timeline", "Milestone billing"],
+    name: "Projet au forfait",
+    desc: "Un périmètre défini, un budget ferme et une date de livraison claire. Idéal pour un besoin cadré du début à la fin.",
+    points: [
+      "Devis détaillé et transparent",
+      "Planning et jalons précis",
+      "Livraison clé en main",
+    ],
     highlight: false,
-    cta: "Start a project",
+    cta: "Demander un devis",
   },
   {
-    name: "Monthly retainer",
-    desc: "An ongoing partnership. We become your on-demand team, month after month.",
-    points: ["Dedicated hours", "Flexible priorities", "Continuous delivery"],
+    name: "Équipe dédiée",
+    desc: "Une équipe experte mobilisée à vos côtés, au mois, pour construire et faire évoluer votre produit dans la durée.",
+    points: [
+      "Flexibilité et priorités ajustables",
+      "Suivi continu et transparence",
+      "Accompagnement long terme",
+    ],
     highlight: true,
-    cta: "Talk to us",
+    cta: "Nous contacter",
   },
 ];
 
@@ -52,7 +60,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-12">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
             <Star className="size-3.5 text-[var(--primary)]" />
-            Service · {o.category}
+            Service : {o.category}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
             {o.heroTitle}
@@ -61,9 +69,9 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
             {o.heroDesc}
           </p>
           <div className="mt-7 flex items-center justify-center gap-3">
-            <PrimaryButton>Let&apos;s talk</PrimaryButton>
+            <PrimaryButton>Nous contacter</PrimaryButton>
             <button className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-semibold transition hover:border-[var(--primary)] hover:text-[var(--primary)]">
-              View work
+              Voir nos réalisations
             </button>
           </div>
         </Reveal>
@@ -98,10 +106,10 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-start">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-white/60">
-              What&apos;s included
+              Ce qui est inclus
             </span>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Everything you need, done right
+              Tout ce dont vous avez besoin, bien fait
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
               {o.featuresIntro}
@@ -131,15 +139,16 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-[#555]">
-              How we work
+              Notre méthode
             </span>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
-              A clear path,
+              Un parcours clair,
               <br />
-              from idea to launch
+              de l&apos;idée au lancement
             </h2>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#9a9a9a]">
-              Four focused steps so you always know exactly what happens next.
+              Quatre étapes précises pour savoir à tout moment ce qui arrive
+              ensuite.
             </p>
           </Reveal>
 
@@ -166,7 +175,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal>
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-            What we cover
+            Ce que nous couvrons
           </h2>
         </Reveal>
         <Stagger className="mt-10 space-y-10">
@@ -200,7 +209,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
                     href="#"
                     className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold"
                   >
-                    Explore feature
+                    Découvrir
                     <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
                   </a>
                 </div>
@@ -214,10 +223,11 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="text-center">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-            How we work together
+            Comment nous travaillons ensemble
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm text-[#9a9a9a]">
-            Two simple ways to engage — pick the one that fits your stage.
+            Deux façons simples de collaborer : choisissez celle qui correspond à
+            votre besoin.
           </p>
         </Reveal>
 

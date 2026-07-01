@@ -8,8 +8,9 @@ import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/mot
 import { services } from "@/components/(public)/patheren/catalog";
 
 export const metadata = {
-  title: "Services — Patheren",
-  description: "Web, mobile and product design services by Lunion.",
+  title: "Services | Lunion Lab",
+  description:
+    "Conception, développement web et mobile, design et accompagnement par Lunion Lab.",
 };
 
 export default function ServicesIndex() {
@@ -22,16 +23,16 @@ export default function ServicesIndex() {
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
         <Reveal className="mx-auto max-w-2xl px-6 pt-8 text-center sm:pt-14">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
-            Our Services
+            Nos domaines d&apos;expertise
           </div>
           <h1 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
-            From idea to launch,
+            De l&apos;idée
             <br />
-            we craft it all
+            au produit livré
           </h1>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Web, mobile and design — the full craft to bring your product to life,
-            with more services on the way.
+            Une équipe experte à chaque étape : conception, développement, design
+            et accompagnement, pour des produits qui font la différence.
           </p>
         </Reveal>
       </section>

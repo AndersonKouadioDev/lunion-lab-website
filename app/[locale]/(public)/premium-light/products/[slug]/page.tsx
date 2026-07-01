@@ -18,7 +18,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const o = getOffering(slug);
   if (!o) return { title: "Product" };
-  return { title: `${o.name} — ${o.category}`, description: o.tagline };
+  return { title: `${o.name} | ${o.category}`, description: o.tagline };
 }
 
 export default async function ProductPage({

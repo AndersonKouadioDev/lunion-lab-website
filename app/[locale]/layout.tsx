@@ -85,11 +85,11 @@ export default async function RootLayout({
               <Toast.Provider placement="top" />
               <NuqsAdapter>
                 <AuthProvider>
-                  <MountedProvider>
+                  {/* <MountedProvider> */}
                     <DirectionProvider direction={direction}>
                       {children}
                     </DirectionProvider>
-                  </MountedProvider>
+                  {/* </MountedProvider> */}
                 </AuthProvider>
               </NuqsAdapter>
             </ThemeProviders>

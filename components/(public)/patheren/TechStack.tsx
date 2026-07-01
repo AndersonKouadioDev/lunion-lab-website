@@ -28,13 +28,13 @@ export function TechStack() {
       <Reveal className="mx-auto max-w-2xl text-center">
         <div className="inline-flex items-center gap-2 rounded-full bg-[#f3eefc] px-4 py-1.5 text-xs font-semibold text-[var(--primary)]">
           <Star className="size-3.5" />
-          Our tech stack
+          Notre stack technique
         </div>
         <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-          The modern tools we build with
+          Les technologies que nous maîtrisons
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">
-          A battle-tested stack to ship fast, scalable and reliable products.
+          Un stack moderne et éprouvé pour des produits rapides, sécurisés et faciles à faire évoluer.
         </p>
       </Reveal>
 

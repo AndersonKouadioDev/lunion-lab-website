@@ -3,6 +3,7 @@ import {
   PatherenFooter,
   PrimaryButton,
   Pouch,
+  Photo,
   Stars,
   LogoMarquee,
   ResultsSection,
@@ -13,7 +14,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/mot
 import { TechStack } from "@/components/(public)/patheren/TechStack";
 
 /**
- * Premium Light — Home "Patheren" (thème clair, accent primaire du projet).
+ * Premium Light — Home "Lunion Lab" (thème clair, accent primaire du projet).
  * Enrichie de sections inspirées de Woogency : marquee clients, chips
  * industries, section résultats data-driven et FAQ.
  */
@@ -21,54 +22,57 @@ import { TechStack } from "@/components/(public)/patheren/TechStack";
 const services = [
   {
     n: "01",
-    title: "Branding",
-    desc: "Create a brand identity so that messages can be conveyed to users or customers as that they can increase brand awareness and also grow.",
+    title: "Transformation digitale",
+    desc: "Nous transformons vos défis en opportunités grâce à des solutions technologiques sur-mesure, pensées pour votre métier.",
     active: true,
   },
   {
     n: "02",
-    title: "Social Media",
-    desc: "Make your company a social media more proper and also attract the attention of users or customers, and increase trust in a brand.",
+    title: "UI/UX Design",
+    desc: "Des interfaces qui séduisent et des parcours qui convertissent, au service de vos utilisateurs comme de vos objectifs.",
   },
   {
     n: "03",
-    title: "Motion Graphics",
-    desc: "Make animations so that a visual becomes more attractive, and also messages can be conveyed with animation.",
+    title: "Branding",
+    desc: "Un logo percutant, une identité visuelle forte et un univers cohérent pour marquer durablement les esprits.",
   },
   {
     n: "04",
-    title: "Illustration",
-    desc: "Create an illustration that can improve the visuals of a design, and a way supporter to attract the attention of users or customers.",
+    title: "Social Media",
+    desc: "Nous transformons vos réseaux sociaux en véritables leviers de croissance et de visibilité.",
   },
 ];
 
 const projects = [
   {
-    title: "Act+Acre",
-    desc: "Skincare brands are companies that specialize in producing and selling products designed to improve the health and appearance of the skin.",
+    title: "Turbo Delivery",
+    desc: "Service de livraison express qui met en relation coursiers et partenaires, avec suivi en temps réel sur web et mobile.",
     tone: "cream",
+    src: "/assets/images/all-img/tubo_system.png",
   },
   {
-    title: ".US",
-    desc: "Carry your tote with you go with our chic and versatile tote bags for every occasion and daily essentials.",
+    title: "Chicken Nation",
+    desc: "L'application du fast-food 100% ivoirien : commande, livraison, retrait sur place et programme de fidélité.",
     tone: "sky",
+    src: "/assets/images/portolios/chiken.png",
   },
   {
-    title: "Cafe Fugaz",
-    desc: "Many coffee brands also have a unique identity or personality, which is often reflected in their marketing, campaign, packaging and product design.",
+    title: "Ambassade du Tchad",
+    desc: "Plateforme consulaire en ligne : prise de rendez-vous, suivi des demandes de visa et informations aux citoyens.",
     tone: "peach",
+    src: "/assets/images/portolios/ambassades.png",
   },
 ];
 
 const industries = [
-  "MEDICAL", "PORTFOLIO", "SAAS", "FINANCE", "STARTUP", "NFT", "B2B", "AGENCY", "FOOD",
+  "Secteur public", "Industrie", "Banque et finance", "Santé", "Éducation", "Immobilier",
 ];
 
 const faqs = [
-  "What is the typical timeline for a branding project, from concept to delivery?",
-  "What is branding, and why is it important for my business?",
-  "What is your approach to design research?",
-  "What sets your agency apart from others?",
+  "Quels services proposez-vous ?",
+  "Quels sont vos délais de réalisation ?",
+  "Comment se passe l'établissement d'un devis ?",
+  "Comment vous contacter ?",
 ];
 
 export default function PremiumLightPage() {
@@ -82,14 +86,13 @@ export default function PremiumLightPage() {
 
         <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-14">
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
-            Powerful Digital
+            Une grande technologie repose
             <br />
-            Branding Agency
+            toujours sur des relations parfaites
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Provide the best service and without vision restrictions, we are
-            ready to help your business grow more with attractive and useful
-            visuals.
+            Nous concevons des solutions web et mobiles sur-mesure qui accélèrent
+            la transformation digitale des entreprises africaines.
           </p>
         </Reveal>
 
@@ -97,10 +100,10 @@ export default function PremiumLightPage() {
           <div className="rounded-2xl bg-[#f4f4f4] p-6">
             <div className="grid grid-cols-2 gap-x-6 gap-y-5">
               {[
-                ["200+", "Project Done"],
-                ["20+", "Team Member"],
-                ["170+", "Happy Client"],
-                ["5+", "Years Exp"],
+                ["+10", "Projets livrés"],
+                ["+10", "Produits maison"],
+                ["11", "Marques accompagnées"],
+                ["2024", "Année de création"],
               ].map(([num, lbl]) => (
                 <div key={lbl}>
                   <div className="text-2xl font-extrabold">{num}</div>
@@ -113,7 +116,7 @@ export default function PremiumLightPage() {
             <Pouch label="Café Fugaz" from="#9353d3" to="#5a3b7d" />
           </div>
           <div className="flex items-center justify-center rounded-2xl bg-[#f4f4f4] p-6">
-            <PrimaryButton className="w-full justify-center">Know More</PrimaryButton>
+            <PrimaryButton className="w-full justify-center">Démarrer un projet</PrimaryButton>
           </div>
           <div className="min-h-[120px] rounded-2xl bg-gradient-to-br from-[#1f4bd8] to-[#0b2a9c]" />
         </Reveal>
@@ -148,15 +151,15 @@ export default function PremiumLightPage() {
       <section className="mt-4 overflow-hidden rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
         <Reveal className="grid items-center gap-8 md:grid-cols-2">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-            Provide the best service, with ideas that are out of the box
+            Démarrez votre nouveau projet
           </h2>
           <div className="flex flex-col items-start gap-6">
             <p className="max-w-md text-sm leading-relaxed text-white/60">
-              At Patheren Agency we&apos;re passionate about customer experience and
-              team culture. When you choose to join Patheren Agency you&apos;re
-              joining a team that genuinely loves what they do.
+              Une idée à concrétiser, un produit à faire évoluer ? Parlons-en.
+              Notre équipe vous accompagne de la conception au lancement, puis
+              dans la durée.
             </p>
-            <PrimaryButton>Know More</PrimaryButton>
+            <PrimaryButton>Démarrer ici</PrimaryButton>
           </div>
         </Reveal>
       </section>
@@ -165,14 +168,14 @@ export default function PremiumLightPage() {
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="grid gap-6 md:grid-cols-2 md:items-end">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-            We offer several
+            Nous proposons plusieurs
             <br />
-            service for you
+            services pour vous
           </h2>
           <p className="max-w-sm text-sm leading-relaxed text-[#9a9a9a] md:justify-self-end">
-            At Patheren Agency we&apos;re passionate about customer experience and
-            team culture. When you choose to join Patheren Agency you&apos;re
-            joining a team that genuinely loves what they do.
+            De la première idée au produit livré, notre équipe experte vous
+            accompagne à chaque étape pour concevoir des solutions qui font la
+            différence.
           </p>
         </Reveal>
 
@@ -226,9 +229,9 @@ export default function PremiumLightPage() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-              Our Project
+              Nos dernières
               <br />
-              have been done
+              réalisations
             </h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {industries.map((t) => (
@@ -241,7 +244,7 @@ export default function PremiumLightPage() {
               ))}
             </div>
           </div>
-          <PrimaryButton>Explore More</PrimaryButton>
+          <PrimaryButton>Voir nos réalisations</PrimaryButton>
         </Reveal>
 
         <Stagger className="mt-10 space-y-4">
@@ -260,20 +263,11 @@ export default function PremiumLightPage() {
                         : "linear-gradient(135deg,#efe6f6,#d9c7ea)",
                 }}
               >
-                {p.title === ".US" ? (
-                  <div className="grid h-full place-items-center">
-                    <div className="grid h-40 w-32 place-items-center rounded-b-3xl rounded-t-lg bg-[#101010] text-4xl font-extrabold text-white">
-                      .us
-                    </div>
-                  </div>
-                ) : (
-                  <div className="grid h-full grid-cols-2 gap-3">
-                    <div className="grid place-items-center rounded-xl bg-white/40 text-sm font-semibold text-[#101010]/50">
-                      {p.title}
-                    </div>
-                    <div className="rounded-xl bg-white/25" />
-                  </div>
-                )}
+                <Photo
+                  src={p.src}
+                  alt={p.title}
+                  className="h-full min-h-[216px] w-full rounded-xl"
+                />
               </div>
 
               <div
@@ -289,7 +283,7 @@ export default function PremiumLightPage() {
                   href="#"
                   className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#101010]"
                 >
-                  See Project Detail
+                  Voir le projet
                   <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
@@ -307,9 +301,9 @@ export default function PremiumLightPage() {
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-14">
         <Reveal className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
-            Amazing Feedbacks from
+            Ce que disent
             <br />
-            Happy Clients
+            nos clients
           </h2>
           <Stars />
         </Reveal>
@@ -318,16 +312,16 @@ export default function PremiumLightPage() {
           delay={0.1}
           className="mt-8 max-w-3xl text-2xl font-bold leading-snug sm:text-[32px]"
         >
-          &quot;I really enjoyed working with you guys, you guys are very
-          communicative and quick to do the job. I really can&apos;t wait to work
-          with you again!&quot;
+          &quot;Lunion Lab a transformé notre relation client. L&apos;application est
+          fiable, élégante et parfaitement adaptée à nos livraisons. Un vrai
+          partenaire, disponible à chaque étape.&quot;
         </Reveal>
         <div className="mt-10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="size-11 rounded-full bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
             <div>
-              <div className="text-sm font-bold">Alexa Christiany</div>
-              <div className="text-xs text-white/50">CEO Boss</div>
+              <div className="text-sm font-bold">Direction Turbo Delivery</div>
+              <div className="text-xs text-white/50">Service de livraison express, Abidjan</div>
             </div>
           </div>
           <div className="flex items-center gap-3">

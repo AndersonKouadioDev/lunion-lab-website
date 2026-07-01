@@ -8,8 +8,9 @@ import {
 import { products } from "@/components/(public)/patheren/catalog";
 
 export const metadata = {
-  title: "Products — Patheren",
-  description: "Explore the Lunion product suite: Booking, Secu and Educ.",
+  title: "Produits, Lunion Lab",
+  description:
+    "Decouvrez la suite de produits Lunion Lab : Booking, Secure et Educ.",
 };
 
 export default function ProductsIndex() {
@@ -22,16 +23,16 @@ export default function ProductsIndex() {
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-12">
         <div className="mx-auto max-w-2xl px-6 pt-8 text-center sm:pt-14">
           <div className="text-xs font-semibold tracking-widest text-[var(--primary)]">
-            Our Products
+            Nos produits
           </div>
           <h1 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
-            A suite built to
+            Des produits penses
             <br />
-            grow with you
+            pour vos metiers
           </h1>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Three products, one platform. Discover how Lunion helps you book,
-            protect and teach — with more on the way.
+            Trois plateformes pretes a digitaliser vos operations, de la gestion
+            immobiliere a l&apos;education, jusqu&apos;aux ressources humaines.
           </p>
         </div>
       </section>
@@ -65,7 +66,7 @@ export default function ProductsIndex() {
                   </span>
                   <span className="ml-2 text-xs text-[#9a9a9a]">{p.growth.label}</span>
                 </div>
-                <span className="text-sm font-semibold text-[#101010]">Explore →</span>
+                <span className="text-sm font-semibold text-[#101010]">Decouvrir →</span>
               </div>
             </div>
           </Link>

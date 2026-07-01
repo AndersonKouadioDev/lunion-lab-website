@@ -2,16 +2,17 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 /**
- * Grille de projets filtrable (thème premium-light) — inspirée des cartes
- * projets Atacama / creatiwise. Placeholders en dégradé (offline-friendly).
+ * Grille de projets filtrable (theme premium-light) pour Lunion Lab.
+ * Images reelles du portfolio via next/image, avec repli sur un degrade.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-type Cat = "product" | "web" | "mobile" | "branding";
+type Cat = "web" | "mobile" | "institutionnel" | "ecommerce" | "fintech";
 
 interface Project {
   title: string;
@@ -19,24 +20,26 @@ interface Project {
   cat: Cat;
   desc: string;
   tone: string;
+  image?: string;
   span?: string;
 }
 
 const FILTERS: { id: "all" | Cat; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "product", label: "Product" },
+  { id: "all", label: "Tous" },
   { id: "web", label: "Web" },
   { id: "mobile", label: "Mobile" },
-  { id: "branding", label: "Branding" },
+  { id: "institutionnel", label: "Institutionnel" },
+  { id: "ecommerce", label: "E-commerce" },
+  { id: "fintech", label: "Fintech" },
 ];
 
 const PROJECTS: Project[] = [
-  { title: "Lunion-Booking", category: "Product · SaaS", cat: "product", desc: "Reservation platform with real-time availability & payments.", tone: "linear-gradient(135deg,#7d5aa8,#43306e)", span: "lg:col-span-2" },
-  { title: "Fintech Dashboard", category: "Web App", cat: "web", desc: "Compliant analytics dashboard for a digital bank.", tone: "linear-gradient(135deg,#2447c9,#0c2185)" },
-  { title: "Health Companion", category: "Mobile · iOS/Android", cat: "mobile", desc: "Telemedicine app with appointments and records.", tone: "linear-gradient(135deg,#178a7a,#0f5a50)" },
-  { title: "Café Fugaz", category: "Branding · Identity", cat: "branding", desc: "Full brand identity for a specialty coffee roaster.", tone: "linear-gradient(135deg,#c96a3a,#8a3f1e)" },
-  { title: "Lunion-Educ", category: "Product · EdTech", cat: "product", desc: "Courses, live classes and assessments in one place.", tone: "linear-gradient(135deg,#5a53c9,#2f2a80)" },
-  { title: "Retail Storefront", category: "Web · E-commerce", cat: "web", desc: "Fast, conversion-focused storefront and checkout.", tone: "linear-gradient(135deg,#3a3a3a,#101010)", span: "lg:col-span-2" },
+  { title: "Turbo Delivery", category: "Livraison / Mobile", cat: "mobile", desc: "Service de livraison express reliant coursiers et partenaires, avec suivi des colis en temps réel sur web et mobile.", tone: "linear-gradient(135deg,#7d5aa8,#43306e)", image: "/assets/images/all-img/tubo_system.png", span: "lg:col-span-2" },
+  { title: "Chicken Nation", category: "Restauration / Mobile", cat: "mobile", desc: "L'application du fast-food 100% ivoirien : commande, livraison, retrait sur place et programme de fidélité.", tone: "linear-gradient(135deg,#c96a3a,#8a3f1e)", image: "/assets/images/portolios/chiken.png" },
+  { title: "Ambassade du Tchad", category: "Institutionnel / Web", cat: "institutionnel", desc: "Plateforme consulaire en ligne : prise de rendez-vous, suivi des demandes de visa et informations aux citoyens.", tone: "linear-gradient(135deg,#2447c9,#0c2185)", image: "/assets/images/portolios/ambassades.png" },
+  { title: "Fernand Dedeh", category: "Presse / Web", cat: "web", desc: "Média en ligne au service de l'accès à l'information et de la liberté d'expression en Côte d'Ivoire.", tone: "linear-gradient(135deg,#178a7a,#0f5a50)", image: "/assets/images/portolios/fdes.png" },
+  { title: "Catholikia", category: "Média / Web", cat: "web", desc: "Plateforme de ressources et d'actualités pour la communauté catholique en Côte d'Ivoire et dans le monde.", tone: "linear-gradient(135deg,#5a53c9,#2f2a80)", image: "/assets/images/portfolio/catholikia.png" },
+  { title: "Luxury Home Abidjan", category: "Immobilier / Web", cat: "web", desc: "Vitrine immobilière haut de gamme offrant une sélection exclusive de biens de prestige.", tone: "linear-gradient(135deg,#3a3a3a,#101010)", image: "/assets/images/portolios/luxury.png", span: "lg:col-span-2" },
 ];
 
 export function PortfolioGrid() {
@@ -83,6 +86,15 @@ export function PortfolioGrid() {
               className={`group relative flex h-64 flex-col justify-end overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1 sm:h-72 ${p.span ?? ""}`}
               style={{ background: p.tone }}
             >
+              {p.image ? (
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="absolute inset-0 object-cover"
+                />
+              ) : null}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-[#101010] backdrop-blur">
                 {p.category}
@@ -94,7 +106,7 @@ export function PortfolioGrid() {
                 <h3 className="text-2xl font-extrabold tracking-tight text-white">{p.title}</h3>
                 <p className="mt-1 max-w-md text-sm leading-relaxed text-white/75">{p.desc}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                  View project
+                  Voir le projet
                   <ArrowUpRight className="size-4" />
                 </span>
               </div>

@@ -41,10 +41,10 @@ const SOON = (t: string) => `/premium-light/soon?title=${encodeURIComponent(t)}`
 
 const productsMega: Mega = {
   featured: {
-    title: "Products",
-    desc: "One platform to book, protect and teach.",
-    primary: { label: "Explore products", href: "/premium-light/products" },
-    secondary: { label: "Free trial", href: SOON("Free trial") },
+    title: "Nos produits",
+    desc: "Trois plateformes prêtes à l'emploi pour digitaliser vos métiers, de l'immobilier à l'éducation.",
+    primary: { label: "Découvrir les produits", href: "/premium-light/products" },
+    secondary: { label: "Demander une démo", href: "/premium-light/contact" },
   },
   cards: products.map((p) => ({
     title: p.name,
@@ -52,24 +52,23 @@ const productsMega: Mega = {
     href: `/premium-light/products/${p.slug}`,
   })),
   start: [
-    { over: "Get started", label: "How Lunion works", href: SOON("How Lunion works") },
-    { over: "Plans", label: "See pricing", href: SOON("Pricing"), ext: true },
+    { over: "Commencer", label: "Comment ça marche", href: "/premium-light/products" },
+    { over: "Tarifs", label: "Nos tarifs", href: SOON("Nos tarifs"), ext: true },
+    { over: "Démos", label: "Voir les démos", href: "/premium-light/contact" },
   ],
   general: [
-    { label: "Features", href: SOON("Features") },
-    { label: "Integrations", href: SOON("Integrations") },
-    { label: "Security", href: SOON("Security") },
-    { label: "What's allowed", href: SOON("What's allowed") },
-    { label: "FAQs", href: SOON("FAQs") },
+    { label: "Cas d'usage", href: "/premium-light/portfolio" },
+    { label: "Sécurité des données", href: "/premium-light/about" },
+    { label: "Questions fréquentes", href: SOON("Questions fréquentes") },
   ],
 };
 
 const servicesMega: Mega = {
   featured: {
-    title: "Services",
-    desc: "From idea to launch, the full craft.",
-    primary: { label: "Explore services", href: "/premium-light/services" },
-    secondary: { label: "Get a quote", href: "/premium-light/contact" },
+    title: "Nos services",
+    desc: "De la première idée au produit livré, portée par une équipe experte.",
+    primary: { label: "Voir nos services", href: "/premium-light/services" },
+    secondary: { label: "Nous contacter", href: "/premium-light/contact" },
   },
   cards: services.map((s) => ({
     title: s.name,
@@ -77,40 +76,38 @@ const servicesMega: Mega = {
     href: `/premium-light/services/${s.slug}`,
   })),
   start: [
-    { over: "Start a project", label: "Our process", href: SOON("Our process") },
-    { over: "Work with us", label: "Book a call", href: "/premium-light/contact", ext: true },
+    { over: "Commencer", label: "Notre méthode", href: "/premium-light/services" },
+    { over: "Devis", label: "Demander un devis", href: "/premium-light/contact", ext: true },
   ],
   general: [
-    { label: "Process", href: SOON("Process") },
-    { label: "Technologies", href: SOON("Technologies") },
-    { label: "Case studies", href: "/premium-light/portfolio" },
-    { label: "Pricing", href: SOON("Pricing") },
-    { label: "FAQs", href: SOON("FAQs") },
+    { label: "Nos technologies", href: SOON("Nos technologies") },
+    { label: "Nos garanties", href: "/premium-light/about" },
   ],
 };
 
 const resourcesMega: Mega = {
   featured: {
-    title: "Community",
-    desc: "Join the Lunion community and stay connected.",
-    primary: { label: "Discord", href: SOON("Discord") },
-    secondary: { label: "Telegram", href: SOON("Telegram") },
+    title: "La communauté",
+    desc: "Rejoignez la communauté Lunion Lab et gardez le lien avec nos équipes.",
+    primary: { label: "LinkedIn", href: "https://www.linkedin.com/company/lunion-lab/?viewAsMember=true" },
+    secondary: { label: "Instagram", href: "https://www.instagram.com/lunionlab" },
   },
   cards: [
-    { title: "Blog", desc: "Articles & product news", href: SOON("Blog") },
-    { title: "Careers", desc: "Join the team", href: SOON("Careers") },
-    { title: "Partners", desc: "Let's build together", href: SOON("Partners") },
-    { title: "Events", desc: "Meet us near you", href: SOON("Events") },
+    { title: "Blog", desc: "Articles et actualités tech", href: SOON("Blog") },
+    { title: "Carrières", desc: "Rejoignez l'équipe", href: "/premium-light/contact" },
+    { title: "Partenaires", desc: "Construisons ensemble", href: "/premium-light/contact" },
+    { title: "Événements", desc: "Retrouvez-nous près de chez vous", href: "/premium-light/contact" },
   ],
   start: [
-    { over: "Get in touch", label: "Contact", href: "/premium-light/contact" },
-    { over: "Help", label: "Help center", href: SOON("Help center") },
+    { over: "Société", label: "À propos", href: "/premium-light/about" },
+    { over: "Équipe", label: "Notre équipe", href: "/premium-light/about#equipe" },
+    { over: "Contact", label: "Contact", href: "/premium-light/contact" },
   ],
   general: [
-    { label: "Documentation", href: SOON("Documentation") },
-    { label: "Support", href: SOON("Support") },
-    { label: "Status", href: SOON("Status") },
-    { label: "Changelog", href: SOON("Changelog") },
+    { label: "Instagram", href: "https://www.instagram.com/lunionlab" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/lunion-lab/?viewAsMember=true" },
+    { label: "Facebook", href: "https://www.facebook.com/share/1Cqq9P2ktD/?mibextid=wwXIfr" },
+    { label: "TikTok", href: "https://www.tiktok.com/@lunion.lab" },
   ],
 };
 
@@ -119,11 +116,11 @@ type NavItem =
   | { key: string; label: string; mega: Mega; href?: undefined };
 
 const NAV: NavItem[] = [
-  { key: "products", label: "Products", mega: productsMega },
+  { key: "products", label: "Produits", mega: productsMega },
   { key: "services", label: "Services", mega: servicesMega },
   { key: "portfolio", label: "Portfolio", href: "/premium-light/portfolio" },
-  { key: "about", label: "About Us", href: "/premium-light/about" },
-  { key: "resources", label: "More", mega: resourcesMega },
+  { key: "about", label: "À propos", href: "/premium-light/about" },
+  { key: "resources", label: "Plus", mega: resourcesMega },
 ];
 
 const SOCIALS = [
@@ -138,7 +135,7 @@ function Logo() {
       <span className="grid size-7 place-items-center rounded-md bg-[var(--primary)] text-white">
         <Plus className="size-4" />
       </span>
-      patheren
+      Lunion Lab
     </Link>
   );
 }
@@ -255,9 +252,9 @@ export function PatherenMegaNav() {
       <div className="mx-auto max-w-[1680px] px-4">
         {/* Barre d'annonce (rattachée en haut du bloc) */}
         <div className="mt-3 flex items-center justify-center gap-2 rounded-t-[28px] bg-[var(--primary)] px-4 py-2.5 text-sm text-white">
-          <span className="font-semibold">The Lunion product suite is live</span>
+          <span className="font-semibold">Transformez votre idée en produit digital, consultation offerte</span>
           <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">
-            New
+            Nouveau
           </span>
         </div>
 

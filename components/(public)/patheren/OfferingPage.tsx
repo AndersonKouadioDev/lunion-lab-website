@@ -30,7 +30,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
               <Star className="size-3.5 text-[var(--primary)]" />
-              {o.kind === "product" ? "Product" : "Service"} · {o.category}
+              {o.kind === "product" ? "Produit" : "Service"} · {o.category}
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
               {o.heroTitle}
@@ -39,7 +39,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
               {o.heroDesc}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-6">
-              <PrimaryButton>Let&apos;s talk</PrimaryButton>
+              <PrimaryButton>Parlons-en</PrimaryButton>
               <div>
                 <div className="text-3xl font-extrabold text-[var(--primary)]">
                   {o.growth.value}
@@ -101,23 +101,23 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="max-w-xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-[#555]">
-            How we work
+            Comment nous travaillons
           </span>
           <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
-            Let us show you how we drive
+            Voici comment nous propulsons
             <br />
-            {o.name} to new heights
+            {o.name} vers de nouveaux sommets
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">
-            A clear, proven path from first idea to launch — so you always know
-            what happens next.
+            Un parcours clair et éprouvé, de la première idée au lancement, pour
+            que vous sachiez toujours ce qui vous attend.
           </p>
         </Reveal>
 
         <ProcessStack steps={o.process} />
 
         <div className="mt-6 text-right text-lg font-semibold italic text-[var(--primary)]">
-          Ready to be delivered!
+          Prêt à être livré !
         </div>
       </section>
 
@@ -125,10 +125,10 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
       <section className="mt-4 rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
         <Reveal className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-white/60">
-            What we deliver
+            Ce que nous livrons
           </span>
           <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
-            Meaningful impact, not just a feature list
+            Un impact concret, pas seulement une liste de fonctionnalités
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-white/50">{o.featuresIntro}</p>
         </Reveal>
@@ -156,10 +156,10 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
       <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-            Explore the modules
+            Explorez les modules
           </h2>
           <p className="max-w-sm text-sm text-[#9a9a9a]">
-            Each part of {o.name} works on its own — and even better together.
+            Chaque partie de {o.name} fonctionne seule, et encore mieux ensemble.
           </p>
         </Reveal>
 
@@ -178,7 +178,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
                 <h3 className="text-lg font-extrabold text-white">{m.title}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-white/70">{m.desc}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[11px] font-semibold tracking-wide text-[#101010]">
-                  EXPLORE FEATURE
+                  EXPLORER
                   <ArrowRight className="size-3.5 text-[var(--primary)]" />
                 </span>
               </div>

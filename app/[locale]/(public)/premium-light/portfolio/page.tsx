@@ -7,15 +7,16 @@ import { Star } from "@/components/(public)/patheren/icons";
 import { PortfolioGrid } from "@/components/(public)/patheren/PortfolioGrid";
 
 export const metadata = {
-  title: "Portfolio — Patheren",
-  description: "A selection of products, web apps and brands we've crafted.",
+  title: "Portfolio | Lunion Lab",
+  description:
+    "Onze projets livrés pour des marques ambitieuses, du web au mobile, de la livraison à la finance.",
 };
 
 const stats = [
-  ["200+", "Projects delivered"],
-  ["170+", "Happy clients"],
-  ["12", "Industries"],
-  ["5+", "Years of craft"],
+  ["+10", "Projets livrés"],
+  ["11", "Marques accompagnées"],
+  ["6", "Secteurs couverts"],
+  ["100%", "Clients satisfaits"],
 ];
 
 export default function PortfolioPage() {
@@ -29,16 +30,16 @@ export default function PortfolioPage() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#f3eefc] px-4 py-1.5 text-xs font-semibold text-[var(--primary)]">
             <Star className="size-3.5" />
-            Our Work
+            Portfolio
           </div>
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.03] tracking-tight sm:text-6xl">
-            Projects we&apos;re
+            Des réalisations qui
             <br />
-            proud of
+            parlent d&apos;elles-mêmes
           </h1>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            A selection of the products, web apps and brands we&apos;ve crafted
-            with our partners.
+            Onze projets livrés pour des marques ambitieuses, du web au mobile,
+            de la livraison à la finance.
           </p>
         </Reveal>
 

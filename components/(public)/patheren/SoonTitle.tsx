@@ -7,6 +7,6 @@ import { useSearchParams } from "next/navigation";
  * page reste statiquement générée (SSG). Enveloppé dans un <Suspense>.
  */
 export function SoonTitle() {
-  const title = useSearchParams()?.get("title")?.trim() || "This page";
-  return <>{title} is on its way</>;
+  const title = useSearchParams()?.get("title")?.trim() || "Cette page";
+  return <>{title} est en préparation</>;
 }

@@ -22,19 +22,19 @@ interface Member {
 }
 
 const FILTERS: { id: "all" | Dept; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "leadership", label: "Leadership" },
-  { id: "engineering", label: "Engineering" },
-  { id: "design", label: "Design" },
-  { id: "business", label: "Business" },
+  { id: "all", label: "Tous" },
+  { id: "leadership", label: "Doyens" },
+  { id: "engineering", label: "IT" },
+  { id: "design", label: "Designers" },
+  { id: "business", label: "Business Developers" },
 ];
 
 const MEMBERS: Member[] = [
-  { name: "Anderson Kouadio", role: "Founder & CEO", dept: "leadership", photo: "/assets/images/membres/membre1.jpg" },
-  { name: "Marie-Claire Diabaté", role: "Head of Operations", dept: "leadership", photo: "/assets/images/membres/membre2.jpg" },
-  { name: "Yann Koffi", role: "Lead Developer", dept: "engineering", photo: "/assets/images/membres/membre3.jpg" },
-  { name: "Sékou Traoré", role: "DevOps Engineer", dept: "engineering", photo: "/assets/images/membres/membre4.png" },
-  { name: "Léa N'Guessan", role: "Lead Product Designer", dept: "design", photo: "/assets/images/membres/membre5.jpg" },
+  { name: "Cédric Assah", role: "Le commandant de bord", dept: "leadership", photo: "/assets/images/membres/membre1.jpg" },
+  { name: "Anderson Kouadio", role: "Le couteau-suisse du code", dept: "engineering", photo: "/assets/images/membres/membre2.jpg" },
+  { name: "Francis Kouakou", role: "Responsable IT", dept: "engineering", photo: "/assets/images/membres/membre3.jpg" },
+  { name: "Fatem Coulibaly", role: "Founder & CEO", dept: "leadership", photo: "/assets/images/membres/membre4.png" },
+  { name: "Yannick DeVinci", role: "Le penseur de l'interface", dept: "design", photo: "/assets/images/membres/membre5.jpg" },
 ];
 
 export function TeamSection() {
@@ -45,14 +45,14 @@ export function TeamSection() {
     <section className="mt-4 rounded-[28px] bg-white p-8 sm:p-12">
       <Reveal className="mx-auto max-w-2xl text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--primary)]">
-          Our Team
+          Notre équipe
         </p>
         <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
-          The team behind your projects
+          La Dream Team derrière vos projets
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">
-          Complementary talents, united by the same standard: shipping products
-          that make a difference.
+          Des talents complémentaires, unis par la même exigence : livrer des
+          produits qui font la différence.
         </p>
       </Reveal>
 
