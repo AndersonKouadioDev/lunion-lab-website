@@ -4,7 +4,7 @@ import {
   getOffering,
   serviceSlugs,
 } from "@/components/(public)/patheren/catalog";
-import { OfferingPage } from "@/components/(public)/patheren/OfferingPage";
+import { ServicePage } from "@/components/(public)/patheren/ServicePage";
 
 export function generateStaticParams() {
   return serviceSlugs.map((slug) => ({ slug }));
@@ -21,7 +21,7 @@ export async function generateMetadata({
   return { title: `${o.name} — ${o.category}`, description: o.tagline };
 }
 
-export default async function ServicePage({
+export default async function ServiceRoute({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -29,5 +29,5 @@ export default async function ServicePage({
   const { slug } = await params;
   const offering = getOffering(slug);
   if (!offering || offering.kind !== "service") notFound();
-  return <OfferingPage offering={offering} />;
+  return <ServicePage offering={offering} />;
 }

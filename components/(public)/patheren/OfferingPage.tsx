@@ -5,73 +5,9 @@ import {
   ProjectCta,
   Photo,
 } from "@/components/(public)/patheren/ui";
-import type { Offering, IconKey } from "@/components/(public)/patheren/catalog";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarDays,
-  CalendarClock,
-  Wallet,
-  Bell,
-  Clock,
-  BarChart3,
-  KeyRound,
-  Video,
-  BellRing,
-  ScrollText,
-  Lock,
-  ShieldCheck,
-  BookOpen,
-  ClipboardCheck,
-  LineChart,
-  Award,
-  Users,
-  Sparkles,
-  LayoutGrid,
-  Gauge,
-  Search,
-  Code2,
-  Plug,
-  Smartphone,
-  Globe,
-  Rocket,
-  Palette,
-  PenTool,
-  Accessibility,
-  type LucideIcon,
-} from "lucide-react";
-
-const icons: Record<IconKey, LucideIcon> = {
-  calendar: CalendarDays,
-  "calendar-sync": CalendarClock,
-  wallet: Wallet,
-  bell: Bell,
-  clock: Clock,
-  chart: BarChart3,
-  key: KeyRound,
-  video: Video,
-  "bell-ring": BellRing,
-  logs: ScrollText,
-  lock: Lock,
-  shield: ShieldCheck,
-  book: BookOpen,
-  clipboard: ClipboardCheck,
-  "line-chart": LineChart,
-  award: Award,
-  users: Users,
-  sparkle: Sparkles,
-  layout: LayoutGrid,
-  gauge: Gauge,
-  search: Search,
-  code: Code2,
-  plug: Plug,
-  smartphone: Smartphone,
-  globe: Globe,
-  rocket: Rocket,
-  palette: Palette,
-  pen: PenTool,
-  accessibility: Accessibility,
-};
+import type { Offering } from "@/components/(public)/patheren/catalog";
+import { icons, Star } from "@/components/(public)/patheren/icons";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const moduleTone: Record<string, string> = {
   cream: "linear-gradient(135deg,#efeae0,#cfc6b4)",
@@ -79,18 +15,6 @@ const moduleTone: Record<string, string> = {
   peach: "linear-gradient(135deg,#e6d6f2,#c3a3e0)",
   mono: "linear-gradient(135deg,#3a3a3a,#101010)",
 };
-
-/* Étoile 8 branches (accent creatiwise) */
-function Star({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <path
-        d="M12 0l2.4 7.2L21.6 6l-4.8 6 4.8 6-7.2-1.2L12 24l-2.4-7.2L2.4 18l4.8-6-4.8-6 7.2 1.2z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
 
 export function OfferingPage({ offering: o }: { offering: Offering }) {
   return (
