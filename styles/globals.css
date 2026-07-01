@@ -47,6 +47,10 @@
   --color-default-600: var(--default-600);
   --color-default-900: var(--default-900);
 
+  --color-violet: #8b5cf6;
+  --color-violet-bright: #a78bfa;
+  --color-violet-deep: #6d28d9;
+
    --font-figtree: var(--font-figtree);
 }
 
@@ -135,4 +139,39 @@
   * {
     @apply border-border outline-ring/50;
   }
+}
+
+/* ── Landing premium (dark) ───────────────────────────── */
+@keyframes lunion-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: lunion-marquee 36s linear infinite;
+}
+
+@keyframes lunion-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+.animate-glow-pulse {
+  animation: lunion-glow-pulse 7s ease-in-out infinite;
+}
+
+.bg-grid-violet {
+  background-image:
+    linear-gradient(to right, rgba(139, 92, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
