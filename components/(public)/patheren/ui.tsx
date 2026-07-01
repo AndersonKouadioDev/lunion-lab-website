@@ -18,9 +18,9 @@ import {
 
 const navLinks: [string, string][] = [
   ["Home", "/premium-light"],
+  ["Products", "/premium-light/products"],
   ["About Us", "/premium-light/about"],
-  ["Service", "#"],
-  ["Our Teams", "#"],
+  ["Contact", "#"],
 ];
 
 export function PrimaryButton({
