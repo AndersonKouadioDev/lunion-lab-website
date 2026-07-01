@@ -60,7 +60,7 @@ export default function WoogencyAbout() {
   return (
     <main className="text-[#17161d]">
       {/* ============================ HERO ============================ */}
-      <section className="relative overflow-hidden bg-[#5b46e5] text-white">
+      <section className="relative overflow-hidden bg-[var(--primary)] text-white">
         <WooNav />
         <div className="px-6 pb-12 pt-6 text-center sm:px-10">
           <div className="text-xs font-semibold tracking-widest text-[#bff23f]">
@@ -112,7 +112,7 @@ export default function WoogencyAbout() {
         <div className="mt-12 grid gap-8 border-t border-black/10 pt-10 sm:grid-cols-3">
           {missionSteps.map((s) => (
             <div key={s.n}>
-              <div className="text-4xl font-extrabold text-[#5b46e5]">{s.n}</div>
+              <div className="text-4xl font-extrabold text-[var(--primary)]">{s.n}</div>
               <h4 className="mt-3 text-base font-bold text-[#17161d]">{s.title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-[#6d6a78]">{s.desc}</p>
             </div>
@@ -137,7 +137,7 @@ export default function WoogencyAbout() {
         <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {visionItems.map((v) => (
             <div key={v.title}>
-              <span className="grid size-11 place-items-center rounded-xl bg-white text-[#5b46e5]">
+              <span className="grid size-11 place-items-center rounded-xl bg-white text-[var(--primary)]">
                 <v.icon className="size-5" />
               </span>
               <h4 className="mt-3 text-sm font-bold text-[#17161d]">{v.title}</h4>
@@ -168,7 +168,7 @@ export default function WoogencyAbout() {
       </section>
 
       {/* ============================ FAQ ============================ */}
-      <section className="bg-[#5b46e5] px-6 py-16 sm:px-12">
+      <section className="bg-[var(--primary)] px-6 py-16 sm:px-12">
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-[40px]">
             Frequently

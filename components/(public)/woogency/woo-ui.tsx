@@ -15,8 +15,8 @@ import {
  */
 
 export const WOO = {
-  purple: "#5b46e5",
-  purpleDark: "#4a37c8",
+  purple: "var(--primary)",
+  purpleDark: "var(--primary-600)",
   green: "#bff23f",
   greenDark: "#a9df2a",
   cream: "#f5ede1",
@@ -89,7 +89,7 @@ const toneMap: Record<string, string> = {
   team: "linear-gradient(135deg,#b7c3d6,#8b99b0)",
   office: "linear-gradient(135deg,#9fb0c4,#6f7f98)",
   warm: "linear-gradient(135deg,#e9dcc7,#cbb294)",
-  purple: "linear-gradient(135deg,#7d6bf0,#5b46e5)",
+  purple: "linear-gradient(135deg,#9353d3,var(--primary))",
   meeting: "linear-gradient(135deg,#c2cad8,#93867f)",
 };
 
@@ -148,7 +148,7 @@ export function DataDrivenSection() {
     <section className="bg-[#f5ede1] px-6 py-16 sm:px-12">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-extrabold leading-tight text-[#17161d] sm:text-[40px]">
-          You gonna get <span className="text-[#5b46e5]">Data driven</span>
+          You gonna get <span className="text-[var(--primary)]">Data driven</span>
           <br />
           growth based output
         </h2>
@@ -168,7 +168,7 @@ export function DataDrivenSection() {
           <ul className="mt-4 space-y-3 text-xs text-[#6d6a78]">
             {["Best Conversion Asset", "Top Currency Generator"].map((t) => (
               <li key={t} className="flex items-center gap-2">
-                <span className="grid size-6 place-items-center rounded-full bg-[#f0ebff] text-[#5b46e5]">
+                <span className="grid size-6 place-items-center rounded-full bg-[#ece4f3] text-[var(--primary)]">
                   <Award className="size-3.5" />
                 </span>
                 {t}
@@ -181,7 +181,7 @@ export function DataDrivenSection() {
         <div className="rounded-2xl bg-white p-5">
           <div className="flex items-center justify-between">
             <span className="text-2xl font-extrabold text-[#17161d]">47%</span>
-            <TrendingUp className="size-4 text-[#5b46e5]" />
+            <TrendingUp className="size-4 text-[var(--primary)]" />
           </div>
           <div className="mt-1 text-xs text-[#6d6a78]">Conversion Growth</div>
           <div className="mt-4 flex h-14 items-end gap-1.5">
@@ -191,7 +191,7 @@ export function DataDrivenSection() {
                 className="flex-1 rounded-t"
                 style={{
                   height: `${h}%`,
-                  background: i % 2 ? "#bff23f" : "#5b46e5",
+                  background: i % 2 ? "#bff23f" : "var(--primary)",
                 }}
               />
             ))}
@@ -199,7 +199,7 @@ export function DataDrivenSection() {
         </div>
 
         {/* Team purple card */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#5b46e5] p-5 text-white">
+        <div className="relative overflow-hidden rounded-2xl bg-[var(--primary)] p-5 text-white">
           <p className="text-sm font-bold leading-snug">
             We&apos;ve got a team with skilled teammembers
           </p>
@@ -218,8 +218,8 @@ export function DataDrivenSection() {
 /* ------------------- SECTION : CTA (violet, partagée) ------------------- */
 export function CtaSection() {
   return (
-    <section className="bg-[#5b46e5] px-6 py-14 sm:px-12">
-      <div className="mx-auto grid max-w-5xl items-center gap-6 overflow-hidden rounded-3xl bg-[#4a37c8] p-6 sm:grid-cols-[1.3fr_1fr] sm:p-8">
+    <section className="bg-[var(--primary)] px-6 py-14 sm:px-12">
+      <div className="mx-auto grid max-w-5xl items-center gap-6 overflow-hidden rounded-3xl bg-[var(--primary-600)] p-6 sm:grid-cols-[1.3fr_1fr] sm:p-8">
         <div>
           <h3 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
             Have a amazing

@@ -57,7 +57,7 @@ const projects = [
     name: "Minizon",
     tags: "BRANDING · STYLE GUIDE",
     desc: "We created a unique and distinct identity for this clothing brand with Logo, Color Palette, typography & more.",
-    bg: "bg-gradient-to-br from-[#7fe0d0] via-[#7bc9f0] to-[#8b7bf0]",
+    bg: "bg-gradient-to-br from-[#7fe0d0] via-[#7bc9f0] to-[#9353d3]",
     tone: "office",
   },
 ];
@@ -66,7 +66,7 @@ export default function WoogencyHome() {
   return (
     <main className="text-[#17161d]">
       {/* ============================ HERO ============================ */}
-      <section className="relative overflow-hidden bg-[#5b46e5] text-white">
+      <section className="relative overflow-hidden bg-[var(--primary)] text-white">
         <div className="pointer-events-none absolute -right-20 top-10 size-72 rounded-full bg-white/5" />
         <WooNav />
 
@@ -138,7 +138,7 @@ export default function WoogencyHome() {
                 i !== services.length - 1 ? "border-b border-black/10" : ""
               }`}
             >
-              <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-white text-[#5b46e5]">
+              <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-white text-[var(--primary)]">
                 <s.icon className="size-6" />
               </span>
               <div className="flex-1">
@@ -207,7 +207,7 @@ export default function WoogencyHome() {
       </section>
 
       {/* ============================ TÉMOIGNAGES ============================ */}
-      <section className="bg-[#5b46e5] px-6 py-16 sm:px-12">
+      <section className="bg-[var(--primary)] px-6 py-16 sm:px-12">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-[40px]">
             Amazing Feedbacks from
@@ -221,7 +221,7 @@ export default function WoogencyHome() {
           </div>
         </div>
 
-        <div className="relative mt-8 max-w-2xl overflow-hidden rounded-3xl bg-[#6a56ef] p-8">
+        <div className="relative mt-8 max-w-2xl overflow-hidden rounded-3xl bg-[#7e57b3] p-8">
           <div className="flex items-center gap-3">
             <Photo tone="warm" className="size-12 rounded-full" />
             <div>
