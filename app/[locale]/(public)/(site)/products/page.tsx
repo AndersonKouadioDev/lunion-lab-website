@@ -43,7 +43,7 @@ export default function ProductsIndex() {
         {products.map((p) => (
           <Link
             key={p.slug}
-            href={`/premium-light/products/${p.slug}`}
+            href={`/products/${p.slug}`}
             className="group flex flex-col rounded-[28px] bg-white p-7 transition hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.3)]"
           >
             <div className="relative">

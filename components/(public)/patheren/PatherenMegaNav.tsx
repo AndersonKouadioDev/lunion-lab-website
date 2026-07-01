@@ -37,28 +37,28 @@ type Mega = {
   general: { label: string; href: string }[];
 };
 
-const SOON = (t: string) => `/premium-light/soon?title=${encodeURIComponent(t)}`;
+const SOON = (t: string) => `/soon?title=${encodeURIComponent(t)}`;
 
 const productsMega: Mega = {
   featured: {
     title: "Nos produits",
     desc: "Quatre plateformes prêtes à l'emploi pour digitaliser vos métiers, de la visioconférence à l'éducation.",
-    primary: { label: "Découvrir les produits", href: "/premium-light/products" },
-    secondary: { label: "Demander une démo", href: "/premium-light/contact" },
+    primary: { label: "Découvrir les produits", href: "/products" },
+    secondary: { label: "Demander une démo", href: "/contact" },
   },
   cards: products.map((p) => ({
     title: p.name,
     desc: p.tagline,
-    href: `/premium-light/products/${p.slug}`,
+    href: `/products/${p.slug}`,
   })),
   start: [
-    { over: "Commencer", label: "Comment ça marche", href: "/premium-light/products" },
+    { over: "Commencer", label: "Comment ça marche", href: "/products" },
     { over: "Tarifs", label: "Nos tarifs", href: SOON("Nos tarifs"), ext: true },
-    { over: "Démos", label: "Voir les démos", href: "/premium-light/contact" },
+    { over: "Démos", label: "Voir les démos", href: "/contact" },
   ],
   general: [
-    { label: "Cas d'usage", href: "/premium-light/portfolio" },
-    { label: "Sécurité des données", href: "/premium-light/about" },
+    { label: "Cas d'usage", href: "/portfolio" },
+    { label: "Sécurité des données", href: "/about" },
     { label: "Questions fréquentes", href: SOON("Questions fréquentes") },
   ],
 };
@@ -67,21 +67,21 @@ const servicesMega: Mega = {
   featured: {
     title: "Nos services",
     desc: "De la première idée au produit livré, portée par une équipe experte.",
-    primary: { label: "Voir nos services", href: "/premium-light/services" },
-    secondary: { label: "Nous contacter", href: "/premium-light/contact" },
+    primary: { label: "Voir nos services", href: "/services" },
+    secondary: { label: "Nous contacter", href: "/contact" },
   },
   cards: services.map((s) => ({
     title: s.name,
     desc: s.tagline,
-    href: `/premium-light/services/${s.slug}`,
+    href: `/services/${s.slug}`,
   })),
   start: [
-    { over: "Commencer", label: "Notre méthode", href: "/premium-light/services" },
-    { over: "Devis", label: "Demander un devis", href: "/premium-light/contact", ext: true },
+    { over: "Commencer", label: "Notre méthode", href: "/services" },
+    { over: "Devis", label: "Demander un devis", href: "/contact", ext: true },
   ],
   general: [
     { label: "Nos technologies", href: SOON("Nos technologies") },
-    { label: "Nos garanties", href: "/premium-light/about" },
+    { label: "Nos garanties", href: "/about" },
   ],
 };
 
@@ -94,14 +94,14 @@ const resourcesMega: Mega = {
   },
   cards: [
     { title: "Blog", desc: "Articles et actualités tech", href: SOON("Blog") },
-    { title: "Carrières", desc: "Rejoignez l'équipe", href: "/premium-light/contact" },
-    { title: "Partenaires", desc: "Construisons ensemble", href: "/premium-light/contact" },
-    { title: "Événements", desc: "Retrouvez-nous près de chez vous", href: "/premium-light/contact" },
+    { title: "Carrières", desc: "Rejoignez l'équipe", href: "/contact" },
+    { title: "Partenaires", desc: "Construisons ensemble", href: "/contact" },
+    { title: "Événements", desc: "Retrouvez-nous près de chez vous", href: "/contact" },
   ],
   start: [
-    { over: "Société", label: "À propos", href: "/premium-light/about" },
-    { over: "Équipe", label: "Notre équipe", href: "/premium-light/about#equipe" },
-    { over: "Contact", label: "Contact", href: "/premium-light/contact" },
+    { over: "Société", label: "À propos", href: "/about" },
+    { over: "Équipe", label: "Notre équipe", href: "/about#equipe" },
+    { over: "Contact", label: "Contact", href: "/contact" },
   ],
   general: [
     { label: "Instagram", href: "https://www.instagram.com/lunionlab" },
@@ -118,8 +118,8 @@ type NavItem =
 const NAV: NavItem[] = [
   { key: "products", label: "Produits", mega: productsMega },
   { key: "services", label: "Services", mega: servicesMega },
-  { key: "portfolio", label: "Portfolio", href: "/premium-light/portfolio" },
-  { key: "about", label: "À propos", href: "/premium-light/about" },
+  { key: "portfolio", label: "Portfolio", href: "/portfolio" },
+  { key: "about", label: "À propos", href: "/about" },
   { key: "resources", label: "Plus", mega: resourcesMega },
 ];
 
@@ -131,7 +131,7 @@ const SOCIALS = [
 
 function Logo() {
   return (
-    <Link href="/premium-light" className="flex items-center">
+    <Link href="/" className="flex items-center">
       <Image
         src="/assets/images/all-img/logo.png"
         alt="Lunion Lab"
@@ -233,8 +233,8 @@ function MegaPanel({ mega }: { mega: Mega }) {
 }
 
 export function PatherenMegaNav() {
-  const pathname = usePathname() ?? "/premium-light";
-  const sub = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/premium-light";
+  const pathname = usePathname() ?? "/";
+  const sub = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/";
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
@@ -242,13 +242,13 @@ export function PatherenMegaNav() {
 
   const isActive = (item: NavItem) =>
     item.href
-      ? item.href === "/premium-light"
-        ? sub === "/premium-light"
+      ? item.href === "/"
+        ? sub === "/"
         : sub.startsWith(item.href)
       : item.key === "products"
-        ? sub.startsWith("/premium-light/products")
+        ? sub.startsWith("/products")
         : item.key === "services"
-          ? sub.startsWith("/premium-light/services")
+          ? sub.startsWith("/services")
           : false;
 
   return (
@@ -317,7 +317,7 @@ export function PatherenMegaNav() {
               <ChevronDown className="size-4" />
             </button>
             <Link
-              href="/premium-light/contact"
+              href="/contact"
               className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]"
             >
               Contact
@@ -416,7 +416,7 @@ export function PatherenMegaNav() {
                 ))}
               </div>
               <Link
-                href="/premium-light/contact"
+                href="/contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white"
               >

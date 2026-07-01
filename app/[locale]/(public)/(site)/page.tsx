@@ -232,7 +232,7 @@ export default function PremiumLightPage() {
             </p>
           </div>
           <Link
-            href="/premium-light/products"
+            href="/products"
             className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)]"
           >
             Voir tous les produits
@@ -283,7 +283,7 @@ export default function PremiumLightPage() {
                   <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">{p.tagline}</p>
                 </div>
                 <Link
-                  href={`/premium-light/products/${p.slug}`}
+                  href={`/products/${p.slug}`}
                   className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#101010]"
                 >
                   Découvrir

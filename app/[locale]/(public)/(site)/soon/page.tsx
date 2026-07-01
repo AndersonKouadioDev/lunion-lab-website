@@ -38,14 +38,14 @@ export default function SoonPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/premium-light"
+              href="/"
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)]"
             >
               Retour à l&apos;accueil
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              href="/premium-light/contact"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-semibold transition hover:border-[var(--primary)] hover:text-[var(--primary)]"
             >
               Nous contacter

@@ -19,10 +19,10 @@ import { products } from "@/components/(public)/patheren/catalog";
  */
 
 const navLinks: [string, string][] = [
-  ["Accueil", "/premium-light"],
-  ["Produits", "/premium-light/products"],
-  ["Services", "/premium-light/services"],
-  ["À propos", "/premium-light/about"],
+  ["Accueil", "/"],
+  ["Produits", "/products"],
+  ["Services", "/services"],
+  ["À propos", "/about"],
   ["Contact", "#"],
 ];
 
@@ -46,7 +46,7 @@ export function PrimaryButton({
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
-      href="/premium-light"
+      href="/"
       className={`flex items-center gap-2 text-lg font-extrabold ${className}`}
     >
       <Image
@@ -336,7 +336,7 @@ export function PatherenFooter() {
             {products.map((p) => (
               <li key={p.slug}>
                 <Link
-                  href={`/premium-light/products/${p.slug}`}
+                  href={`/products/${p.slug}`}
                   className="transition hover:text-white"
                 >
                   {p.name}
@@ -351,10 +351,10 @@ export function PatherenFooter() {
           <h4 className="text-sm font-bold">Entreprise</h4>
           <ul className="mt-4 space-y-3 text-sm text-white/50">
             {[
-              ["Services", "/premium-light/services"],
-              ["Portfolio", "/premium-light/portfolio"],
-              ["À propos", "/premium-light/about"],
-              ["Contact", "/premium-light/contact"],
+              ["Services", "/services"],
+              ["Portfolio", "/portfolio"],
+              ["À propos", "/about"],
+              ["Contact", "/contact"],
             ].map(([label, href]) => (
               <li key={label}>
                 <Link href={href} className="transition hover:text-white">

@@ -43,7 +43,7 @@ export default function ServicesIndex() {
           {services.map((s, i) => (
             <StaggerItem key={s.slug}>
               <Link
-                href={`/premium-light/services/${s.slug}`}
+                href={`/services/${s.slug}`}
                 className="group flex flex-col gap-4 rounded-2xl py-8 transition-colors hover:bg-[#faf7ff] md:flex-row md:items-center md:gap-8 md:px-4"
               >
                 <span className="w-16 text-4xl font-extrabold text-[#e2ddec] transition-colors group-hover:text-[var(--primary)]">

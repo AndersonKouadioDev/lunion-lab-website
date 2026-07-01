@@ -3,7 +3,7 @@ import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { auth } from "@/lib/auth";
 
-export const publicRoutes = ["/", "/auth","/pricing", "/blog", "/docs", "/services" , "/solutions", "/portfolio", "/contact", "/a-propos", "/v2", "/premium-light", "/woogency"];
+export const publicRoutes = ["/", "/auth", "/products", "/services", "/portfolio", "/about", "/contact", "/soon", "/pricing", "/blog", "/docs"];
 
 // Middleware d'internationalisation
 const intlMiddleware = createIntlMiddleware(routing);
