@@ -52,13 +52,6 @@ const faqs = [
   "Comment vous contacter ?",
 ];
 
-const productImages: Record<string, string> = {
-  "lunion-meet": "/assets/images/produits/lunion_meet.png",
-  "lunion-booking": "/assets/images/produits/moockup.png",
-  "lunion-secu": "/assets/images/produits/mockup_secu.png",
-  "lunion-educ": "/assets/images/produits/mockup_educ.png",
-};
-
 const productTones = [
   "linear-gradient(135deg,#efe6f6,#d9c7ea)",
   "linear-gradient(135deg,#efeae0,#dcd4c4)",
@@ -246,7 +239,7 @@ export default function PremiumLightPage() {
                 style={{ background: productTones[i % productTones.length] }}
               >
                 <Photo
-                  src={productImages[p.slug]}
+                  src={p.image}
                   alt={p.name}
                   className="h-full min-h-[216px] w-full rounded-xl"
                 />

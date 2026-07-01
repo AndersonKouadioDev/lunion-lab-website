@@ -28,6 +28,7 @@ export type Offering = {
   modules: { title: string; desc: string; tone: string }[];
   status?: "prod" | "dev";
   url?: string;
+  image?: string;
 };
 
 /* Étapes de process communes (4 étapes) */
@@ -51,6 +52,7 @@ export const offerings: Offering[] = [
     name: "Lunion-Meet",
     status: "prod",
     url: "https://meet.lunion-lab.com",
+    image: "/assets/images/produits/lunion_meet.png",
     category: "Visioconférence souveraine",
     tagline: "La visioconférence temps réel, souveraine et hébergée en Afrique",
     heroTitle: "Appels audio et vidéo de groupe, prêts à l'emploi et intégrables partout",
@@ -86,6 +88,7 @@ export const offerings: Offering[] = [
     kind: "product",
     name: "Lunion-Booking",
     status: "dev",
+    image: "/assets/images/produits/moockup.png",
     category: "Gestion immobilière",
     tagline: "La plateforme de gestion immobilière tout en un",
     heroTitle: "Biens, transactions, finances et clients réunis dans un seul outil",
@@ -121,6 +124,7 @@ export const offerings: Offering[] = [
     kind: "product",
     name: "Lunion-Secu",
     status: "dev",
+    image: "/assets/images/produits/mockup_secu.png",
     category: "Ressources humaines",
     tagline: "La plateforme RH pour les entreprises de Côte d'Ivoire et d'Afrique de l'Ouest",
     heroTitle: "Personnel, présences, paie et congés dans un dossier unique par employé",
@@ -156,6 +160,7 @@ export const offerings: Offering[] = [
     kind: "product",
     name: "Lunion-Educ",
     status: "dev",
+    image: "/assets/images/produits/mockup_educ.png",
     category: "Gestion éducative",
     tagline: "Révolutionnez la gestion de votre établissement",
     heroTitle: "Élèves, cours et ressources : votre établissement enfin unifié",

@@ -73,9 +73,14 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
             </div>
           </Reveal>
 
-          {/* Visuel N&B + tags flottants */}
+          {/* Visuel du produit + tags flottants */}
           <Reveal delay={0.15} className="relative">
-            <Photo tone="team" className="h-72 w-full rounded-3xl grayscale sm:h-80" />
+            <Photo
+              src={o.image}
+              alt={o.name}
+              tone="team"
+              className="h-72 w-full rounded-3xl sm:h-80"
+            />
             <Star className="absolute -left-3 -top-3 size-8 text-[var(--primary)]" />
             <div className="absolute inset-0 p-4">
               {o.features.slice(0, 3).map((f, i) => (
