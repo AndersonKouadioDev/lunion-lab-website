@@ -8,14 +8,8 @@ import { statusLabel, type Offering } from "@/components/(public)/patheren/catal
 import { icons, Star } from "@/components/(public)/patheren/icons";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { ProcessStack } from "@/components/(public)/patheren/ProcessStack";
+import { MeshAurora, premiumArt } from "@/components/(public)/patheren/PremiumArt";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-
-const moduleTone: Record<string, string> = {
-  cream: "linear-gradient(135deg,#efeae0,#cfc6b4)",
-  sky: "linear-gradient(135deg,#cfe0ef,#9fb8d2)",
-  peach: "linear-gradient(135deg,#e6d6f2,#c3a3e0)",
-  mono: "linear-gradient(135deg,#3a3a3a,#101010)",
-};
 
 export function OfferingPage({ offering: o }: { offering: Offering }) {
   return (
@@ -109,7 +103,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
             {o.band.we}
           </StaggerItem>
           <StaggerItem className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
-            <Photo tone="office" className="h-full w-full grayscale" />
+            <MeshAurora variant="indigo" />
             <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
               {o.band.verb}
             </div>
@@ -118,7 +112,7 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
             <ArrowRight className="size-12" strokeWidth={2.5} />
           </StaggerItem>
           <StaggerItem className="relative h-36 overflow-hidden rounded-[28px] sm:h-44">
-            <Photo tone="meeting" className="h-full w-full grayscale" />
+            <MeshAurora variant="dusk" />
             <div className="absolute inset-0 grid place-items-center bg-black/25 text-2xl font-extrabold text-white sm:text-3xl">
               {o.band.outcome}
             </div>
@@ -193,12 +187,14 @@ export function OfferingPage({ offering: o }: { offering: Offering }) {
         </Reveal>
 
         <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {o.modules.map((m) => (
+          {o.modules.map((m, i) => (
             <StaggerItem
               key={m.title}
               className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1"
-              style={{ background: moduleTone[m.tone] ?? moduleTone.cream }}
             >
+              <div className="absolute inset-0">
+                {premiumArt[i % premiumArt.length]("h-full w-full")}
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <button className="absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white text-[#101010] transition group-hover:bg-[var(--primary)] group-hover:text-white">
                 <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />

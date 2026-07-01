@@ -2,7 +2,6 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import {
   PatherenFooter,
   PrimaryButton,
-  Pouch,
   Photo,
   Stars,
   LogoMarquee,
@@ -10,6 +9,12 @@ import {
   FaqSection,
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
+import {
+  MeshAurora,
+  GlassOrb,
+  Rings,
+  PrismCluster,
+} from "@/components/(public)/patheren/PremiumArt";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { TechStack } from "@/components/(public)/patheren/TechStack";
 import { products, statusLabel } from "@/components/(public)/patheren/catalog";
@@ -96,13 +101,15 @@ export default function PremiumLightPage() {
               ))}
             </div>
           </div>
-          <div className="h-full min-h-[120px]">
-            <Pouch label="Café Fugaz" from="#9353d3" to="#5a3b7d" />
+          <div className="min-h-[120px] overflow-hidden rounded-2xl">
+            <GlassOrb />
           </div>
           <div className="flex items-center justify-center rounded-2xl bg-[#f4f4f4] p-6">
             <PrimaryButton className="w-full justify-center">Démarrer un projet</PrimaryButton>
           </div>
-          <div className="min-h-[120px] rounded-2xl bg-gradient-to-br from-[#1f4bd8] to-[#0b2a9c]" />
+          <div className="min-h-[120px] overflow-hidden rounded-2xl">
+            <MeshAurora variant="aurora" />
+          </div>
         </Reveal>
       </section>
 
@@ -115,18 +122,16 @@ export default function PremiumLightPage() {
       <section className="mt-4">
         <Stagger className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <Pouch label="Radical Toast" from="#e9e2d4" to="#cfc6b4" />
-          </StaggerItem>
-          <StaggerItem className="aspect-[4/3] rounded-2xl bg-white p-5">
-            <div className="h-full rounded-xl bg-[radial-gradient(circle_at_50%_40%,#ececec,#f7f7f7)]" />
-          </StaggerItem>
-          <StaggerItem className="aspect-[4/3] rounded-2xl bg-white p-5">
-            <div className="grid h-full place-items-center rounded-xl bg-[#f2f2f2] text-xs font-semibold tracking-widest text-[#bdbdbd]">
-              Act+Acre
-            </div>
+            <Photo src="/assets/images/premium/aurora.jpg" alt="" className="h-full w-full" />
           </StaggerItem>
           <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <Pouch label="Fresh Vibe" from="#9353d3" to="#5a3b7d" />
+            <MeshAurora variant="violet" />
+          </StaggerItem>
+          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
+            <Rings />
+          </StaggerItem>
+          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
+            <Photo src="/assets/images/premium/streaks.jpg" alt="" className="h-full w-full" />
           </StaggerItem>
         </Stagger>
       </section>
@@ -166,9 +171,15 @@ export default function PremiumLightPage() {
         <Reveal delay={0.1} className="mt-10 grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
           <div className="overflow-hidden rounded-2xl bg-[#f2f2f2]">
             <div className="grid h-full min-h-[340px] grid-cols-2 gap-2 p-2">
-              <div className="rounded-xl bg-gradient-to-br from-[#9353d3] to-[#5a3b7d]" />
-              <div className="rounded-xl bg-gradient-to-br from-[#2447c9] to-[#0c2185]" />
-              <div className="col-span-2 rounded-xl bg-[radial-gradient(circle_at_40%_30%,#ffffff,#e6e6e6)]" />
+              <div className="overflow-hidden rounded-xl">
+                <PrismCluster />
+              </div>
+              <div className="overflow-hidden rounded-xl">
+                <GlassOrb />
+              </div>
+              <div className="col-span-2 overflow-hidden rounded-xl">
+                <Photo src="/assets/images/premium/particles.jpg" alt="" className="h-full min-h-[160px] w-full" />
+              </div>
             </div>
           </div>
 
@@ -230,25 +241,29 @@ export default function PremiumLightPage() {
         </Reveal>
 
         <Stagger className="mt-10 space-y-4">
-          {products.map((p, i) => (
-            <StaggerItem key={p.slug} className="grid items-stretch gap-4 md:grid-cols-[2fr_1fr]">
+          {products.map((p, i) => {
+            // Schéma alterné : l'image occupe toujours la grande colonne (2fr).
+            // Ligne paire → image à gauche ; ligne impaire → image à droite.
+            const imageFirst = i % 2 === 0;
+
+            const image = (
               <div
-                className={`order-1 min-h-[240px] overflow-hidden rounded-2xl p-3 ${
-                  i % 2 === 1 ? "md:order-2" : ""
-                }`}
+                key="img"
+                className="min-h-[300px] overflow-hidden rounded-2xl p-3"
                 style={{ background: productTones[i % productTones.length] }}
               >
                 <Photo
                   src={p.image}
                   alt={p.name}
-                  className="h-full min-h-[216px] w-full rounded-xl"
+                  className="h-full min-h-[276px] w-full rounded-xl"
                 />
               </div>
+            );
 
+            const text = (
               <div
-                className={`order-2 flex flex-col justify-between rounded-2xl bg-[#f6f6f6] p-7 ${
-                  i % 2 === 1 ? "md:order-1" : ""
-                }`}
+                key="txt"
+                className="flex flex-col justify-between rounded-2xl bg-[#f6f6f6] p-7"
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -275,8 +290,19 @@ export default function PremiumLightPage() {
                   <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
-            </StaggerItem>
-          ))}
+            );
+
+            return (
+              <StaggerItem
+                key={p.slug}
+                className={`grid items-stretch gap-4 ${
+                  imageFirst ? "md:grid-cols-[2fr_1fr]" : "md:grid-cols-[1fr_2fr]"
+                }`}
+              >
+                {imageFirst ? [image, text] : [text, image]}
+              </StaggerItem>
+            );
+          })}
         </Stagger>
       </section>
 

@@ -2,8 +2,8 @@ import {
   PatherenFooter,
   PrimaryButton,
   ProjectCta,
-  Photo,
 } from "@/components/(public)/patheren/ui";
+import { MeshAurora, premiumArt } from "@/components/(public)/patheren/PremiumArt";
 import { icons, Star } from "@/components/(public)/patheren/icons";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import type { Offering } from "@/components/(public)/patheren/catalog";
@@ -15,13 +15,6 @@ import { ArrowRight, Check } from "lucide-react";
  * approche en timeline verticale, modules en zig-zag alterné,
  * modèles d'engagement. Animé au scroll (Reveal / Stagger).
  */
-
-const moduleTone: Record<string, string> = {
-  cream: "linear-gradient(135deg,#efeae0,#cfc6b4)",
-  sky: "linear-gradient(135deg,#cfe0ef,#9fb8d2)",
-  peach: "linear-gradient(135deg,#e6d6f2,#c3a3e0)",
-  mono: "linear-gradient(135deg,#3a3a3a,#101010)",
-};
 
 const engagements = [
   {
@@ -79,7 +72,7 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         {/* Bannière large N&B + stat + pills */}
         <Reveal delay={0.15} className="mt-10 px-6 sm:px-10">
           <div className="relative h-64 overflow-hidden rounded-3xl sm:h-80">
-            <Photo tone="office" className="h-full w-full grayscale" />
+            <MeshAurora variant="aurora" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-5 py-3 backdrop-blur">
               <div className="text-2xl font-extrabold text-[var(--primary)]">
@@ -190,10 +183,9 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
                   className={`relative h-56 overflow-hidden rounded-2xl ${
                     i % 2 ? "md:order-2" : ""
                   }`}
-                  style={{ background: moduleTone[m.tone] ?? moduleTone.cream }}
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.3),transparent_55%)]" />
-                  <span className="absolute left-5 top-5 text-6xl font-extrabold text-white/25">
+                  {premiumArt[i % premiumArt.length]("h-full w-full")}
+                  <span className="absolute left-5 top-5 text-6xl font-extrabold text-white/40">
                     0{i + 1}
                   </span>
                 </div>

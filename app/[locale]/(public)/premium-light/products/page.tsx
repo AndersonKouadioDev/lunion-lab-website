@@ -47,7 +47,7 @@ export default function ProductsIndex() {
             className="group flex flex-col rounded-[28px] bg-white p-7 transition hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.3)]"
           >
             <div className="relative">
-              <Photo tone="team" className="h-44 rounded-2xl grayscale" />
+              <Photo src={p.image} alt={p.name} tone="team" className="h-44 rounded-2xl" />
               <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold backdrop-blur">
                 <span
                   className={`size-1.5 rounded-full ${
