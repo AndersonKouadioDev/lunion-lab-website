@@ -37,12 +37,14 @@ type Mega = {
   general: { label: string; href: string }[];
 };
 
+const SOON = (t: string) => `/premium-light/soon?title=${encodeURIComponent(t)}`;
+
 const productsMega: Mega = {
   featured: {
     title: "Products",
     desc: "One platform to book, protect and teach.",
     primary: { label: "Explore products", href: "/premium-light/products" },
-    secondary: { label: "Free trial", href: "#" },
+    secondary: { label: "Free trial", href: SOON("Free trial") },
   },
   cards: products.map((p) => ({
     title: p.name,
@@ -50,15 +52,15 @@ const productsMega: Mega = {
     href: `/premium-light/products/${p.slug}`,
   })),
   start: [
-    { over: "Get funded", label: "How Lunion works", href: "#" },
-    { over: "Trade your funds", label: "See pricing", href: "#", ext: true },
+    { over: "Get started", label: "How Lunion works", href: SOON("How Lunion works") },
+    { over: "Plans", label: "See pricing", href: SOON("Pricing"), ext: true },
   ],
   general: [
-    { label: "Features", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "What's allowed", href: "#" },
-    { label: "FAQs", href: "#" },
+    { label: "Features", href: SOON("Features") },
+    { label: "Integrations", href: SOON("Integrations") },
+    { label: "Security", href: SOON("Security") },
+    { label: "What's allowed", href: SOON("What's allowed") },
+    { label: "FAQs", href: SOON("FAQs") },
   ],
 };
 
@@ -67,7 +69,7 @@ const servicesMega: Mega = {
     title: "Services",
     desc: "From idea to launch, the full craft.",
     primary: { label: "Explore services", href: "/premium-light/services" },
-    secondary: { label: "Get a quote", href: "#" },
+    secondary: { label: "Get a quote", href: "/premium-light/contact" },
   },
   cards: services.map((s) => ({
     title: s.name,
@@ -75,15 +77,15 @@ const servicesMega: Mega = {
     href: `/premium-light/services/${s.slug}`,
   })),
   start: [
-    { over: "Start a project", label: "Our process", href: "#" },
-    { over: "Work with us", label: "Book a call", href: "#", ext: true },
+    { over: "Start a project", label: "Our process", href: SOON("Our process") },
+    { over: "Work with us", label: "Book a call", href: "/premium-light/contact", ext: true },
   ],
   general: [
-    { label: "Process", href: "#" },
-    { label: "Technologies", href: "#" },
-    { label: "Case studies", href: "#" },
-    { label: "Pricing", href: "#" },
-    { label: "FAQs", href: "#" },
+    { label: "Process", href: SOON("Process") },
+    { label: "Technologies", href: SOON("Technologies") },
+    { label: "Case studies", href: "/premium-light/portfolio" },
+    { label: "Pricing", href: SOON("Pricing") },
+    { label: "FAQs", href: SOON("FAQs") },
   ],
 };
 
@@ -91,24 +93,24 @@ const resourcesMega: Mega = {
   featured: {
     title: "Community",
     desc: "Join the Lunion community and stay connected.",
-    primary: { label: "Discord", href: "#" },
-    secondary: { label: "Telegram", href: "#" },
+    primary: { label: "Discord", href: SOON("Discord") },
+    secondary: { label: "Telegram", href: SOON("Telegram") },
   },
   cards: [
-    { title: "Blog", desc: "Articles & product news", href: "#" },
-    { title: "Careers", desc: "Join the team", href: "#" },
-    { title: "Partners", desc: "Let's build together", href: "#" },
-    { title: "Events", desc: "Meet us near you", href: "#" },
+    { title: "Blog", desc: "Articles & product news", href: SOON("Blog") },
+    { title: "Careers", desc: "Join the team", href: SOON("Careers") },
+    { title: "Partners", desc: "Let's build together", href: SOON("Partners") },
+    { title: "Events", desc: "Meet us near you", href: SOON("Events") },
   ],
   start: [
-    { over: "Company", label: "About us", href: "/premium-light/about" },
-    { over: "Get in touch", label: "Contact", href: "#" },
+    { over: "Get in touch", label: "Contact", href: "/premium-light/contact" },
+    { over: "Help", label: "Help center", href: SOON("Help center") },
   ],
   general: [
-    { label: "Documentation", href: "#" },
-    { label: "Support", href: "#" },
-    { label: "Status", href: "#" },
-    { label: "Changelog", href: "#" },
+    { label: "Documentation", href: SOON("Documentation") },
+    { label: "Support", href: SOON("Support") },
+    { label: "Status", href: SOON("Status") },
+    { label: "Changelog", href: SOON("Changelog") },
   ],
 };
 
@@ -119,6 +121,7 @@ type NavItem =
 const NAV: NavItem[] = [
   { key: "products", label: "Products", mega: productsMega },
   { key: "services", label: "Services", mega: servicesMega },
+  { key: "portfolio", label: "Portfolio", href: "/premium-light/portfolio" },
   { key: "about", label: "About Us", href: "/premium-light/about" },
   { key: "resources", label: "More", mega: resourcesMega },
 ];
@@ -313,7 +316,7 @@ export function PatherenMegaNav() {
               <ChevronDown className="size-4" />
             </button>
             <Link
-              href="#"
+              href={SOON("Login")}
               className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary-600)]"
             >
               Connexion
@@ -412,7 +415,7 @@ export function PatherenMegaNav() {
                 ))}
               </div>
               <Link
-                href="#"
+                href={SOON("Login")}
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white"
               >
