@@ -17,8 +17,17 @@ import {
 } from "@/components/(public)/patheren/PremiumArt";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { TechStack } from "@/components/(public)/patheren/TechStack";
+import { MorphingText } from "@/components/magicui/morphing-text";
+import { NumberTicker } from "@/components/magicui/number-ticker";
+import { OrbitingCircles } from "@/components/magicui/orbiting-circles";
+import { Terminal, TypingAnimation, AnimatedSpan } from "@/components/magicui/terminal";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { GridPattern } from "@/components/magicui/grid-pattern";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { Meteors } from "@/components/magicui/meteors";
 import { products, statusLabel } from "@/components/(public)/patheren/catalog";
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * Premium Light — Home "Lunion Lab" (thème clair, accent primaire du projet).
@@ -64,6 +73,24 @@ const productTones = [
   "linear-gradient(135deg,#e6def5,#cbb8ea)",
 ];
 
+// Mots qui défilent en morphing sur la 2e ligne du titre hero.
+const heroWords = [
+  "notre code",
+  "notre design",
+  "notre talent",
+  "notre énergie",
+  "notre vision",
+];
+
+// Logo techno dans une pastille blanche, pour l'orbite « Notre stack ».
+function TechIcon({ src }: { src: string }) {
+  return (
+    <span className="flex size-full items-center justify-center rounded-full bg-white p-1 shadow-sm ring-1 ring-black/5">
+      <Image src={src} alt="" width={22} height={22} className="size-full rounded-full object-contain" />
+    </span>
+  );
+}
+
 export default function PremiumLightPage() {
   return (
     <main
@@ -76,39 +103,115 @@ export default function PremiumLightPage() {
         <Reveal className="mx-auto max-w-4xl px-6 pt-8 text-center sm:pt-14">
           <h1 className="text-5xl font-extrabold leading-[0.95] tracking-tighter sm:text-8xl">
             Vos idées,
-            <br />
-            notre code
+            {/* Ligne 2 animée (morphing) : conservée en sr-only pour le SEO/l'accessibilité */}
+            <span className="sr-only"> notre code</span>
           </h1>
+          <MorphingText
+            texts={heroWords}
+            className="mx-auto mt-1 h-[3rem] max-w-5xl text-5xl font-extrabold leading-[0.95] tracking-tighter text-[#101010] sm:mt-2 sm:h-[6rem] sm:text-8xl"
+          />
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
             Nous concevons des solutions web et mobiles sur-mesure qui accélèrent
             la transformation digitale des entreprises africaines.
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 px-6 sm:grid-cols-4">
-          <div className="rounded-2xl bg-[#f4f4f4] p-6">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-5">
+        <Reveal delay={0.15} className="mx-auto mt-12 grid max-w-4xl grid-cols-2 items-stretch gap-4 px-6 sm:grid-cols-4">
+          {/* 1 — Chiffres animés (NumberTicker) */}
+          <div className="flex min-h-[200px] items-center rounded-2xl bg-[#f4f4f4] p-6">
+            <div className="grid w-full grid-cols-2 gap-x-5 gap-y-6">
               {[
-                ["+10", "Projets livrés"],
-                ["+10", "Produits maison"],
-                ["11", "Marques accompagnées"],
-                ["2024", "Année de création"],
-              ].map(([num, lbl]) => (
-                <div key={lbl}>
-                  <div className="text-2xl font-extrabold">{num}</div>
-                  <div className="text-[11px] text-[#9a9a9a]">{lbl}</div>
+                { v: 10, suffix: "+", lbl: "Projets livrés", plain: false },
+                { v: 10, suffix: "+", lbl: "Produits maison", plain: false },
+                { v: 11, suffix: "", lbl: "Marques", plain: false },
+                { v: 2024, suffix: "", lbl: "Depuis", plain: true },
+              ].map((s) => (
+                <div key={s.lbl}>
+                  <div className="flex items-baseline text-2xl font-extrabold tracking-tight text-[#101010]">
+                    {s.plain ? (
+                      s.v
+                    ) : (
+                      <NumberTicker value={s.v} className="text-[#101010]" />
+                    )}
+                    {s.suffix}
+                  </div>
+                  <div className="mt-1 text-[11px] leading-tight text-[#9a9a9a]">
+                    {s.lbl}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="min-h-[120px] overflow-hidden rounded-2xl">
-            <GlassOrb />
+
+          {/* 2 — Stack en orbite (savoir-faire) */}
+          <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-2xl bg-[#0e0b1a]">
+            <Meteors number={10} />
+            <Image
+              src="/assets/images/all-img/footer_symbole.png"
+              alt="Lunion Lab"
+              width={30}
+              height={30}
+              className="relative z-10"
+            />
+            <OrbitingCircles radius={34} iconSize={22} duration={16}>
+              <TechIcon src="/assets/images/techno/reactjs.jpeg" />
+              <TechIcon src="/assets/images/techno/next_logo.jpeg" />
+              <TechIcon src="/assets/images/techno/node_logo.jpeg" />
+            </OrbitingCircles>
+            <OrbitingCircles radius={64} iconSize={24} duration={26} reverse>
+              <TechIcon src="/assets/images/techno/flutter.png" />
+              <TechIcon src="/assets/images/techno/python.jpeg" />
+              <TechIcon src="/assets/images/techno/tailwindcss.jpeg" />
+            </OrbitingCircles>
+            <span className="absolute bottom-3 left-3 z-10 text-[10px] font-semibold uppercase tracking-widest text-white/50">
+              Notre stack
+            </span>
+            <BorderBeam size={55} duration={7} colorFrom="#8b5cf6" colorTo="#3b82f6" />
           </div>
-          <div className="flex items-center justify-center rounded-2xl bg-[#f4f4f4] p-6">
-            <PrimaryButton className="w-full justify-center">Démarrer un projet</PrimaryButton>
+
+          {/* 3 — CTA (blueprint de labo + ShimmerButton) */}
+          <div className="relative flex min-h-[200px] flex-col justify-between overflow-hidden rounded-2xl bg-[#f4f4f4] p-5">
+            <GridPattern
+              width={22}
+              height={22}
+              className="absolute inset-0 h-full w-full fill-[#704a9b]/10 stroke-[#704a9b]/15 [mask-image:radial-gradient(200px_circle_at_50%_40%,white,transparent)]"
+            />
+            <div className="relative text-sm font-bold leading-tight text-[#101010]">
+              Un projet
+              <br />
+              en tête ?
+            </div>
+            <ShimmerButton
+              background="var(--primary)"
+              className="relative w-full px-4 py-2.5 text-sm font-semibold shadow-[0_12px_30px_-10px_rgba(112,74,155,0.6)]"
+            >
+              Démarrer un projet
+            </ShimmerButton>
           </div>
-          <div className="min-h-[120px] overflow-hidden rounded-2xl">
-            <MeshAurora variant="aurora" />
+
+          {/* 4 — Terminal (notre code se déploie) */}
+          <div className="relative min-h-[200px] overflow-hidden rounded-2xl">
+            <Terminal
+              startOnView
+              className="h-full max-h-none w-full max-w-none border-white/10 bg-[#0e0b1a]"
+            >
+              <TypingAnimation className="text-xs text-white/70">
+                $ lunion build
+              </TypingAnimation>
+              <AnimatedSpan delay={1000} className="text-xs text-emerald-400">
+                ✔ Compilé sans erreur
+              </AnimatedSpan>
+              <AnimatedSpan delay={1600} className="text-xs text-emerald-400">
+                ✔ 89 pages générées
+              </AnimatedSpan>
+              <AnimatedSpan delay={2200} className="text-xs text-sky-400">
+                → Déploiement en cours…
+              </AnimatedSpan>
+              <AnimatedSpan delay={2900} className="text-xs text-white/60">
+                Prêt en 0.7s ✨
+              </AnimatedSpan>
+            </Terminal>
+            <BorderBeam size={55} duration={7} colorFrom="#3b82f6" colorTo="#8b5cf6" />
           </div>
         </Reveal>
       </section>
