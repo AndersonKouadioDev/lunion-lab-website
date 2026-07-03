@@ -196,6 +196,7 @@ export const offerings: Offering[] = [
   {
     slug: "web-development",
     kind: "service",
+    image: "/assets/images/services/sub/web-development.jpg",
     name: "Développement web",
     category: "Développement web",
     tagline: "Des sites et applications web performants",
@@ -230,6 +231,7 @@ export const offerings: Offering[] = [
   {
     slug: "mobile-development",
     kind: "service",
+    image: "/assets/images/services/sub/mobile-development.jpg",
     name: "Développement mobile",
     category: "Développement mobile",
     tagline: "Des applications mobiles natives et cross-plateforme",
@@ -264,6 +266,7 @@ export const offerings: Offering[] = [
   {
     slug: "ui-ux-design",
     kind: "service",
+    image: "/assets/images/services/sub/ui-ux-design.jpg",
     name: "UI/UX Design",
     category: "UI/UX Design",
     tagline: "Des interfaces qui séduisent et qui convertissent",

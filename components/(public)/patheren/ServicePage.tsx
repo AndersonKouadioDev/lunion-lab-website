@@ -1,11 +1,14 @@
+import Image from "next/image";
 import {
   PatherenFooter,
   PrimaryButton,
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
-import { MeshAurora, premiumArt } from "@/components/(public)/patheren/PremiumArt";
+import { MeshAurora } from "@/components/(public)/patheren/PremiumArt";
 import { icons, Star } from "@/components/(public)/patheren/icons";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
+import { Breadcrumb } from "@/components/(public)/patheren/Breadcrumb";
+import { getParentGrandService } from "@/components/(public)/patheren/grandServices";
 import type { Offering } from "@/components/(public)/patheren/catalog";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -15,6 +18,34 @@ import { ArrowRight, Check } from "lucide-react";
  * approche en timeline verticale, modules en zig-zag alterné,
  * modèles d'engagement. Animé au scroll (Reveal / Stagger).
  */
+
+// Panneaux concrets pour les modules (fini l'abstrait) : dégradé de teinte,
+// grille discrète, icône du métier en filigrane et numéro d'étape.
+const moduleTones: Record<
+  string,
+  { bg: string; ink: string; num: string }
+> = {
+  cream: {
+    bg: "bg-gradient-to-br from-[#f4ede2] to-[#eaddca]",
+    ink: "text-[var(--primary)]/20",
+    num: "text-black/[0.06]",
+  },
+  mono: {
+    bg: "bg-gradient-to-br from-[#171717] to-[#2b2b2b]",
+    ink: "text-white/15",
+    num: "text-white/10",
+  },
+  peach: {
+    bg: "bg-gradient-to-br from-[#f8e8df] to-[#f2d1c0]",
+    ink: "text-[var(--primary)]/20",
+    num: "text-black/[0.06]",
+  },
+  sky: {
+    bg: "bg-gradient-to-br from-[#e8f0fa] to-[#d2e1f4]",
+    ink: "text-[var(--primary)]/20",
+    num: "text-black/[0.06]",
+  },
+};
 
 const engagements = [
   {
@@ -42,6 +73,15 @@ const engagements = [
 ];
 
 export function ServicePage({ offering: o }: { offering: Offering }) {
+  const parent = getParentGrandService(o.slug);
+  const crumbs = [
+    { label: "Accueil", href: "/" },
+    { label: "Services", href: "/services" },
+    ...(parent
+      ? [{ label: parent.name, href: `/services/${parent.slug}` }]
+      : []),
+    { label: o.name },
+  ];
   return (
     <main
       className="mx-auto max-w-[1680px] px-4 pb-4 text-[#101010]"
@@ -49,8 +89,9 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
     >
       {/* ==================== HERO — centré + bannière large ==================== */}
       <section className="overflow-hidden rounded-b-[36px] bg-white pb-10">
+        <Breadcrumb items={crumbs} />
 
-        <Reveal className="mx-auto max-w-3xl px-6 pt-8 text-center sm:pt-12">
+        <Reveal className="mx-auto max-w-3xl px-6 pt-6 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1.5 text-xs font-medium text-[#555]">
             <Star className="size-3.5 text-[var(--primary)]" />
             Service : {o.category}
@@ -72,8 +113,19 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         {/* Bannière large N&B + stat + pills */}
         <Reveal delay={0.15} className="mt-10 px-6 sm:px-10">
           <div className="relative h-64 overflow-hidden rounded-3xl sm:h-80">
-            <MeshAurora variant="aurora" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            {o.image ? (
+              <Image
+                src={o.image}
+                alt={o.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1600px"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <MeshAurora variant="aurora" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-5 py-3 backdrop-blur">
               <div className="text-2xl font-extrabold text-[var(--primary)]">
                 {o.growth.value}
@@ -174,20 +226,31 @@ export function ServicePage({ offering: o }: { offering: Offering }) {
         <Stagger className="mt-10 space-y-10">
           {o.modules.map((m, i) => {
             const Icon = icons[o.features[i % o.features.length].icon];
+            const tone = moduleTones[m.tone] ?? moduleTones.cream;
             return (
               <StaggerItem
                 key={m.title}
                 className="grid gap-8 md:grid-cols-2 md:items-center"
               >
                 <div
-                  className={`relative h-56 overflow-hidden rounded-2xl ${
-                    i % 2 ? "md:order-2" : ""
-                  }`}
+                  className={`relative flex h-56 items-center justify-center overflow-hidden rounded-2xl ${
+                    tone.bg
+                  } ${i % 2 ? "md:order-2" : ""}`}
                 >
-                  {premiumArt[i % premiumArt.length]("h-full w-full")}
-                  <span className="absolute left-5 top-5 text-6xl font-extrabold text-white/40">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-70"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
+                      backgroundSize: "18px 18px",
+                    }}
+                  />
+                  <span
+                    className={`absolute left-6 top-3 text-7xl font-extrabold leading-none ${tone.num}`}
+                  >
                     0{i + 1}
                   </span>
+                  <Icon className={`relative size-24 ${tone.ink}`} strokeWidth={1.25} />
                 </div>
                 <div className={i % 2 ? "md:order-1" : ""}>
                   <span className="grid size-11 place-items-center rounded-xl bg-[#f2f2f2] text-[var(--primary)]">

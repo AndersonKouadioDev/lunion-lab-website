@@ -29,18 +29,21 @@ const navLinks: [string, string][] = [
 
 export function PrimaryButton({
   children,
+  href = "/contact",
   className = "",
 }: {
   children: React.ReactNode;
+  href?: string;
   className?: string;
 }) {
   return (
-    <button
+    <Link
+      href={href}
       className={`group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(112,74,155,0.45)] transition hover:bg-[var(--primary-600)] ${className}`}
     >
       {children}
       <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-    </button>
+    </Link>
   );
 }
 
@@ -332,10 +335,13 @@ export function ProjectCta() {
           <br />
           à votre projet ?
         </h2>
-        <button className="group inline-flex items-center gap-2 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--primary)]">
+        <Link
+          href="/contact"
+          className="group inline-flex items-center gap-2 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--primary)]"
+        >
           Prendre un rendez-vous
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </button>
+        </Link>
       </div>
     </section>
   );
