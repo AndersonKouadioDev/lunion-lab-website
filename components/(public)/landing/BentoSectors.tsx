@@ -139,7 +139,7 @@ export function BentoSectors() {
             className="relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
             aria-hidden="true"
           >
-            <div className="flex w-max items-center gap-4 animate-marquee">
+            <div className="flex w-max items-center gap-4 animate-marquee-legacy">
               {[...TECHNOLOGIES, ...TECHNOLOGIES].map((tech, index) => (
                 <div
                   key={`${tech.name}-${index}`}

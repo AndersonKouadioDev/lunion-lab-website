@@ -9,12 +9,7 @@ import {
   FaqSection,
   ProjectCta,
 } from "@/components/(public)/patheren/ui";
-import {
-  MeshAurora,
-  GlassOrb,
-  Rings,
-  PrismCluster,
-} from "@/components/(public)/patheren/PremiumArt";
+import { ServicesShowcase } from "@/components/(public)/patheren/ServiceBento";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { TechStack } from "@/components/(public)/patheren/TechStack";
 import { MorphingText } from "@/components/magicui/morphing-text";
@@ -25,6 +20,7 @@ import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { GridPattern } from "@/components/magicui/grid-pattern";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Meteors } from "@/components/magicui/meteors";
+import { RealisationsShowcase } from "@/components/(public)/patheren/RealisationsShowcase";
 import { products, statusLabel } from "@/components/(public)/patheren/catalog";
 import Link from "next/link";
 import Image from "next/image";
@@ -34,30 +30,6 @@ import Image from "next/image";
  * Enrichie de sections inspirées de Woogency : marquee clients, chips
  * industries, section résultats data-driven et FAQ.
  */
-
-const services = [
-  {
-    n: "01",
-    title: "Transformation digitale",
-    desc: "Nous transformons vos défis en opportunités grâce à des solutions technologiques sur-mesure, pensées pour votre métier.",
-    active: true,
-  },
-  {
-    n: "02",
-    title: "UI/UX Design",
-    desc: "Des interfaces qui séduisent et des parcours qui convertissent, au service de vos utilisateurs comme de vos objectifs.",
-  },
-  {
-    n: "03",
-    title: "Branding",
-    desc: "Un logo percutant, une identité visuelle forte et un univers cohérent pour marquer durablement les esprits.",
-  },
-  {
-    n: "04",
-    title: "Social Media",
-    desc: "Nous transformons vos réseaux sociaux en véritables leviers de croissance et de visibilité.",
-  },
-];
 
 const faqs = [
   "Quels services proposez-vous ?",
@@ -221,23 +193,10 @@ export default function PremiumLightPage() {
         <LogoMarquee />
       </Reveal>
 
-      {/* ============================ GALERIE ============================ */}
-      <section className="mt-4">
-        <Stagger className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <Photo src="/assets/images/premium/aurora.jpg" alt="" className="h-full w-full" />
-          </StaggerItem>
-          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <MeshAurora variant="violet" />
-          </StaggerItem>
-          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <Rings />
-          </StaggerItem>
-          <StaggerItem className="aspect-[4/3] overflow-hidden rounded-2xl">
-            <Photo src="/assets/images/premium/streaks.jpg" alt="" className="h-full w-full" />
-          </StaggerItem>
-        </Stagger>
-      </section>
+      {/* ============================ NOS RÉALISATIONS ============================ */}
+      <Reveal>
+        <RealisationsShowcase />
+      </Reveal>
 
       {/* ============================ BANNIÈRE SOMBRE ============================ */}
       <section className="mt-4 overflow-hidden rounded-[28px] bg-[#101010] p-8 text-white sm:p-12">
@@ -271,51 +230,8 @@ export default function PremiumLightPage() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-10 grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="overflow-hidden rounded-2xl bg-[#f2f2f2]">
-            <div className="grid h-full min-h-[340px] grid-cols-2 gap-2 p-2">
-              <div className="overflow-hidden rounded-xl">
-                <PrismCluster />
-              </div>
-              <div className="overflow-hidden rounded-xl">
-                <GlassOrb />
-              </div>
-              <div className="col-span-2 overflow-hidden rounded-xl">
-                <Photo src="/assets/images/premium/particles.jpg" alt="" className="h-full min-h-[160px] w-full" />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            {services.map((s, i) => (
-              <div
-                key={s.title}
-                className={`flex gap-5 py-6 ${
-                  i !== services.length - 1 ? "border-b border-black/10" : ""
-                }`}
-              >
-                <span
-                  className={`text-lg font-extrabold ${
-                    s.active ? "text-[var(--primary)]" : "text-[#c9c9c9]"
-                  }`}
-                >
-                  {s.n}
-                </span>
-                <div>
-                  <h3
-                    className={`text-lg font-bold ${
-                      s.active ? "text-[var(--primary)]" : "text-[#101010]"
-                    }`}
-                  >
-                    {s.title}
-                  </h3>
-                  <p className="mt-1 max-w-md text-sm leading-relaxed text-[#9a9a9a]">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <Reveal delay={0.1} className="mt-10">
+          <ServicesShowcase />
         </Reveal>
       </section>
 
@@ -352,13 +268,15 @@ export default function PremiumLightPage() {
             const image = (
               <div
                 key="img"
-                className="min-h-[300px] overflow-hidden rounded-2xl p-3"
+                className={`aspect-[16/10] overflow-hidden rounded-2xl p-3 md:aspect-auto md:min-h-[300px] ${
+                  imageFirst ? "" : "md:order-last"
+                }`}
                 style={{ background: productTones[i % productTones.length] }}
               >
                 <Photo
                   src={p.image}
                   alt={p.name}
-                  className="h-full min-h-[276px] w-full rounded-xl"
+                  className="h-full w-full rounded-xl"
                 />
               </div>
             );
@@ -366,7 +284,9 @@ export default function PremiumLightPage() {
             const text = (
               <div
                 key="txt"
-                className="flex flex-col justify-between rounded-2xl bg-[#f6f6f6] p-7"
+                className={`flex flex-col justify-between rounded-2xl bg-[#f6f6f6] p-7 ${
+                  imageFirst ? "" : "md:order-first"
+                }`}
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -402,7 +322,8 @@ export default function PremiumLightPage() {
                   imageFirst ? "md:grid-cols-[2fr_1fr]" : "md:grid-cols-[1fr_2fr]"
                 }`}
               >
-                {imageFirst ? [image, text] : [text, image]}
+                {image}
+                {text}
               </StaggerItem>
             );
           })}

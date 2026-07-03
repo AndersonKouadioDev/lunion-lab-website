@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Marquee } from "@/components/magicui/marquee";
 import {
   ArrowRight,
   Plus,
@@ -167,17 +168,37 @@ export function Pouch({
   );
 }
 
-/* --- Marquee de logos clients --- */
+/* --- Marquee clients (noms, composant Marquee Magic UI) --- */
 export function LogoMarquee() {
-  const clients = ["Turbo Delivery", "Chicken Nation", "Ambassade du Tchad", "Fernand Dedeh", "Catholikia", "Luxury Home Abidjan"];
+  const clients = [
+    "Turbo Delivery",
+    "Chicken Nation",
+    "Ambassade du Tchad",
+    "Fernand Dedeh",
+    "Catholikia",
+    "Luxury Home Abidjan",
+    "Wacanda Store",
+    "FC OSA",
+    "Brin Service Clean",
+  ];
   return (
-    <section className="mt-4 rounded-[28px] bg-white px-8 py-6 sm:px-12">
-      <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 text-lg font-bold text-[#c2c2c2]">
-        {clients.map((c) => (
-          <span key={c} className="tracking-tight transition hover:text-[var(--primary)]">
-            {c}
-          </span>
-        ))}
+    <section className="mt-4 overflow-hidden rounded-[28px] bg-white px-8 py-7 sm:px-12">
+      <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-[#b0b0b0]">
+        Ils nous font confiance
+      </p>
+      <div className="relative">
+        <Marquee pauseOnHover className="[--duration:32s] [--gap:3.5rem]">
+          {clients.map((c) => (
+            <span
+              key={c}
+              className="cursor-default whitespace-nowrap text-lg font-bold tracking-tight text-[#c2c2c2] transition-colors hover:text-[var(--primary)] sm:text-xl"
+            >
+              {c}
+            </span>
+          ))}
+        </Marquee>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent" />
       </div>
     </section>
   );
@@ -200,7 +221,12 @@ export function ResultsSection() {
         </p>
       </div>
 
-      <Photo tone="team" className="mx-auto mt-8 h-56 max-w-4xl rounded-2xl sm:h-72" />
+      <Photo
+        tone="team"
+        src="/assets/images/all-img/team.jpg"
+        alt="L'équipe Lunion Lab analyse les résultats d'un projet"
+        className="mx-auto mt-8 h-56 max-w-4xl rounded-2xl sm:h-72"
+      />
 
       <div className="mx-auto mt-4 grid max-w-4xl gap-4 md:grid-cols-[1.1fr_1fr_1.1fr_auto] md:items-stretch">
         <div className="rounded-2xl bg-[#f6f6f6] p-5">
@@ -238,7 +264,7 @@ export function ResultsSection() {
           <p className="text-sm font-bold leading-snug">
             Une équipe experte à vos côtés à chaque étape
           </p>
-          <Photo tone="office" className="mt-4 h-20 rounded-xl" src="/assets/images/all-img/team.jpg" alt="Équipe Lunion Lab" />
+          <Photo tone="office" className="mt-4 h-20 rounded-xl" src="/assets/images/services/branding-alt.jpg" alt="Collaboration avec l'équipe Lunion Lab" />
         </div>
 
         <div className="flex items-center md:items-end">
