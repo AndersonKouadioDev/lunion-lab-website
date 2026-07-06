@@ -2,49 +2,178 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { Safari } from "@/components/magicui/safari";
+import { Iphone } from "@/components/magicui/iphone";
 
 /**
- * Grille de projets filtrable (theme premium-light) pour Lunion Lab.
- * Images reelles du portfolio via next/image, avec repli sur un degrade.
+ * Grille de projets filtrable (theme premium-light).
+ * Chaque projet est presente dans son vrai support :
+ *   - navigateur Safari pour le web
+ *   - iPhone pour le mobile
+ * posé sur une scène colorée. Filtres Tous / Web / Mobile.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-type Cat = "web" | "mobile" | "institutionnel" | "ecommerce" | "fintech";
+type Device = "web" | "mobile";
 
 interface Project {
   title: string;
-  category: string;
-  cat: Cat;
+  sector: string;
+  device: Device;
   desc: string;
+  img: string;
   tone: string;
-  image?: string;
-  span?: string;
+  url?: string; // affiché dans la barre Safari + lien externe
+  href?: string; // destination du clic
 }
 
-const FILTERS: { id: "all" | Cat; label: string }[] = [
+const FILTERS: { id: "all" | Device; label: string }[] = [
   { id: "all", label: "Tous" },
   { id: "web", label: "Web" },
   { id: "mobile", label: "Mobile" },
-  { id: "institutionnel", label: "Institutionnel" },
-  { id: "ecommerce", label: "E-commerce" },
-  { id: "fintech", label: "Fintech" },
 ];
 
 const PROJECTS: Project[] = [
-  { title: "Turbo Delivery", category: "Livraison / Mobile", cat: "mobile", desc: "Service de livraison express reliant coursiers et partenaires, avec suivi des colis en temps réel sur web et mobile.", tone: "linear-gradient(135deg,#7d5aa8,#43306e)", image: "/assets/images/all-img/tubo_system.png", span: "lg:col-span-2" },
-  { title: "Chicken Nation", category: "Restauration / Mobile", cat: "mobile", desc: "L'application du fast-food 100% ivoirien : commande, livraison, retrait sur place et programme de fidélité.", tone: "linear-gradient(135deg,#c96a3a,#8a3f1e)", image: "/assets/images/portolios/chiken.png" },
-  { title: "Ambassade du Tchad", category: "Institutionnel / Web", cat: "institutionnel", desc: "Plateforme consulaire en ligne : prise de rendez-vous, suivi des demandes de visa et informations aux citoyens.", tone: "linear-gradient(135deg,#2447c9,#0c2185)", image: "/assets/images/portolios/ambassades.png" },
-  { title: "Fernand Dedeh", category: "Presse / Web", cat: "web", desc: "Média en ligne au service de l'accès à l'information et de la liberté d'expression en Côte d'Ivoire.", tone: "linear-gradient(135deg,#178a7a,#0f5a50)", image: "/assets/images/portolios/fdes.png" },
-  { title: "Catholikia", category: "Média / Web", cat: "web", desc: "Plateforme de ressources et d'actualités pour la communauté catholique en Côte d'Ivoire et dans le monde.", tone: "linear-gradient(135deg,#5a53c9,#2f2a80)", image: "/assets/images/portfolio/catholikia.png" },
-  { title: "Luxury Home Abidjan", category: "Immobilier / Web", cat: "web", desc: "Vitrine immobilière haut de gamme offrant une sélection exclusive de biens de prestige.", tone: "linear-gradient(135deg,#3a3a3a,#101010)", image: "/assets/images/portolios/luxury.png", span: "lg:col-span-2" },
+  {
+    title: "Ambassade du Tchad",
+    sector: "Institutionnel",
+    device: "web",
+    desc: "Plateforme consulaire en ligne : prise de rendez-vous, suivi des demandes de visa et informations aux citoyens.",
+    img: "/assets/images/portfolio/ambassade.png",
+    url: "ambassade-tchad.ci",
+    href: "https://ambassade-tchad.ci",
+    tone: "linear-gradient(135deg,#2a52d6,#0c2185)",
+  },
+  {
+    title: "Turbo Delivery",
+    sector: "Livraison",
+    device: "mobile",
+    desc: "Application de livraison express : commande, paiement mobile et suivi des courses en temps réel.",
+    img: "/assets/images/portfolio/app_wallet.png",
+    href: "/contact",
+    tone: "linear-gradient(135deg,#6d4aa0,#2f1e52)",
+  },
+  {
+    title: "Luxury Home Abidjan",
+    sector: "Immobilier",
+    device: "web",
+    desc: "Vitrine immobilière haut de gamme offrant une sélection exclusive de biens de prestige.",
+    img: "/assets/images/portfolio/luxury.png",
+    url: "luxuryhomeabidjan.com",
+    href: "https://luxuryhomeabidjan.com",
+    tone: "linear-gradient(135deg,#3a3a3a,#0d0d0d)",
+  },
+  {
+    title: "Wacanda Store",
+    sector: "E-commerce",
+    device: "web",
+    desc: "Boutique en ligne fluide et sécurisée pour vendre, gérer un catalogue et suivre les commandes.",
+    img: "/assets/images/portfolio/store.png",
+    url: "wacanda-store.com",
+    href: "https://wacanda-store.com",
+    tone: "linear-gradient(135deg,#7d5aa8,#43306e)",
+  },
+  {
+    title: "Lunion Meet",
+    sector: "Visioconférence",
+    device: "mobile",
+    desc: "Application d'appels audio et vidéo de groupe, prête à l'emploi et intégrable partout.",
+    img: "/assets/images/portfolio/meet_mobile.png",
+    href: "/contact",
+    tone: "linear-gradient(135deg,#178a7a,#0e5049)",
+  },
+  {
+    title: "Fernand Dedeh",
+    sector: "Presse",
+    device: "web",
+    desc: "Média en ligne au service de l'accès à l'information et de la liberté d'expression en Côte d'Ivoire.",
+    img: "/assets/images/portfolio/fdedeh_info.png",
+    url: "fernanddedeh.info",
+    href: "https://fernanddedeh.info",
+    tone: "linear-gradient(135deg,#5a53c9,#2f2a80)",
+  },
+  {
+    title: "Brin Service Clean",
+    sector: "Services / Nettoyage",
+    device: "web",
+    desc: "Site vitrine et réservation en ligne pour une entreprise de nettoyage professionnel.",
+    img: "/assets/images/portfolio/brin.png",
+    url: "brinserviceclean.com",
+    href: "https://brinserviceclean.com",
+    tone: "linear-gradient(135deg,#d6336c,#8a1e46)",
+  },
 ];
 
+// Deux iPhones côte à côte, inclinés de part et d'autre, avec profondeur.
+function MobileDuo({ img }: { img: string }) {
+  return (
+    <div className="relative flex w-full items-center justify-center gap-3 sm:gap-4">
+      <Iphone
+        src={img}
+        className="w-[42%] max-w-[148px] translate-y-3 -rotate-[9deg] drop-shadow-2xl transition-transform duration-500 group-hover:-translate-x-1.5 group-hover:-rotate-[11deg]"
+      />
+      <Iphone
+        src={img}
+        className="relative z-10 w-[42%] max-w-[148px] -translate-y-2 rotate-[9deg] drop-shadow-2xl transition-transform duration-500 group-hover:translate-x-1.5 group-hover:rotate-[11deg]"
+      />
+    </div>
+  );
+}
+
+function CardInner({ p }: { p: Project }) {
+  return (
+    <div className="flex h-full flex-col overflow-hidden rounded-3xl ring-1 ring-black/5 transition duration-300 group-hover:ring-[color-mix(in_srgb,var(--primary)_35%,transparent)]">
+      {/* Scène colorée avec le support (Safari / iPhone) */}
+      <div
+        className="relative flex flex-1 items-center justify-center overflow-hidden px-6 pt-8 sm:px-8"
+        style={{ background: p.tone }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.16]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
+            backgroundSize: "22px 22px",
+          }}
+        />
+        {p.device === "web" ? (
+          <Safari
+            url={p.url}
+            imageSrc={p.img}
+            className="relative w-full translate-y-1 drop-shadow-2xl transition-transform duration-500 group-hover:-translate-y-1"
+          />
+        ) : (
+          <MobileDuo img={p.img} />
+        )}
+      </div>
+
+      {/* Légende */}
+      <div className="flex items-start justify-between gap-3 bg-white p-5">
+        <div className="min-w-0">
+          <span className="text-[11px] font-semibold uppercase tracking-wide text-[var(--primary)]">
+            {p.sector}
+          </span>
+          <h3 className="mt-1 text-lg font-extrabold leading-tight text-[#101010]">
+            {p.title}
+          </h3>
+          <p className="mt-1 text-xs leading-relaxed text-[#8a8a8a] line-clamp-2">
+            {p.desc}
+          </p>
+        </div>
+        <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-full bg-[#f4f2f8] text-[var(--primary)] transition group-hover:bg-[var(--primary)] group-hover:text-white">
+          <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function PortfolioGrid() {
-  const [filter, setFilter] = useState<"all" | Cat>("all");
-  const visible = PROJECTS.filter((p) => filter === "all" || p.cat === filter);
+  const [filter, setFilter] = useState<"all" | Device>("all");
+  const visible = PROJECTS.filter((p) => filter === "all" || p.device === filter);
 
   return (
     <div>
@@ -58,7 +187,7 @@ export function PortfolioGrid() {
               type="button"
               onClick={() => setFilter(f.id)}
               aria-pressed={active}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition sm:px-5 ${
+              className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
                 active
                   ? "border-transparent bg-[var(--primary)] text-white"
                   : "border-black/10 text-[#555] hover:border-[var(--primary)] hover:text-[var(--primary)]"
@@ -72,7 +201,7 @@ export function PortfolioGrid() {
 
       <motion.div
         layout
-        className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-3"
       >
         <AnimatePresence mode="popLayout">
           {visible.map((p) => (
@@ -83,33 +212,22 @@ export function PortfolioGrid() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: -12 }}
               transition={{ duration: 0.4, ease: EASE }}
-              className={`group relative flex h-64 flex-col justify-end overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1 sm:h-72 ${p.span ?? ""}`}
-              style={{ background: p.tone }}
+              className="group"
             >
-              {p.image ? (
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="absolute inset-0 object-cover"
-                />
-              ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-[#101010] backdrop-blur">
-                {p.category}
-              </span>
-              <button className="absolute right-5 top-5 grid size-9 place-items-center rounded-full bg-white/95 text-[#101010] transition group-hover:bg-[var(--primary)] group-hover:text-white">
-                <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
-              </button>
-              <div className="relative">
-                <h3 className="text-2xl font-extrabold tracking-tight text-white">{p.title}</h3>
-                <p className="mt-1 max-w-md text-sm leading-relaxed text-white/75">{p.desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                  Voir le projet
-                  <ArrowUpRight className="size-4" />
-                </span>
-              </div>
+              {p.href?.startsWith("http") ? (
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
+                  <CardInner p={p} />
+                </a>
+              ) : (
+                <Link href={p.href ?? "/contact"} className="block h-full">
+                  <CardInner p={p} />
+                </Link>
+              )}
             </motion.article>
           ))}
         </AnimatePresence>

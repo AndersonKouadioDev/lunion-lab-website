@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/(public)/patheren/motion";
 import { Star } from "@/components/(public)/patheren/icons";
 
@@ -10,16 +9,16 @@ import { Star } from "@/components/(public)/patheren/icons";
  */
 
 const TECHNOLOGIES = [
-  { name: "Next.js", src: "/assets/images/techno/next_logo.jpeg" },
-  { name: "Nest.js", src: "/assets/images/techno/nest_logo.jpeg" },
-  { name: "React", src: "/assets/images/techno/reactjs.jpeg" },
-  { name: "React Native", src: "/assets/images/techno/reactnative.png" },
-  { name: "Flutter", src: "/assets/images/techno/flutter.png" },
-  { name: "Node.js", src: "/assets/images/techno/node_logo.jpeg" },
-  { name: "Tailwind CSS", src: "/assets/images/techno/tailwindcss.jpeg" },
-  { name: "Android", src: "/assets/images/techno/android.png" },
-  { name: "Apple", src: "/assets/images/techno/apple.svg.png" },
-  { name: "Swift", src: "/assets/images/techno/swift.png" },
+  { name: "Next.js", src: "/assets/images/techno/dc-next.svg" },
+  { name: "Nest.js", src: "/assets/images/techno/dc-nest.svg" },
+  { name: "React", src: "/assets/images/techno/dc-react.svg" },
+  { name: "React Native", src: "/assets/images/techno/dc-react.svg" },
+  { name: "Flutter", src: "/assets/images/techno/dc-flutter.svg" },
+  { name: "Node.js", src: "/assets/images/techno/dc-node.svg" },
+  { name: "Tailwind CSS", src: "/assets/images/techno/dc-tailwind.svg" },
+  { name: "Android", src: "/assets/images/techno/dc-android.svg" },
+  { name: "Apple", src: "/assets/images/techno/dc-apple.svg" },
+  { name: "Swift", src: "/assets/images/techno/dc-swift.svg" },
 ];
 
 export function TechStack() {
@@ -44,9 +43,13 @@ export function TechStack() {
             key={t.name}
             className="flex items-center gap-3 rounded-2xl border border-black/5 bg-[#fafafa] px-4 py-3 transition hover:-translate-y-0.5 hover:border-[var(--primary)]/30 hover:bg-white"
           >
-            <span className="relative size-8 shrink-0">
-              <Image src={t.src} alt={t.name} fill sizes="32px" className="object-contain" />
-            </span>
+            <img
+              src={t.src}
+              alt={t.name}
+              width={32}
+              height={32}
+              className="size-8 shrink-0 object-contain"
+            />
             <span className="text-sm font-semibold text-[#101010]">{t.name}</span>
           </StaggerItem>
         ))}

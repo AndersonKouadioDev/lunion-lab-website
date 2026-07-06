@@ -85,9 +85,9 @@ export default function PremiumLightAbout() {
             et l&apos;impact social.
           </p>
           <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 gap-4">
-            <Photo tone="office" src="/assets/images/a-propos/bloc1.jpg" alt="Bureaux Lunion Lab" className="h-40 rounded-2xl sm:h-48" />
+            <Photo tone="office" src="/assets/images/a-propos/hero-collab.jpg" alt="L'équipe Lunion Lab en réunion" className="h-40 rounded-2xl sm:h-48" />
             <Photo tone="team" src="/assets/images/all-img/team.jpg" alt="Équipe Lunion Lab" className="h-48 rounded-2xl sm:h-56" />
-            <Photo tone="meeting" src="/assets/images/a-propos/valeurs.jpg" alt="Nos valeurs" className="h-40 rounded-2xl sm:h-48" />
+            <Photo tone="meeting" src="/assets/images/a-propos/hero-tech.jpg" alt="L'équipe au travail" className="h-40 rounded-2xl sm:h-48" />
           </div>
         </Reveal>
       </section>
@@ -98,7 +98,7 @@ export default function PremiumLightAbout() {
           <h2 className="text-3xl font-extrabold sm:text-4xl">Notre Mission</h2>
         </Reveal>
         <Reveal delay={0.1} className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
-          <Photo tone="meeting" icon="image" src="/assets/images/a-propos/bloc1.jpg" alt="Notre mission chez Lunion Lab" className="h-64 rounded-2xl" />
+          <Photo tone="meeting" icon="image" src="/assets/images/a-propos/mission.jpg" alt="Notre mission chez Lunion Lab" className="h-64 rounded-2xl" />
           <div>
             <p className="text-sm leading-relaxed text-[#9a9a9a]">
               Notre mission est de combler le fossé numérique en Afrique en
@@ -138,7 +138,7 @@ export default function PremiumLightAbout() {
             numériques. Notre vision : devenir la référence du conseil
             technologique et du produit digital sur le continent.
           </p>
-          <Photo tone="team" icon="image" src="/assets/images/a-propos/valeurs.jpg" alt="Nos valeurs" className="h-56 rounded-2xl" />
+          <Photo tone="team" icon="image" src="/assets/images/a-propos/vision.jpg" alt="Notre vision pour l'Afrique numérique" className="h-56 rounded-2xl" />
         </Reveal>
 
         <Stagger className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">

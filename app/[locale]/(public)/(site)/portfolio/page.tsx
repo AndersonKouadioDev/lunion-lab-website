@@ -9,7 +9,7 @@ import { PortfolioGrid } from "@/components/(public)/patheren/PortfolioGrid";
 export const metadata = {
   title: "Portfolio | Lunion Lab",
   description:
-    "Onze projets livrés pour des marques ambitieuses, du web au mobile, de la livraison à la finance.",
+    "Des sites et des applications livrés pour des marques ambitieuses, du web au mobile.",
 };
 
 const stats = [
@@ -38,8 +38,8 @@ export default function PortfolioPage() {
             parlent d&apos;elles-mêmes
           </h1>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#8a8a8a] sm:text-base">
-            Onze projets livrés pour des marques ambitieuses, du web au mobile,
-            de la livraison à la finance.
+            Des sites et des applications livrés pour des marques d&apos;ici, du
+            web au mobile, de l&apos;institutionnel à l&apos;e-commerce.
           </p>
         </Reveal>
 
