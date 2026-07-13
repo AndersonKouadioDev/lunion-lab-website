@@ -2,7 +2,6 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import {
   PatherenFooter,
   PrimaryButton,
-  Photo,
   Stars,
   LogoMarquee,
   ResultsSection,
@@ -21,7 +20,7 @@ import { GridPattern } from "@/components/magicui/grid-pattern";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Meteors } from "@/components/magicui/meteors";
 import { RealisationsShowcase } from "@/components/(public)/patheren/RealisationsShowcase";
-import { products, statusLabel } from "@/components/(public)/patheren/catalog";
+import { products } from "@/components/(public)/patheren/catalog";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -38,12 +37,12 @@ const faqs = [
   "Comment vous contacter ?",
 ];
 
-const productTones = [
-  "linear-gradient(135deg,#efe6f6,#d9c7ea)",
-  "linear-gradient(135deg,#efeae0,#dcd4c4)",
-  "linear-gradient(135deg,#dfe9f2,#c3d4e6)",
-  "linear-gradient(135deg,#e6def5,#cbb8ea)",
-];
+// Bannières marketing par produit (Secu garde sa capture d'écran).
+const productBanners: Record<string, string> = {
+  "lunion-meet": "/assets/images/produits/banner-meet.png",
+  "lunion-booking": "/assets/images/produits/banner-booking.png",
+  "lunion-educ": "/assets/images/produits/banner-educ.png",
+};
 
 // Mots qui défilent en morphing sur la 2e ligne du titre hero.
 const heroWords = [
@@ -259,71 +258,61 @@ export default function PremiumLightPage() {
           </Link>
         </Reveal>
 
-        <Stagger className="mt-10 space-y-4">
-          {products.map((p, i) => {
-            // Schéma alterné : l'image occupe toujours la grande colonne (2fr).
-            // Ligne paire → image à gauche ; ligne impaire → image à droite.
-            const imageFirst = i % 2 === 0;
-
-            const image = (
-              <div
-                key="img"
-                className={`aspect-[16/10] overflow-hidden rounded-2xl p-3 md:aspect-auto md:min-h-[300px] ${
-                  imageFirst ? "" : "md:order-last"
-                }`}
-                style={{ background: productTones[i % productTones.length] }}
-              >
-                <Photo
-                  src={p.image}
-                  alt={p.name}
-                  className="h-full w-full rounded-xl"
-                />
-              </div>
-            );
-
-            const text = (
-              <div
-                key="txt"
-                className={`flex flex-col justify-between rounded-2xl bg-[#f6f6f6] p-7 ${
-                  imageFirst ? "" : "md:order-first"
-                }`}
-              >
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-semibold tracking-widest text-[var(--primary)]">
-                      {p.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold">
-                      <span
-                        className={`size-1.5 rounded-full ${
-                          p.status === "prod" ? "bg-emerald-500" : "bg-amber-500"
-                        }`}
-                      />
-                      {statusLabel[p.status ?? "dev"]}
-                    </span>
-                  </div>
-                  <h3 className="mt-2 text-2xl font-extrabold">{p.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#9a9a9a]">{p.tagline}</p>
-                </div>
+        <Stagger className="mt-10 grid gap-5 sm:grid-cols-2">
+          {products.map((p) => {
+            const banner = productBanners[p.slug];
+            return (
+              <StaggerItem key={p.slug} className="h-full">
                 <Link
                   href={`/products/${p.slug}`}
-                  className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#101010]"
+                  className="group/card flex h-full flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-black/[0.06] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.3)] hover:ring-[color-mix(in_srgb,var(--primary)_35%,transparent)]"
                 >
-                  Découvrir
-                  <ArrowRight className="size-4 text-[var(--primary)] transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </div>
-            );
+                  {/* Bannière (ou capture d'écran pour Secu) */}
+                  {banner ? (
+                    <div className="aspect-[5/2] overflow-hidden bg-[#f4f2f8]">
+                      <Image
+                        src={banner}
+                        alt={p.name}
+                        width={1500}
+                        height={600}
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover/card:scale-[1.03]"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="relative flex aspect-[5/2] items-center justify-center overflow-hidden"
+                      style={{ background: "linear-gradient(120deg,#6d4aa0,#2f1e52)" }}
+                    >
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-[0.14]"
+                        style={{
+                          backgroundImage:
+                            "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
+                          backgroundSize: "22px 22px",
+                        }}
+                      />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="relative max-h-[80%] w-auto max-w-[72%] object-contain drop-shadow-2xl transition-transform duration-500 group-hover/card:scale-[1.03]"
+                      />
+                    </div>
+                  )}
 
-            return (
-              <StaggerItem
-                key={p.slug}
-                className={`grid items-stretch gap-4 ${
-                  imageFirst ? "md:grid-cols-[2fr_1fr]" : "md:grid-cols-[1fr_2fr]"
-                }`}
-              >
-                {image}
-                {text}
+                  {/* Titre + petite description + lien */}
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-xl font-extrabold">{p.name}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-[#8a8a8a]">
+                      {p.tagline}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)]">
+                      Découvrir
+                      <ArrowRight className="size-4 transition-transform group-hover/card:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
               </StaggerItem>
             );
           })}

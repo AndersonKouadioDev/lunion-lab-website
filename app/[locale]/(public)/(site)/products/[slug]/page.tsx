@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import {
   getOffering,
@@ -29,5 +29,7 @@ export default async function ProductPage({
   const { slug } = await params;
   const offering = getOffering(slug);
   if (!offering || offering.kind !== "product") notFound();
+  // Produit disposant de son propre site (ex. Lunion-Meet) : pas de page interne.
+  if (offering.url) redirect(offering.url);
   return <OfferingPage offering={offering} />;
 }

@@ -54,7 +54,7 @@ export const offerings: Offering[] = [
     url: "https://meet.lunion-lab.com",
     image: "/assets/images/produits/lunion_meet.png",
     category: "Visioconférence souveraine",
-    tagline: "La visioconférence temps réel, souveraine et hébergée en Afrique",
+    tagline: "Des appels audio et vidéo prêts à intégrer dans vos applications, hébergés en Afrique",
     heroTitle: "Appels audio et vidéo de groupe, prêts à l'emploi et intégrables partout",
     heroDesc:
       "Une infrastructure de communication temps réel qui réunit plus de 50 participants par salle en qualité professionnelle grâce à un serveur média SFU. Auto-hébergée, hébergée en Afrique, réglée en FCFA via Wave, avec des SDK et une API pour ajouter la visioconférence à n'importe quelle application.",
